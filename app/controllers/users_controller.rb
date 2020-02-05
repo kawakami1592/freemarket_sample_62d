@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
    
   def edit
+    @user = User.find(params[:id])
     # ユーザー登録情報の変更画面へ
   end
 
@@ -17,13 +18,14 @@ class UsersController < ApplicationController
   end
 
   def show
+    @user = User.find(params[:id])
       #マイページへ
   end
 
   private
 
   def user_params
-    params.require(:user).permit(:nickname,:lastname,:firstname,:zipcode,:pref,:city,:address,:buildingname,:phonee)
+    params.require(:user).permit(:nickname,:lastname,:firstname,:zipcode,:pref,:city,:address,:buildingname,:phonee,:birthyear,:birthmonth,:birthday,:lastname_kana,:firstname_kana)
     # 入力された値を受け取る
   end
 
