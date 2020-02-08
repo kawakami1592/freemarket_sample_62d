@@ -1,0 +1,55 @@
+@font-face {
+  font-family: 'NotoSansJP';
+  src: font-url('NotoSansJP-Regular.otf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: "游ゴシック", "Yu Gothic", "游ゴシック体", YuGothic, sans-serif;
+}
+
+.header {
+  // background-color: yellow;
+  padding-top: 15px;
+  height: 90px;
+  &__top {
+    width: 72%;
+    margin: auto;
+    // background-color: blue;
+    display: flex;
+    &__logo {
+      margin-right: 30px;
+    }
+  }
+  &__nav {
+    a {
+      color: black;
+      text-decoration: none;
+    }
+    a:hover {
+      color: orange;
+    }
+    width: 72%;
+    margin: auto;
+    margin-top: 10px;
+    height: 30px;
+    // background-color: skyblue;
+    display: flex;
+    justify-content: space-between;
+    &__left {
+      &__list {
+        display: inline;
+        margin-right: 40px;
+        font-size: 0.85rem;
+      }
+    }
+    &__right {
+      &__list {
+        display: inline;
+        margin-left: 10px;
+        font-size: 0.85rem;
+      }
+    }
+  }
+}
