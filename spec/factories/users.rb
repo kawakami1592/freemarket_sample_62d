@@ -5,13 +5,13 @@ FactoryBot.define do
     lastname {"真"} 
     firstname {"太郎"}
     lastname_kana {"ま"}
-    first_name_kana {"たろう"}
+    firstname_kana {"たろう"}
     zipcode {"1111111"}
     pref {"東京都"}
     city {"青梅市"}
     address {"1-2-3"}
     buildingname {"マンション"}
-    birthyear　{"2000"}
+    birthyear {"2000"}
     birthmonth {"12"}
     birthday {"23"}
 

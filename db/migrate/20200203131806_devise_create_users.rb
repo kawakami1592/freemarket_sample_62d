@@ -14,8 +14,13 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.string :city,               null: false
       t.string :address,            null: false
       t.string :buildingname
-      t.string :phonee
-
+      t.string :phone
+      t.string :lastname_kana,      null: false
+      t.string :firstname_kana,     null: false
+      t.string :birthyear,          null: false
+      t.string :birthmonth,         null: false
+      t.string :birthday,           null: false
+      
       ## Recoverable
       t.string   :reset_password_token
       t.datetime :reset_password_sent_at

@@ -29,6 +29,7 @@ describe User do
         another_user = build(:user, email: user.email)
         another_user.valid?
         expect(another_user.errors[:email]).to include("はすでに存在します")
+      end
 
       it "パスワードがない" do
         user = build(:user, password: nil)
@@ -45,13 +46,19 @@ describe User do
       it "確認用のパスワードが６文字以下" do
         user = build(:user, password: "111111", password_confirmation: "111111")
         user.valid?
-        expect(user.errors[:password_confirmation]).to include("以上で入力してください")
+        expect(user.errors[:password_confirmation]).to include("は7文字以上で入力してください")
       end
 
       it "lastnameがない" do
         user = build(:user, lastname: nil)
         user.valid?
         expect(user.errors[:lastname]).to include("を入力してください")
+      end
+
+      it "テスト" do
+        user = build(:user, lastname: nil)
+        user.valid?
+        expect(user.errors).to be_added(:lastname,:invalid,value:nil)
       end
 
       it "firstnameがない" do
@@ -67,9 +74,9 @@ describe User do
       end
 
       it "firstname_kanaがない" do
-        user = build(:user, first_name_kana: nil)
+        user = build(:user, firstname_kana: nil)
         user.valid?
-        expect(user.errors[:first_name_kana]).to include("を入力してください")
+        expect(user.errors[:firstname_kana]).to include("を入力してください")
       end
 
       it "生年月日の年がない" do
@@ -113,6 +120,31 @@ describe User do
         user.valid?
         expect(user.errors[:address]).to include("を入力してください")
       end
+
+      it "lastnameが半角で入力されている" do
+        user = build(:user, lastname: "ka")
+        user.valid?
+        expect(user.errors[:lastname]).to include("は不正な値です")
+      end
+
+      it "firstnameが半角で入力されている" do
+        user = build(:user, firstname: "ka")
+        user.valid?
+        expect(user.errors[:firstname]).to include("は不正な値です")
+      end
+
+      it "lastname_kanaが半角で入力されている" do
+        user = build(:user, lastname_kana: "ka")
+        user.valid?
+        expect(user.errors[:lastname_kana]).to include("は不正な値です")
+      end
+
+      it "firstnam_kanaeが半角で入力されている" do
+        user = build(:user, firstname_kana: "ka")
+        user.valid?
+        expect(user.errors[:firstname_kana]).to include("は不正な値です")
+      end
+
     end
   end
 end
