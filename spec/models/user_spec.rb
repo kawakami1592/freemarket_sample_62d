@@ -55,12 +55,6 @@ describe User do
         expect(user.errors[:lastname]).to include("を入力してください")
       end
 
-      it "テスト" do
-        user = build(:user, lastname: nil)
-        user.valid?
-        expect(user.errors).to be_added(:lastname,:invalid,value:nil)
-      end
-
       it "firstnameがない" do
         user = build(:user, firstname: nil)
         user.valid?
