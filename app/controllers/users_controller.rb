@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
    
+  before_action :set_user, only: [:show, :edit]
+
   def edit
-    @user = User.find(params[:id])
     # ユーザー登録情報の変更画面へ
   end
 
@@ -18,7 +19,6 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
       #マイページへ
   end
 
@@ -27,6 +27,10 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:nickname,:lastname,:firstname,:zipcode,:pref,:city,:address,:buildingname,:phone,:birthyear,:birthmonth,:birthday,:lastname_kana,:firstname_kana)
     # 入力された値を受け取る
+  end
+
+  def set_user
+    @user = User.find(params[:id])
   end
 
 end
