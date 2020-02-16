@@ -1,0 +1,167 @@
+.sell
+  %header
+    %h1
+      = link_to root_path do
+        = image_tag 'mercari_top_logo.svg',alt: 'mercari', height: '49', width: '185'
+        
+  %main.sell-main
+    %section.sell-container
+
+      .sell-container__head
+        %h2.sell-main__head__text
+          商品の情報を入力
+
+      = form_with model: @image do |f|
+        .sell-container__image
+          .sell-container__image__head
+            %h3.sell-main__image__head__upload
+              出品画像
+              %span.sell-main__form-require
+                必須
+          %p 最大10枚までアップロードできます
+
+        .sell-container__image__box
+          .sell-container__image__box__output
+            .sell-container__image__box__output__content
+              %ul
+          = f.label :images, class: 'sell-container__image__box__label' do
+            = f.file_field :images, multiple: true, class: "sell-container__image__box__input"
+            %pre.sell-main
+              ドラッグアンドドロップ
+              またはクリックしてファイルをアップロード
+
+        .sell-container__content
+          .sell-container__content__name
+            %h3.sell-main__image__head__upload
+              商品名
+              %span.sell-main__form-require
+                必須
+            = f.text_field :name, {class:'sell-container__content__name__text', placeholder: '商品名（必須 40文字まで)'}
+
+          .sell-container__content__description
+            %h3.sell-main__image__head__upload
+              商品の説明
+              %span.sell-main__form-require
+                必須
+            = f.text_area :description, {class: 'sell-container__content__description__text', rows: '5', placeholder: '商品の説明（必須 1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。'}
+
+        .sell-container__content__details
+          %h3.sell-main__sub-head 商品の詳細
+          .sell-container__content__details__input
+            .sell-container__content__category
+              %h3.sell-main__image__head__upload
+                カテゴリー
+                %span.sell-main__form-require
+                  必須
+              .sell-container__content__category__select
+                = f.label :category_id, class: 'sell-container__content__category__select__label' do
+                  = f.collection_select :category_id, Category.all, :id, :name, {prompt: "---", class: 'sell-container__content__category__select__input'}
+                  %i.fas.fa-chevron-down
+            .sell-container__content__condition
+              %h3.sell-main__image__head__upload
+                商品の状態
+                %span.sell-main__form-require
+                  必須
+              .sell-container__content__condition__select
+                = f.label :condition_id, class: 'sell-container__content__condition__select__label' do
+                  = f.collection_select :condition_id, Condition.all, :id, :condition, {prompt: '---', class: 'sell-container__content__condition__select__input'}
+                  %i.fas.fa-chevron-down
+
+        .sell-container__content__delivery
+          %h3.sell-main__sub-head 配送について
+          = link_to '?', '/delivery',target: '_blank'
+          .sell-container__content__delivery__input
+            .sell-container__content__deliver__cost
+              %h3.sell-main__image__head__upload
+                配送料の負担
+                %span.sell-main__form-require
+                  必須
+              .sell-container__content__delivery__cost__select
+                = f.label :deliverycost_id, class: 'sell-container__content__delivery__cost__select__label' do
+                  = f.collection_select :deliverycost_id, Deliverycost.all, :id, :payer, {prompt: '---', class: 'sell-container__content__delivery__cost__select__input'}
+                  %i.fas.fa-chevron-down
+
+            .sell-container__content__delivery__from
+              %h3.sell-main__image__head__upload
+                発送元の地域
+                %span.sell-main__form-require
+                  必須
+              .sell-container__content__delivery__from__select
+                = f.label :prefecture_id, class: 'sell-container__content__status__select__label' do
+                  = f.collection_select :pref_id, Pref.all, :id, :name, {prompt: '---', class: 'sell-container__content__delivery__from__select__input'}
+                  %i.fas.fa-chevron-down
+
+            .sell-container__content__delivery__days
+              %h3.sell-main__image__head__upload
+                発送までの日数
+                %span.sell-main__form-require
+                  必須
+              .sell-container__content__delivery__days__select
+                = f.label :day_id, class: 'sell-container__content__delivery__days__select__label' do
+                  = f.collection_select :delivery_days_id, DeliveryDays.all, :id, :days, {prompt: '---', class: 'sell-container__content__delivery__days__select__input'}
+                  %i.fas.fa-chevron-down
+
+
+        .sell-container__content__price
+          %h3.sell-main__sub-head 販売価格(300〜9,999,999)
+          = link_to '?', '/price',target: '_blank'
+          .sell-container__content__price__box
+            .sell-container__content__price__box__input
+              %h3.sell-main__image__head__upload
+                価格
+                %span.sell-main__form-require
+                  必須
+              .sell-container__content__price__box__input__form
+                = f.label :price, class: 'sell-container__content__price__box__input__form__label' do
+                  ¥
+                  = f.text_field :price, {placeholder: '例）300', value: '', class: 'sell-container__content__price__box__input__form__box'}
+            .sell-container__content__price__box__commission
+              .sell-container__content__price__box__commission__left
+                販売手数料 (10%)
+              .sell-container__content__price__box__commission__right -
+                
+            .sell-container__content__price__box__profit
+              .sell-container__content__price__box__profit__left
+                販売利益
+              .sell-container__content__price__box__profit__right -
+                    
+        .sell-container__content__btn-box
+          .sell-container__content__btn-box__text
+            %p
+              = link_to '禁止されている出品', '/prohibited_item', target: '_blank'
+              、
+              = link_to '行為', '/prohibited_conduct', target: '_blank'
+              を必ずご確認ください。
+            %p
+              またブランド品でシリアルナンバー等がある場合はご記載ください。
+              = link_to '偽ブランドの販売', '/counterfeit_goods', target: '_blank'
+              は犯罪であり処罰される可能性があります。
+            %p
+              また、出品をもちまして
+              = link_to '加盟店規約', '/seller_terms', target: '_blank'
+              に同意したことになります。
+          = f.submit '出品する', class: 'sell-container__content__btn-box__sell-btn'
+          = link_to 'もどる', root_path, class: 'sell-container__content__btn-box__return-btn'
+
+
+
+
+
+
+  %footer
+    %nav
+      %ul.clearfix
+        %li
+          = link_to '#' do
+            プライバシーポリシー
+        %li
+          = link_to '#' do
+            メルカリ利用規約
+        %li
+          = link_to '#' do
+            特定商取引に関する表記
+    = link_to root_path, class: 'footer__logo' do
+      = image_tag 'logo-gray.svg', alt: 'mercari', height: '65', width: '80'
+    %p
+      %small
+        © Mercari, Inc.

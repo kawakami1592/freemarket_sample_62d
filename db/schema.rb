@@ -10,21 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_15_102549) do
-
-  create_table "categorie_items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "category_id"
-    t.bigint "item_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["category_id"], name: "index_categorie_items_on_category_id"
-    t.index ["item_id"], name: "index_categorie_items_on_item_id"
-  end
+ActiveRecord::Schema.define(version: 2020_02_16_133818) do
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "category_items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "category_id"
+    t.bigint "item_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_category_items_on_category_id"
+    t.index ["item_id"], name: "index_category_items_on_item_id"
   end
 
   create_table "images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -42,16 +42,16 @@ ActiveRecord::Schema.define(version: 2020_02_15_102549) do
     t.bigint "category_id"
     t.bigint "condition_id"
     t.bigint "deliverycost_id"
-    t.bigint "Prefe_id"
+    t.bigint "prefe_id"
     t.bigint "delivery_days_id"
     t.integer "price", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["Prefe_id"], name: "index_items_on_Prefe_id"
     t.index ["category_id"], name: "index_items_on_category_id"
     t.index ["condition_id"], name: "index_items_on_condition_id"
     t.index ["delivery_days_id"], name: "index_items_on_delivery_days_id"
     t.index ["deliverycost_id"], name: "index_items_on_deliverycost_id"
+    t.index ["prefe_id"], name: "index_items_on_prefe_id"
     t.index ["user_id"], name: "index_items_on_user_id"
   end
 
@@ -85,7 +85,7 @@ ActiveRecord::Schema.define(version: 2020_02_15_102549) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "categorie_items", "categories"
-  add_foreign_key "categorie_items", "items"
+  add_foreign_key "category_items", "categories"
+  add_foreign_key "category_items", "items"
   add_foreign_key "images", "items"
 end

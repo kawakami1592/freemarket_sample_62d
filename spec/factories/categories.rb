@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :category, class: 'Categorie' do
+  factory :category do
     
   end
 end
