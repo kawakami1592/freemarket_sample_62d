@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root 'items#new'
   resources :users, only: [:edit, :update, :show, :destroy,]
 
+  # 以下ガイドページ用のルート
   get 'delivery', to: 'guides#delivery'
   get 'price', to: 'guides#price'
   get 'prohibited_item', to: 'guides#prohibited_item'
