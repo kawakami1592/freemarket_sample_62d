@@ -9,7 +9,7 @@ class Item < ApplicationRecord
   belongs_to_active_hash :birthday
 # 上記active_hashのアソシエーション
 
-  has_many :image
-  has_many :category_items
-  has_many :categories, through: :category_items
+  has_many :images
+  belongs_to :user, foreign_key: 'user_id'
+  belongs_to :category
 end

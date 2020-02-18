@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
   devise_for :users
   root 'items#new'
-  resources :users, only: [:edit, :update, :show, :destroy,]
+  resources :users, only: [:edit, :update, :show, :destroy,] do
+    resources :items, only: [:new]
+  end
+
 
   # 以下ガイドページ用のルート
   get 'delivery', to: 'guides#delivery'
