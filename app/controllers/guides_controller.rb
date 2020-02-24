@@ -9,6 +9,9 @@ class GuidesController < ApplicationController
   end
   def counterfeit_goods
   end
+  def stolen_goods
+  end
   def seller_terms
   end
+  
 end

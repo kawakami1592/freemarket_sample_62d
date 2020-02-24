@@ -7,7 +7,7 @@ class CreateItems < ActiveRecord::Migration[5.2]
       t.references :category   
       t.references :condition 
       t.references :deliverycost
-      t.references :prefe
+      t.references :pref
       t.references :delivery_days
       t.integer    :price,        null: false
 

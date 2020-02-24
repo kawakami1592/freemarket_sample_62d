@@ -1,153 +1,178 @@
 .sell
   %header
-    %h1
-      = link_to root_path do
-        = image_tag 'mercari_top_logo.svg',alt: 'mercari', height: '49', width: '185'
-        
+    = link_to root_path do
+      = image_tag 'mercari_top_logo.svg',alt: 'mercari', height: '49', width: '185'
+  -#メイン部分
   %main.sell-main
     %section.sell-container
-
-      .sell-container__head
-        %h2.sell-main__head__text
-          商品の情報を入力
-
       = form_with model: @image do |f|
-        .sell-container__image
-          .sell-container__image__head
-            %h3.sell-main__image__head__upload
-              出品画像
-              %span.sell-main__form-require
-                必須
-          %p 最大10枚までアップロードできます
+        -# 後ほど修正
 
-        .sell-container__image__box
-          .sell-container__image__box__output
-            .sell-container__image__box__output__content
-              %ul
-          = f.label :images, class: 'sell-container__image__box__label' do
-            = f.file_field :images, multiple: true, class: "sell-container__image__box__input"
-            %pre.sell-main
-              ドラッグアンドドロップ
-              またはクリックしてファイルをアップロード
-
+        -# 画像部分
         .sell-container__content
-          .sell-container__content__name
-            %h3.sell-main__image__head__upload
+          .sell-container__content__title
+            %h3.sell-container__content__title__text
+              出品画像
+              %span.sell-container__content__title__require
+                必須
+          .max-sheet 最大10枚までアップロードできます
+          .sell-container__content__upload
+            .sell-container__content__upload__items
+              .sell-container__content__upload__items__box
+                %ul
+                  = f.label :images, class: 'sell-container__content__upload__items__box__label' do
+                    = f.file_field :images, multiple: true, class: "sell-container__content__upload__items__box__input",style: 'display: none;'
+                    %pre.sell-container__content__upload__items__box__input__drop-box
+                      %i.fas.fa-camera
+                      %pre.sell-container__content__upload__items__box__input__drop-box__text
+                        ドラッグアンドドロップ
+                        またはクリックしてファイルをアップロード
+          .erroe-messages
+            エラー文を表示
+            -# = render partial: 'error_messages', locals: { item: @item, column: 'images'} エラー文表示
+
+        -#商品名部分
+        .sell-container__content
+          .sell-container__content__title
+            %h3.sell-container__content__title__text
               商品名
-              %span.sell-main__form-require
+              %span.sell-container__content__title__require
                 必須
-            = f.text_field :name, {class:'sell-container__content__name__text', placeholder: '商品名（必須 40文字まで)'}
-
-          .sell-container__content__description
-            %h3.sell-main__image__head__upload
+          = f.text_field :name, {class:'sell-container__content__name__text', placeholder: '商品名（必須 40文字まで)'}
+          .erroe-messages
+            エラー文を表示
+            -# = render partial: 'error_messages', locals: { item: @item, column: 'name'} エラー文表示
+          .sell-container__content__title
+            %h3.sell-container__content__title__text
               商品の説明
-              %span.sell-main__form-require
+              %span.sell-container__content__title__require
                 必須
-            = f.text_area :description, {class: 'sell-container__content__description__text', rows: '5', placeholder: '商品の説明（必須 1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。'}
+          = f.text_area :description, {class: 'sell-container__content__description__text', rows: '7', placeholder: text_placeholder}
+          -# items_helperを呼び出す
+          .form-word-count
+            0/1000
+          .erroe-messages
+            エラー文を表示
+            -# = render partial: 'error_messages', locals: { item: @item, column: 'images'} エラー文表示
 
-        .sell-container__content__details
+        -# 詳細部分
+        .sell-container__content
           %h3.sell-main__sub-head 商品の詳細
-          .sell-container__content__details__input
-            .sell-container__content__category
-              %h3.sell-main__image__head__upload
+          .sell-container__content__details
+            .sell-container__content__title
+              %h3.sell-container__content__title__text
                 カテゴリー
-                %span.sell-main__form-require
+                %span.sell-container__content__title__require
                   必須
-              .sell-container__content__category__select
-                = f.label :category_id, class: 'sell-container__content__category__select__label' do
-                  = f.collection_select :category_id, Category.all, :id, :name, {prompt: "---", class: 'sell-container__content__category__select__input'}
-                  %i.fas.fa-chevron-down
-            .sell-container__content__condition
-              %h3.sell-main__image__head__upload
+            .sell-container__collection_select
+              = f.label :category_id, {class: 'sell-container__collection_select__label'} do
+                = f.collection_select :category_id, Category.all, :id, :name, {prompt: "選択して下さい"},{ class: 'sell-container__collection_select__input'}
+                %i.fas.fa-chevron-down
+            .erroe-messages
+              エラー文を表示
+            -# = render partial: 'error_messages', locals: { item: @item, column: 'name'} エラー文表示
+            .sell-container__content__title
+              %h3.sell-container__content__title__text
                 商品の状態
-                %span.sell-main__form-require
+                %span.sell-container__content__title__require
                   必須
-              .sell-container__content__condition__select
-                = f.label :condition_id, class: 'sell-container__content__condition__select__label' do
-                  = f.collection_select :condition_id, Condition.all, :id, :condition, {prompt: '---', class: 'sell-container__content__condition__select__input'}
-                  %i.fas.fa-chevron-down
+            .sell-container__collection_select
+              = f.label :condition_id, {class: 'sell-container__collection_select__label'} do
+                = f.collection_select :condition_id, Condition.all, :id, :condition, {prompt: '選択して下さい'},{ class: 'sell-container__collection_select__input'}
+                %i.fas.fa-chevron-down
+            .erroe-messages
+              エラー文を表示
+              -# = render partial: 'error_messages', locals: { item: @item, column: 'name'} エラー文表示
 
-        .sell-container__content__delivery
-          %h3.sell-main__sub-head 配送について
-          = link_to '?', '/delivery',target: '_blank'
-          .sell-container__content__delivery__input
-            .sell-container__content__deliver__cost
-              %h3.sell-main__image__head__upload
+
+        -# 配送部分
+        .sell-container__content
+          %h3.sell-main__sub-head
+            %p 配送について
+            = link_to '/delivery',target: '_blank',class: 'sell-main__sub-head__guides-link' do
+              %i.far.fa-question-circle
+          .sell-container__content__delivery
+            .sell-container__content__title
+              %h3.sell-container__content__title__text
                 配送料の負担
-                %span.sell-main__form-require
+                %span.sell-container__content__title__require
                   必須
-              .sell-container__content__delivery__cost__select
-                = f.label :deliverycost_id, class: 'sell-container__content__delivery__cost__select__label' do
-                  = f.collection_select :deliverycost_id, Deliverycost.all, :id, :payer, {prompt: '---', class: 'sell-container__content__delivery__cost__select__input'}
-                  %i.fas.fa-chevron-down
-
-            .sell-container__content__delivery__from
-              %h3.sell-main__image__head__upload
+            .sell-container__collection_select
+              = f.label :deliverycost_id, {class: 'sell-container__collection_select__label'} do
+                = f.collection_select :deliverycost_id, Deliverycost.all, :id, :payer, {prompt: '選択して下さい'},{ class: 'sell-container__collection_select__input'}
+                %i.fas.fa-chevron-down
+            .erroe-messages
+              エラー文を表示
+              -# = render partial: 'error_messages', locals: { item: @item, column: 'name'} エラー文表示
+            .sell-container__content__title
+              %h3.sell-container__content__title__text
                 発送元の地域
-                %span.sell-main__form-require
+                %span.sell-container__content__title__require
                   必須
-              .sell-container__content__delivery__from__select
-                = f.label :prefecture_id, class: 'sell-container__content__status__select__label' do
-                  = f.collection_select :pref_id, Pref.all, :id, :name, {prompt: '---', class: 'sell-container__content__delivery__from__select__input'}
-                  %i.fas.fa-chevron-down
-
-            .sell-container__content__delivery__days
-              %h3.sell-main__image__head__upload
+            .sell-container__collection_select
+              = f.label :prefecture_id, class: 'sell-container__collection_select__label' do
+                = f.collection_select :pref_id, Pref.all, :id, :name, {prompt: '選択して下さい'},{ class: 'sell-container__collection_select__input'}
+                %i.fas.fa-chevron-down
+            .erroe-messages
+              エラー文を表示
+              -# = render partial: 'error_messages', locals: { item: @item, column: 'name'} エラー文表示
+            .sell-container__content__title
+              %h3.sell-container__content__title__text
                 発送までの日数
-                %span.sell-main__form-require
+                %span.sell-container__content__title__require
                   必須
-              .sell-container__content__delivery__days__select
-                = f.label :day_id, class: 'sell-container__content__delivery__days__select__label' do
-                  = f.collection_select :delivery_days_id, DeliveryDays.all, :id, :days, {prompt: '---', class: 'sell-container__content__delivery__days__select__input'}
-                  %i.fas.fa-chevron-down
+            .sell-container__collection_select
+              = f.label :day_id, class: 'sell-container__collection_select__label' do
+                = f.collection_select :delivery_days_id, DeliveryDays.all, :id, :days, {prompt: '選択して下さい'},{ class: 'sell-container__collection_select__input'}
+                %i.fas.fa-chevron-down
+            .erroe-messages
+              エラー文を表示
+              -# = render partial: 'error_messages', locals: { item: @item, column: 'name'} エラー文表示
 
-
-        .sell-container__content__price
-          %h3.sell-main__sub-head 販売価格(300〜9,999,999)
-          = link_to '?', '/price',target: '_blank'
-          .sell-container__content__price__box
-            .sell-container__content__price__box__input
-              %h3.sell-main__image__head__upload
-                価格
-                %span.sell-main__form-require
+        -# 価格部分
+        .sell-container__content
+          %h3.sell-main__sub-head 
+            %p 販売価格(300〜9,999,999)
+            = link_to '/price',target: '_blank', class: 'sell-main__sub-head__guides-link' do
+              %i.far.fa-question-circle
+          .sell-container__content__price
+            .sell-container__content__title
+              %h3.sell-container__content__title__text
+                販売価格
+                %span.sell-container__content__title__require
                   必須
-              .sell-container__content__price__box__input__form
-                = f.label :price, class: 'sell-container__content__price__box__input__form__label' do
-                  ¥
-                  = f.text_field :price, {placeholder: '例）300', value: '', class: 'sell-container__content__price__box__input__form__box'}
-            .sell-container__content__price__box__commission
-              .sell-container__content__price__box__commission__left
-                販売手数料 (10%)
-              .sell-container__content__price__box__commission__right -
-                
-            .sell-container__content__price__box__profit
-              .sell-container__content__price__box__profit__left
-                販売利益
-              .sell-container__content__price__box__profit__right -
-                    
-        .sell-container__content__btn-box
-          .sell-container__content__btn-box__text
+            .sell-container__content__price__box__input__form
+              = f.label :price, class: 'sell-container__content__price__box__input__form__label' do
+                ¥
+                = f.number_field :price, {placeholder: '0', value: '', autocomplete:"off", class: 'sell-container__content__price__box__input__form__box'}
+          .erroe-messages-price
+            エラー文を表示
+            -# = render partial: 'error_messages', locals: { item: @item, column: 'name'} エラー文表示
+          .sell-container__content__price__box__commission
+            .sell-container__content__price__box__commission__left
+              販売手数料 （10%）
+            .sell-container__content__price__box__commission__right ー
+          .sell-container__content__price__box__profit
+            .sell-container__content__price__box__profit__left
+              販売利益
+            .sell-container__content__price__box__profit__right ー
+          .submit-btn
+            = f.submit '出品する', class: 'sell-container__content__btn-box__sell-btn'
+            = link_to 'もどる', root_path, class: 'sell-container__content__btn-box__return-btn'
+          .attention-box
             %p
-              = link_to '禁止されている出品', '/prohibited_item', target: '_blank'
-              、
+              禁止されている
               = link_to '行為', '/prohibited_conduct', target: '_blank'
+              および
+              = link_to '出品物', '/prohibited_item', target: '_blank'
               を必ずご確認ください。
-            %p
-              またブランド品でシリアルナンバー等がある場合はご記載ください。
-              = link_to '偽ブランドの販売', '/counterfeit_goods', target: '_blank'
-              は犯罪であり処罰される可能性があります。
-            %p
-              また、出品をもちまして
+              = link_to '偽ブランド品', '/counterfeit_goods', target: '_blank'
+              や
+              = link_to '盗品物', '/stolen_goods', target: '_blank'
+              などの販売は犯罪であり、法律により処罰される可能性があります。また、出品をもちまして
               = link_to '加盟店規約', '/seller_terms', target: '_blank'
               に同意したことになります。
-          = f.submit '出品する', class: 'sell-container__content__btn-box__sell-btn'
-          = link_to 'もどる', root_path, class: 'sell-container__content__btn-box__return-btn'
-
-
-
-
-
-
+          
   %footer
     %nav
       %ul.clearfix

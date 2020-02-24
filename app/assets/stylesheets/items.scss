@@ -1,0 +1,288 @@
+* {
+  box-sizing: border-box;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.sell {
+  position: relative;
+  color: rgb(51, 51, 51);
+  background-color: rgb(245, 245, 245);
+  font-family: Arial, 游ゴシック体, YuGothic, メイリオ, Meiryo, sans-serif;
+  font-size: 14px;
+  line-height: 1;
+}
+
+header{
+  height: 128px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+
+  img {
+    vertical-align: middle;
+  }
+}
+
+.sell-main{
+  max-width: 700px;
+  width: 100%;
+  margin: 0px auto;
+  background-color: rgb(255, 255, 255);
+}
+
+.sell-container__content{
+  padding: 40px;
+  border-bottom: 1px;
+  border-bottom-color: #efefef;
+  border-bottom-style: solid;
+  &__title{
+    align-items: center;
+    margin: 0!important;
+    &__text{
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 1.4em;
+    }
+    &__require{
+      margin-left: 8px;
+      font-size: 12px;
+      padding: 0 4px;
+      background-color: #ff0211;
+      color: #fff;
+      border-radius: 2px;
+      display: inline-block;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 1.4em;
+      margin: 0;
+    }
+  }
+}
+
+.erroe-messages{
+  color: #ff0211;
+  font-size: 14px;
+  line-height: 1.4em;
+  margin-top: 16px;
+}
+
+.max-sheet{
+  margin-top: 16px;
+}
+
+.sell-container__content__upload{
+  margin-top: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  &__items{
+    height: 150px;
+    width: 100%;
+    &__box{
+      height: 100%;
+      align-content: center;
+      align-items: center;
+      background-color: rgb(245, 245, 245);
+      cursor: pointer;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      position: relative;
+      border-width: 1px;
+      border-style: dashed;
+      border-color: rgb(204, 204, 204);
+      border-image: initial;
+      transition: all 0.5s ease-out 0s;
+
+      &__input__drop-box{
+        text-align: center;
+      }
+    }
+  }
+}
+
+
+.sell-container__content__name__text{
+  margin-top: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  height: 48px;
+  padding: 0 16px;
+  width: 100%;
+}
+
+.sell-container__content__description__text{
+  margin-top: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  padding: 16px;
+  width: 100%;
+  font-size: 16px;
+  display: block;
+}
+
+.form-word-count{
+  text-align: right;
+  color: #888;
+  font-size: 12px;
+  line-height: 1.4em;
+}
+
+.sell-main__sub-head{
+  color: rgb(136, 136, 136);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4em;
+  margin-bottom: 24px;
+  display: flex;
+  &__guides-link{
+    color: rgb(0, 149, 238);
+    margin-left: 4px;
+  }
+}
+
+
+.sell-container__collection_select{
+  margin-top: 16px;
+  &__label{
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    .fas.fa-chevron-down{
+      pointer-events: none;
+      position: absolute;
+      right: 16px;
+      top: 40%;
+      color: rgb(136, 136, 136);
+      height: 48px;
+    }
+  }
+  &__input{
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  color: #222;
+  font-size: 16px;
+  height: 48px;
+  line-height: 1;
+  margin: 0;
+  outline: none;
+  padding: 0 56px 0 16px;
+  width: 100%;
+  }
+}
+
+.sell-container__content__price{
+  -webkit-box-align: center;
+  align-items: center;
+  box-sizing: content-box;
+  display: flex;
+  height: 46px;
+  justify-content:space-between;
+}
+.sell-container__content__price__box__input__form__label{
+  font-size: 14px;
+}
+
+.sell-container__content__price__box__input__form__box{
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  height: 48px;
+  margin-left: 8px;
+  padding: 0 16px;
+  width: 300px;
+  align-items: center;
+  display: inline-flex;
+  text-align: right;
+}
+
+.erroe-messages-price{
+  color: #ff0211;
+  font-size: 14px;
+  line-height: 1.4em;
+  margin-top: 16px;
+  text-align: right;
+}
+
+.sell-container__content__price__box__commission{
+  display: flex;
+  justify-content:space-between;
+  height: 70px;
+  padding: 12px 0px;
+  align-items: center;
+  border-bottom: 1px;
+  border-bottom-color: #efefef;
+  border-bottom-style: solid;
+}
+
+.sell-container__content__price__box__profit{
+  display: flex;
+  justify-content:space-between;
+  height: 70px;
+  padding: 12px 0px;
+  align-items: center;
+}
+
+.submit-btn{
+  margin: 0 auto;
+  width: 360px;
+  margin-bottom: 32px;
+}
+
+.sell-container__content__btn-box__sell-btn{
+  background-color: #ea352d;
+  color: #fff;
+  margin-bottom: 24px;
+  width: 100%;
+  font-size: 17px;
+  height: 48px;
+  font-weight: 600;
+  border-radius: 4px;
+}
+
+.sell-container__content__btn-box__return-btn{
+  background-color: #ccc;
+  color: #222;
+  width: 100%;
+  font-size: 17px;
+  height: 48px;
+  font-weight: 600;
+  padding: 14px 0;
+  border-radius: 4px;
+  display: inline-block;
+  text-align: center;
+}
+
+.attention-box{
+  font-size: 12px;
+  line-height: 1.4em;
+  word-break: keep-all;
+  a{
+    color: #0095ee;
+  }
+}
+
+footer{
+  padding: 40px 0px;
+  text-align: center;
+}
+
+.clearfix{
+  display: inline-block;
+  font-size: 12px;
+  display: flex;
+  justify-content: center;
+  
+  margin-bottom: 40px;
+  li{
+    margin: 0px 8px;
+  }
+}
