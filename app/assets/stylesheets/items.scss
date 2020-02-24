@@ -1,55 +1,413 @@
-@font-face {
-  font-family: 'NotoSansJP';
-  src: font-url('NotoSansJP-Regular.otf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-
 body {
   font-family: "游ゴシック", "Yu Gothic", "游ゴシック体", YuGothic, sans-serif;
 }
 
+h1 {
+  font-size: 3.7em;
+}
+
+h3 {
+  font-size: 1.2em;
+}
+
 .header {
-  // background-color: yellow;
   padding-top: 15px;
-  height: 90px;
+  height: 95px;
+  width: 72%;
+  margin: 0 auto;
+  font-size: 0.85rem;
+  a {
+    color: black;
+    text-decoration: none;
+  }
+  a:hover {
+    color: orange;
+  }
   &__top {
-    width: 72%;
-    margin: auto;
-    // background-color: blue;
     display: flex;
     &__logo {
       margin-right: 30px;
     }
+    &__search {
+      width: 100%;
+      display: flex;
+      width: 100%;
+      padding-top: 5px;
+      &__textarea {
+        width: calc(100% - 35px);
+        height: 33px;
+        padding-left: 5px;
+        font-size: 1rem;
+      }
+      &__submit {
+        background-color: #3CCACE;
+        height: 37px;
+        width: 37px;
+        padding-top: 2px;
+        &:hover {
+          opacity: 0.8;
+          cursor: pointer;
+        }
+      }
+    }
   }
   &__nav {
-    a {
-      color: black;
-      text-decoration: none;
-    }
-    a:hover {
-      color: orange;
-    }
-    width: 72%;
-    margin: auto;
     margin-top: 10px;
     height: 30px;
-    // background-color: skyblue;
+    line-height: 20px;
     display: flex;
     justify-content: space-between;
     &__left {
+      display: flex;
       &__list {
         display: inline;
-        margin-right: 40px;
-        font-size: 0.85rem;
+        margin-right: 50px;
+        &__categories {
+          position: absolute;
+          background-color: #fff;
+          
+          &__category {
+            padding: 9px 70px 9px 5px;
+            border-top: solid 1px #f8f8f8;
+            display: none;
+          }
+        }
       }
     }
     &__right {
       &__list {
         display: inline;
         margin-left: 10px;
-        font-size: 0.85rem;
       }
     }
+  }
+}
+#list-first {
+  border-top: none;
+  margin-top: 15px;
+}
+.open {
+  display: block;
+}
+
+.main {
+  &__top {
+    background-image: image-url('pict/bg-mainVisual-pict_pc.jpg');
+    background-size: cover;
+    height: 560px;
+    color: white;
+    text-shadow: 0px 0px 5px #646464;
+    padding-left: 6vw;
+    &__title {
+      padding-top: 200px;
+    }
+    &__text {
+      padding-top: 20px;
+    }
+    &__button {
+      padding-top: 30px;
+      display: flex;
+      &__apple {
+        height: 55px;
+        margin-right: 10px;
+        &:hover {
+          opacity: 0.5;
+        }
+      }
+      &__google {
+        height: 55px;
+        &:hover {
+          opacity: 0.5;
+        }
+      }
+    }
+  }
+
+  &__reasons {
+    padding-top: 60px;
+    padding-bottom: 30px;
+    &__title {
+      font-size: 1.6em;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    &__hr {
+      width: 70px;
+      height: 4px;
+      background-color: #3CCACE;
+      margin: 0 auto;
+      margin-bottom: 35px;
+    }
+    &__contents {
+      margin-top: 20px;
+      padding-bottom: 40px;
+      display: flex;
+      width: 71vw;
+      margin: 0 auto;
+      justify-content: space-between;
+      &__content {
+        width: 30%;
+        position: relative;
+        &__header {
+          position: absolute;
+          top: 0px;
+          left: 0px;
+          width: 50px;
+          height: 50px;
+          color: white;
+          font-size: 1.8em;
+          font-weight: bold;
+          text-align: center;
+          line-height: 50px;
+          background-color: #3CCACE;
+          border-radius: 3px;
+        }
+        &__title {
+          text-align: center;
+          font-size: 1.5em;
+          font-weight: bold;
+          margin: 23px 0;
+          span {
+            color: #3CCACE;
+          }
+        }
+        &__text {
+          font-size: 1.1em;
+        }
+      }
+    }
+  }
+  
+  &__middle {
+    padding: 90px 0 100px 14vw;
+    background-image: image-url('pict/bg-topMiddleDl-pict.jpg');
+    background-size: cover;
+    background-position: center bottom;
+    color: white;
+    text-shadow: 0px 0px 5px #646464;
+    &__title {
+      font-weight: bold;
+      font-size: 1.6em;
+    }
+    &__text {
+      padding-top: 20px;
+      padding-bottom: 30px;
+    }
+    &__button {
+      display: flex;
+      &__apple {
+        height: 55px;
+        margin-right: 10px;
+        &:hover {
+          opacity: 0.5;
+        }
+      }
+      &__google {
+        height: 55px;
+        &:hover {
+          opacity: 0.5;
+        }
+      }
+    }
+  }
+
+  &__features {
+    padding-top: 60px;
+    padding-bottom: 30px;
+    &__title {
+      font-size: 1.6em;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    &__hr {
+      width: 70px;
+      height: 4px;
+      background-color: #3CCACE;
+      margin: 0 auto;
+      margin-bottom: 35px;
+    }
+    &__contents {
+      margin-top: 20px;
+      padding-bottom: 70px;
+      display: flex;
+      width: 70vw;
+      margin: 0 auto;
+      justify-content: space-between;
+      &__content {
+        width: 30%;
+        &__img {
+          text-align: center;
+        }
+        &__title {
+          text-align: center;
+          font-size: 1.1em;
+          font-weight: bold;
+          margin-top: 30px;
+          margin-bottom: 10px;
+          
+        }
+      }
+    }
+  }
+
+  &__pickup {
+    background-color: #F8F8F8;
+    padding-top: 80px;
+    margin: 0 auto;
+    a {
+      text-decoration: none;
+      color: black;
+    }
+    &:last-child {
+      padding-bottom: 90px;
+    }
+    &__title {
+      font-size: 1.6em;
+      font-weight: bold;
+      text-align: center;
+    }
+    &__new {
+      font-size: 1.4em;
+      font-weight: bold;
+      text-align: center;
+      padding-bottom: 25px;
+      a {
+        color: #3CCACE;
+      }
+    }
+    &__contents {
+      display: flex;
+      margin: 0 auto;
+      width: 770px;
+      justify-content: space-between;
+      &__content {
+        background-color: #fff;
+        &__img {
+          width: 230px;
+          height: 160px;
+        }
+        &__details {
+          display: flex;
+          justify-content: space-between;
+          padding: 15px;
+          &__left {
+            &__tax {
+             font-size: 0.4em;
+             color: #333333;
+            }
+          }
+          &__right {
+            margin: auto 0;
+          }
+        }
+        &:hover {
+          opacity: 0.5;
+        }
+      }
+    }
+  }
+}
+
+#text-center {
+  text-align: center;
+}
+
+
+.footer {
+  &__top {
+    background-image: image-url('pict/bg-appBanner-pict.jpg');
+    background-size: cover;
+    background-position: center 60%;
+    width: 100%;
+    color: white;
+    text-shadow: 0px 0px 5px #646464;
+    text-align: center;
+    &__title {
+      padding-top: 100px;
+      font-weight: bold;
+      font-size: 1.5em;
+    }
+    &__text {
+      font-size: 2.2em;
+    }
+    &__button {
+      padding-top: 30px;
+      display: flex;
+      justify-content: center;
+      padding-bottom: 100px;
+      &__apple {
+        height: 55px;
+        margin-right: 10px;
+        &:hover {
+          opacity: 0.5;
+        }
+      }
+      &__google {
+        height: 55px;
+        &:hover {
+          opacity: 0.5;
+        }
+      }
+    }
+  }
+  &__bottom {
+    color: white;
+    background-color: #272727;
+    height: 300px;
+    padding-top: 60px;
+    &__contents {
+      display: flex;
+      justify-content: center;
+      &__content {
+        width: 300px;
+        text-align: center;
+        a {
+          text-decoration: none;
+          color: white;
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+        &__title {
+          font-weight: bold;
+          padding-bottom: 30px;
+        }
+        &__list {
+          font-size: 0.8em;
+          li {
+            margin-bottom: 12px;
+          }
+        }
+      }
+    }
+    &__logo {
+      margin: 0 auto;
+      max-width: 160px;
+      width: 100%;
+      height: 47px;
+    }
+    &__copyright {
+      text-align: center;
+      font-size: 0.9em;
+    }
+  }
+}
+
+.sell {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  border-radius: 5px;
+  background-color: #3CCACE;
+  color: white;
+  font-size: 1.1em;
+  text-align: center;
+  width: 120px;
+  height: 100px;
+  padding-top: 20px;
+  &:hover {
+    opacity: 0.8;
   }
 }
