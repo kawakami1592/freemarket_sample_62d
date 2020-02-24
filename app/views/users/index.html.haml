@@ -1,0 +1,13 @@
+.header
+  = render 'shared/header'
+          
+.mypage
+  .mypage__row
+    .mypage__row__list
+      = render 'users/main'
+
+      .mypage__row__list__sidebar
+        = render 'users/side_bar'
+
+.footer
+  = render 'shared/footer'

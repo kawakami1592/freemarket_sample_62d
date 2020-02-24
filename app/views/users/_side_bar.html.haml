@@ -1,0 +1,12 @@
+.mypage__row__list__sidebar__row
+  %h2.mypage__row__list__sidebar__row__top
+    マイページメニュー
+  %ul.mypage__row__list__sidebar__row__list
+    %li.mypage__row__list__sidebar__row__list__item
+      = link_to '#' do
+        クレジット登録
+    %li.mypage__row__list__sidebar__row__list__item
+      = link_to '#' do
+        クレジット変更
+    %li.mypage__row__list__sidebar__row__list__item
+      = link_to "ログアウト",destroy_logout_session_path, method: :delete 
