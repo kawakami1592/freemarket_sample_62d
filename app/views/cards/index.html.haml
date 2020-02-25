@@ -1,0 +1,27 @@
+.header
+  =render :partial=> "header"
+
+.body
+  .sidebar
+    =render :partial=> "sidebar"
+
+  .method-of-payment
+    .method-of-payment__header
+      支払い方法
+    .method-of-payment__body
+      .method-of-payment__body__subheading
+        クレジットカード一覧
+      .method-of-payment__body__button
+        -# = icon('fas', 'credit-card', class: 'method-of-payment__body__subheading__icon')
+        -# クレジットカードを追加する
+        = link_to "/cards/new", class: 'method-of-payment__body__button__icon' do
+          = icon('fas', 'credit-card') 
+          %span
+          クレジットカードを追加する
+      .method-of-payment__body__line
+      .method-of-payment__body__subfooter      
+        =link_to "#" ,class:"method-of-payment__body__subfooter__link" do
+          支払い方法について
+
+.footer
+  =render :partial=> "footer"

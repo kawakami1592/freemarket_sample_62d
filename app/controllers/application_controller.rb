@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   # 下記はサーバーサイド実装の記述
-  before_action :authenticate_user!
+  # before_action :authenticate_user!
   # ログインしていないとルートに飛ぶ
   before_action :configure_permitted_parameters, if: :devise_controller?
   # 登録時のストロングパラメータ追加

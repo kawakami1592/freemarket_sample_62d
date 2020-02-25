@@ -79,3 +79,7 @@ gem 'carrierwave'
 gem 'fog-aws'
 gem 'devise'
 gem 'haml-rails'
+
+gem 'font-awesome-sass'
+gem 'payjp'
+gem 'rails-controller-testing'
