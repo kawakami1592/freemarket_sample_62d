@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 2020_02_17_152134) do
     t.bigint "category_id"
     t.bigint "condition_id"
     t.bigint "deliverycost_id"
-    t.bigint "prefe_id"
+    t.bigint "pref_id"
     t.bigint "delivery_days_id"
     t.integer "price", null: false
     t.datetime "created_at", null: false
@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 2020_02_17_152134) do
     t.index ["condition_id"], name: "index_items_on_condition_id"
     t.index ["delivery_days_id"], name: "index_items_on_delivery_days_id"
     t.index ["deliverycost_id"], name: "index_items_on_deliverycost_id"
-    t.index ["prefe_id"], name: "index_items_on_prefe_id"
+    t.index ["pref_id"], name: "index_items_on_pref_id"
     t.index ["user_id"], name: "index_items_on_user_id"
   end
 

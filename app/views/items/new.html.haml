@@ -1,5 +1,5 @@
 .sell
-  %header
+  %header.sell-header
     = link_to root_path do
       = image_tag 'mercari_top_logo.svg',alt: 'mercari', height: '49', width: '185'
   -#メイン部分
@@ -15,7 +15,7 @@
               出品画像
               %span.sell-container__content__title__require
                 必須
-          .max-sheet 最大10枚までアップロードできます
+          .sell-container__content__max-sheet 最大10枚までアップロードできます
           .sell-container__content__upload
             .sell-container__content__upload__items
               .sell-container__content__upload__items__box
@@ -173,7 +173,7 @@
               = link_to '加盟店規約', '/seller_terms', target: '_blank'
               に同意したことになります。
           
-  %footer
+  %footer.sell-footer
     %nav
       %ul.clearfix
         %li
@@ -189,4 +189,4 @@
       = image_tag 'logo-gray.svg', alt: 'mercari', height: '65', width: '80'
     %p
       %small
-        © Mercari, Inc.
+        &copy; Mercari, Inc.

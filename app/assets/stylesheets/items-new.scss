@@ -15,7 +15,7 @@ a {
   line-height: 1;
 }
 
-header{
+.sell-header{
   height: 128px;
   align-items: center;
   display: flex;
@@ -31,37 +31,36 @@ header{
   width: 100%;
   margin: 0px auto;
   background-color: rgb(255, 255, 255);
-}
 
-.sell-container__content{
-  padding: 40px;
-  border-bottom: 1px;
-  border-bottom-color: #efefef;
-  border-bottom-style: solid;
-  &__title{
-    align-items: center;
-    margin: 0!important;
-    &__text{
-      font-size: 14px;
-      font-weight: 600;
-      line-height: 1.4em;
-    }
-    &__require{
-      margin-left: 8px;
-      font-size: 12px;
-      padding: 0 4px;
-      background-color: #ff0211;
-      color: #fff;
-      border-radius: 2px;
-      display: inline-block;
-      font-style: normal;
-      font-weight: 600;
-      line-height: 1.4em;
-      margin: 0;
+  .sell-container__content{
+    padding: 40px;
+    border-bottom: 1px;
+    border-bottom-color: #efefef;
+    border-bottom-style: solid;
+    &__title{
+      align-items: center;
+      margin: 0!important;
+      &__text{
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 1.4em;
+      }
+      &__require{
+        margin-left: 8px;
+        font-size: 12px;
+        padding: 0 4px;
+        background-color: #ff0211;
+        color: #fff;
+        border-radius: 2px;
+        display: inline-block;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 1.4em;
+        margin: 0;
+      }
     }
   }
 }
-
 .erroe-messages{
   color: #ff0211;
   font-size: 14px;
@@ -69,7 +68,7 @@ header{
   margin-top: 16px;
 }
 
-.max-sheet{
+.sell-container__content__max-sheet{
   margin-top: 16px;
 }
 
@@ -270,19 +269,19 @@ header{
   }
 }
 
-footer{
+.sell-footer{
   padding: 40px 0px;
   text-align: center;
-}
-
-.clearfix{
-  display: inline-block;
-  font-size: 12px;
-  display: flex;
-  justify-content: center;
-  
-  margin-bottom: 40px;
-  li{
-    margin: 0px 8px;
+  nav{
+    .clearfix{
+      display: inline-block;
+      font-size: 12px;
+      display: flex;
+      justify-content: center;
+      margin-bottom: 40px;
+      li{
+        margin: 0px 8px;
+      }
+    }
   }
 }
