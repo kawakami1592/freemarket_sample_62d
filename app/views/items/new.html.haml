@@ -1,0 +1,193 @@
+.sell
+  %header.sell-header
+    = link_to root_path do
+      = image_tag 'mercari_top_logo.svg',alt: 'mercari', height: '49', width: '185'
+  -#メイン部分
+  %main
+    %section.sell-container
+      = form_with model: @image do |f|
+        -# 後ほど修正
+
+        -# 画像部分
+        .sell-container__content
+          .sell-title
+            %h3.sell-title__text
+              出品画像
+              %span.sell-title__require
+                必須
+          .sell-container__content__max-sheet 最大10枚までアップロードできます
+          .sell-container__content__upload
+            .sell-container__content__upload__items
+              .sell-container__content__upload__items__box
+                %ul
+                  = f.label :images, class: 'sell-container__content__upload__items__box__label' do
+                    = f.file_field :images, multiple: true, class: "sell-container__content__upload__items__box__input",style: 'display: none;'
+                    %pre.sell-container__content__upload__items__box__input__drop-box
+                      %i.fas.fa-camera
+                      %pre.sell-container__content__upload__items__box__input__drop-box__text
+                        ドラッグアンドドロップ
+                        またはクリックしてファイルをアップロード
+          .erroe-messages
+            エラー文を表示
+            -# = render partial: 'error_messages', locals: { item: @item, column: 'images'} エラー文表示
+
+        -#商品名部分
+        .sell-container__content
+          .sell-title
+            %h3.sell-title__text
+              商品名
+              %span.sell-title__require
+                必須
+          = f.text_field :name, {class:'sell-container__content__name', placeholder: '商品名（必須 40文字まで)'}
+          .erroe-messages
+            エラー文を表示
+            -# = render partial: 'error_messages', locals: { item: @item, column: 'name'} エラー文表示
+          .sell-title
+            %h3.sell-title__text
+              商品の説明
+              %span.sell-title__require
+                必須
+          = f.text_area :description, {class: 'sell-container__content__description', rows: '7', placeholder: text_placeholder}
+          -# items_helperを呼び出す
+          .sell-container__content__word-count
+            0/1000
+          .erroe-messages
+            エラー文を表示
+            -# = render partial: 'error_messages', locals: { item: @item, column: 'images'} エラー文表示
+
+        -# 詳細部分
+        .sell-container__content
+          %h3.sell-sub-head 商品の詳細
+          .sell-container__content__details
+            .sell-title
+              %h3.sell-title__text
+                カテゴリー
+                %span.sell-title__require
+                  必須
+            .sell-collection_select
+              = f.label :category_id, {class: 'sell-collection_select__label'} do
+                = f.collection_select :category_id, Category.all, :id, :name, {prompt: "選択して下さい"},{ class: 'sell-collection_select__input'}
+                %i.fas.fa-chevron-down
+            .erroe-messages
+              エラー文を表示
+            -# = render partial: 'error_messages', locals: { item: @item, column: 'name'} エラー文表示
+            .sell-title
+              %h3.sell-title__text
+                商品の状態
+                %span.sell-title__require
+                  必須
+            .sell-collection_select
+              = f.label :condition_id, {class: 'sell-collection_select__label'} do
+                = f.collection_select :condition_id, Condition.all, :id, :condition, {prompt: '選択して下さい'},{ class: 'sell-collection_select__input'}
+                %i.fas.fa-chevron-down
+            .erroe-messages
+              エラー文を表示
+              -# = render partial: 'error_messages', locals: { item: @item, column: 'name'} エラー文表示
+
+
+        -# 配送部分
+        .sell-container__content
+          %h3.sell-sub-head
+            %p 配送について
+            = link_to '/delivery',target: '_blank',class: 'sell-sub-head__guides-link' do
+              %i.far.fa-question-circle
+          .sell-container__content__delivery
+            .sell-title
+              %h3.sell-title__text
+                配送料の負担
+                %span.sell-title__require
+                  必須
+            .sell-collection_select
+              = f.label :deliverycost_id, {class: 'sell-collection_select__label'} do
+                = f.collection_select :deliverycost_id, Deliverycost.all, :id, :payer, {prompt: '選択して下さい'},{ class: 'sell-collection_select__input'}
+                %i.fas.fa-chevron-down
+            .erroe-messages
+              エラー文を表示
+              -# = render partial: 'error_messages', locals: { item: @item, column: 'name'} エラー文表示
+            .sell-title
+              %h3.sell-title__text
+                発送元の地域
+                %span.sell-title__require
+                  必須
+            .sell-collection_select
+              = f.label :prefecture_id, class: 'sell-collection_select__label' do
+                = f.collection_select :pref_id, Pref.all, :id, :name, {prompt: '選択して下さい'},{ class: 'sell-collection_select__input'}
+                %i.fas.fa-chevron-down
+            .erroe-messages
+              エラー文を表示
+              -# = render partial: 'error_messages', locals: { item: @item, column: 'name'} エラー文表示
+            .sell-title
+              %h3.sell-title__text
+                発送までの日数
+                %span.sell-title__require
+                  必須
+            .sell-collection_select
+              = f.label :day_id, class: 'sell-collection_select__label' do
+                = f.collection_select :delivery_days_id, DeliveryDays.all, :id, :days, {prompt: '選択して下さい'},{ class: 'sell-collection_select__input'}
+                %i.fas.fa-chevron-down
+            .erroe-messages
+              エラー文を表示
+              -# = render partial: 'error_messages', locals: { item: @item, column: 'name'} エラー文表示
+
+        -# 価格部分
+        .sell-container__content
+          %h3.sell-sub-head
+            %p 販売価格(300〜9,999,999)
+            = link_to '/price',target: '_blank', class: 'sell-sub-head__guides-link' do
+              %i.far.fa-question-circle
+          .sell-container__content__price
+            .sell-title
+              %h3.sell-title__text
+                販売価格
+                %span.sell-title__require
+                  必須
+            .sell-container__content__price__form
+              = f.label :price, class: 'sell-container__content__price__form__label' do
+                ¥
+                = f.number_field :price, {placeholder: '0', value: '', autocomplete:"off", class: 'sell-container__content__price__form__box'}
+          .erroe-messages-price
+            エラー文を表示
+            -# = render partial: 'error_messages', locals: { item: @item, column: 'name'} エラー文表示
+          .sell-container__content__commission
+            .sell-container__content__commission__left
+              販売手数料 （10%）
+            .sell-container__content__commission__right ー
+          .sell-container__content__profit
+            .sell-container__content__profit__left
+              販売利益
+            .sell-container__content__profit__right ー
+        
+          .submit-btn
+            = f.submit '出品する', class: 'submit-btn__sell-btn'
+            = link_to 'もどる', root_path, class: 'submit-btn__return-btn'
+          .attention-box
+            %p
+              禁止されている
+              = link_to '行為', '/prohibited_conduct', target: '_blank'
+              および
+              = link_to '出品物', '/prohibited_item', target: '_blank'
+              を必ずご確認ください。
+              = link_to '偽ブランド品', '/counterfeit_goods', target: '_blank'
+              や
+              = link_to '盗品物', '/stolen_goods', target: '_blank'
+              などの販売は犯罪であり、法律により処罰される可能性があります。また、出品をもちまして
+              = link_to '加盟店規約', '/seller_terms', target: '_blank'
+              に同意したことになります。
+            
+  %footer.sell-footer
+    %nav
+      %ul.clearfix
+        %li
+          = link_to '#' do
+            プライバシーポリシー
+        %li
+          = link_to '#' do
+            メルカリ利用規約
+        %li
+          = link_to '#' do
+            特定商取引に関する表記
+    = link_to root_path, class: 'footer__logo' do
+      = image_tag 'logo-gray.svg', alt: 'mercari', height: '65', width: '80'
+    %p
+      %small
+        &copy; Mercari, Inc.
