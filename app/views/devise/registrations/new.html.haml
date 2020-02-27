@@ -103,17 +103,17 @@
             = f.text_field :phone
         .field
           .field-label
-            = f.label :birthyear
+            = f.label :birthyear_id
           .field-input
             = f.collection_select :birthyear_id, Birthyear.all, :id, :year
         .field
           .field-label
-            = f.label :birthmonth
+            = f.label :birthmonth_id
           .field-input
             = f.collection_select :birthmonth_id, Birthmonth.all, :id, :month
         .field
           .field-label
-            = f.label :birthday
+            = f.label :birthday_id
           .field-input
             = f.collection_select :birthday_id, Birthday.all, :id, :day
         .actions
