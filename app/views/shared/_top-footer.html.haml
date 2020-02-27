@@ -1,0 +1,56 @@
+.top-footer
+  .top-footer__top
+    .top-footer__top__title
+      だれでもかんたん、人生を変えるフリマアプリ
+    .top-footer__top__text
+      今すぐ無料ダウンロード！
+    .top-footer__top__button
+      .top-footer__top__button__apple
+        = link_to image_tag('appstore-button.svg', height: '100%', alt: 'AppStoreボタン'), '#'
+      .top-footer__top__button__google
+        = link_to image_tag('googleplay-button.svg', height: '100%px', alt: 'GooglePlayボタン'), '#'
+  .top-footer__bottom
+    .top-footer__bottom__contents
+      .top-footer__bottom__contents__content
+        .top-footer__bottom__contents__content__title
+          FURIMAについて
+        %ul.top-footer__bottom__contents__content__list
+          %li
+            = link_to '#' do 
+              会社概要（運営会社）
+          %li 
+            = link_to '#' do 
+              プライバシーポリシー
+          %li 
+            = link_to '#' do 
+              FURIMA利用規約
+          %li 
+            = link_to '#' do 
+              ポイントに関する特約
+      .top-footer__bottom__contents__content
+        .top-footer__bottom__contents__content__title
+          FURIMAを見る
+        %ul.top-footer__bottom__contents__content__list
+          %li 
+            = link_to '#' do 
+              カテゴリー一覧
+          %li 
+            = link_to '#' do 
+              ブランド一覧
+      .top-footer__bottom__contents__content
+        .top-footer__bottom__contents__content__title
+          ヘルプ&ガイド
+        %ul.top-footer__bottom__contents__content__list
+          %li 
+            = link_to '#' do 
+              FURIMAガイド
+          %li 
+            = link_to '#' do 
+              FURIMAロゴ利用ガイドライン
+          %li 
+            = link_to '#' do 
+              お知らせ
+    .top-footer__bottom__logo
+      = link_to image_tag('logo/logo-white.png', width: '160px', alt: 'ロゴ'), '#'
+    .top-footer__bottom__copyright
+      &copy; FURIMA
