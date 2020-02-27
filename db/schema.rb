@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 2020_02_17_152134) do
     t.index ["deliverycost_id"], name: "index_items_on_deliverycost_id"
     t.index ["pref_id"], name: "index_items_on_pref_id"
     t.index ["user_id"], name: "index_items_on_user_id"
+  end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "nickname", null: false
