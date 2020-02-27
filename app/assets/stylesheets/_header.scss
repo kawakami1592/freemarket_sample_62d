@@ -1,0 +1,51 @@
+body {
+  font-family: "游ゴシック", "Yu Gothic", "游ゴシック体", YuGothic, sans-serif;
+}
+h1 {
+  font-size: 3.7em;
+}
+h3 {
+  font-size: 1.2em;
+}
+.header {
+  padding-top: 15px;
+  height: 90px;
+  &__top {
+    width: 72%;
+    margin: auto;
+    display: flex;
+    &__logo {
+      margin-right: 30px;
+    }
+  }
+  &__nav {
+    a {
+      color: black;
+      text-decoration: none;
+    }
+    a:hover {
+      color: orange;
+    }
+    width: 72%;
+    margin: auto;
+    margin-top: 10px;
+    height: 30px;
+    line-height: 20px;
+    display: flex;
+    justify-content: space-between;
+    &__left {
+      &__list {
+        display: inline;
+        margin-right: 40px;
+        font-size: 0.85rem;
+      }
+    }
+    &__right {
+      &__list {
+        display: inline;
+        margin-left: 10px;
+        font-size: 0.85rem;
+      }
+    }
+  }
+}
