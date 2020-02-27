@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
    
   before_action :set_user, only: [:show, :edit]
-
+  before_action :authenticate_user!
+  
   def edit
     # ユーザー登録情報の変更画面へ
   end

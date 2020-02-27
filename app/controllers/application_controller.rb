@@ -2,8 +2,8 @@ class ApplicationController < ActionController::Base
   before_action :basic_auth, if: :production?
   protect_from_forgery with: :exception
 
-  # 下記はサーバーサイド実装の記述(確認の為一時的にコメントアウトします)
-  before_action :authenticate_user!
+  # 下記はサーバーサイド実装の記述(確認の為一時的にコメントアウトします)←root_pathにかけたくないので最後に消去します！（代役は記載しました！）
+  # before_action :authenticate_user!
   # ログインしていないとルートに飛ぶ
   before_action :configure_permitted_parameters, if: :devise_controller?
   # 登録時のストロングパラメータ追加
@@ -16,6 +16,10 @@ class ApplicationController < ActionController::Base
 
   def production?
     Rails.env.production?
+  end
+
+  def after_sign_out_path_for(resource_or_scope)
+    root_path
   end
 
   def basic_auth
