@@ -1,0 +1,252 @@
+body {
+  font-family: "游ゴシック", "Yu Gothic", "游ゴシック体", YuGothic, sans-serif;
+}
+
+h1 {
+  font-size: 3.7em;
+}
+
+h3 {
+  font-size: 1.2em;
+}
+
+.top-main {
+  &__top {
+    background-image: image-url('pict/bg-mainVisual-pict_pc.jpg');
+    background-size: cover;
+    height: 560px;
+    color: white;
+    text-shadow: 0px 0px 5px #646464;
+    padding-left: 6vw;
+    &__title {
+      padding-top: 200px;
+    }
+    &__text {
+      padding-top: 20px;
+    }
+    &__button {
+      padding-top: 30px;
+      display: flex;
+      &__apple {
+        height: 55px;
+        margin-right: 10px;
+        &:hover {
+          opacity: 0.5;
+        }
+      }
+      &__google {
+        height: 55px;
+        &:hover {
+          opacity: 0.5;
+        }
+      }
+    }
+  }
+
+  &__reasons {
+    padding-top: 60px;
+    padding-bottom: 30px;
+    &__title {
+      font-size: 1.6em;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    &__hr {
+      width: 70px;
+      height: 4px;
+      background-color: #3CCACE;
+      margin: 0 auto;
+      margin-bottom: 35px;
+    }
+    &__contents {
+      margin-top: 20px;
+      padding-bottom: 40px;
+      display: flex;
+      width: 71vw;
+      margin: 0 auto;
+      justify-content: space-between;
+      &__content {
+        width: 30%;
+        position: relative;
+        &__header {
+          position: absolute;
+          top: 0px;
+          left: 0px;
+          width: 50px;
+          height: 50px;
+          color: white;
+          font-size: 1.8em;
+          font-weight: bold;
+          text-align: center;
+          line-height: 50px;
+          background-color: #3CCACE;
+          border-radius: 3px;
+        }
+        &__title {
+          text-align: center;
+          font-size: 1.5em;
+          font-weight: bold;
+          margin: 23px 0;
+          span {
+            color: #3CCACE;
+          }
+        }
+        &__text {
+          font-size: 1.1em;
+        }
+      }
+    }
+  }
+  
+  &__middle {
+    padding: 90px 0 100px 14vw;
+    background-image: image-url('pict/bg-topMiddleDl-pict.jpg');
+    background-size: cover;
+    background-position: center bottom;
+    color: white;
+    text-shadow: 0px 0px 5px #646464;
+    &__title {
+      font-weight: bold;
+      font-size: 1.6em;
+    }
+    &__text {
+      padding-top: 20px;
+      padding-bottom: 30px;
+    }
+    &__button {
+      display: flex;
+      &__apple {
+        height: 55px;
+        margin-right: 10px;
+        &:hover {
+          opacity: 0.5;
+        }
+      }
+      &__google {
+        height: 55px;
+        &:hover {
+          opacity: 0.5;
+        }
+      }
+    }
+  }
+
+  &__features {
+    padding-top: 60px;
+    padding-bottom: 30px;
+    &__title {
+      font-size: 1.6em;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    &__hr {
+      width: 70px;
+      height: 4px;
+      background-color: #3CCACE;
+      margin: 0 auto;
+      margin-bottom: 35px;
+    }
+    &__contents {
+      margin-top: 20px;
+      padding-bottom: 70px;
+      display: flex;
+      width: 70vw;
+      margin: 0 auto;
+      justify-content: space-between;
+      &__content {
+        width: 30%;
+        &__img {
+          text-align: center;
+        }
+        &__title {
+          text-align: center;
+          font-size: 1.1em;
+          font-weight: bold;
+          margin-top: 30px;
+          margin-bottom: 10px;
+          
+        }
+      }
+    }
+  }
+
+  &__pickup {
+    background-color: #F8F8F8;
+    padding-top: 80px;
+    margin: 0 auto;
+    a {
+      text-decoration: none;
+      color: black;
+    }
+    &:last-child {
+      padding-bottom: 90px;
+    }
+    &__title {
+      font-size: 1.6em;
+      font-weight: bold;
+      text-align: center;
+    }
+    &__new {
+      font-size: 1.4em;
+      font-weight: bold;
+      text-align: center;
+      padding-bottom: 25px;
+      a {
+        color: #3CCACE;
+      }
+    }
+    &__contents {
+      display: flex;
+      margin: 0 auto;
+      width: 770px;
+      justify-content: space-between;
+      &__content {
+        background-color: #fff;
+        &__img {
+          width: 230px;
+          height: 160px;
+        }
+        &__details {
+          display: flex;
+          justify-content: space-between;
+          padding: 15px;
+          &__left {
+            &__tax {
+             font-size: 0.4em;
+             color: #333333;
+            }
+          }
+          &__right {
+            margin: auto 0;
+          }
+        }
+        &:hover {
+          opacity: 0.5;
+        }
+      }
+    }
+  }
+}
+
+#text-center {
+  text-align: center;
+}
+
+.sell {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  border-radius: 5px;
+  background-color: #3CCACE;
+  color: white;
+  font-size: 1.1em;
+  text-align: center;
+  width: 120px;
+  height: 100px;
+  padding-top: 20px;
+  &:hover {
+    opacity: 0.8;
+  }
+}
