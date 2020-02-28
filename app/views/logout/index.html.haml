@@ -1,5 +1,5 @@
 .header
-  = render 'shared/header'
+  = render 'shared/top_header'
           
 .mypage
   .mypage__row
@@ -9,10 +9,11 @@
         .mypage__row__right__main__archive__body
           .mypage__row__right__main__archive__body__content
             .mypage__row__right__main__archive__body__content__button
-              = link_to "ログアウト"
+              = link_to "#" do
+                ログアウト
 
     .mypage__row__sidebar
       = render 'shared/side_bar'
 
 .footer
-  = render 'shared/footer'
+  = render 'shared/top_footer'

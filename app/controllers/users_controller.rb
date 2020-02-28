@@ -27,7 +27,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:nickname,:lastname,:firstname,:zipcode,:pref,:city,:address,:buildingname,:phone,:birthyear,:birthmonth,:birthday,:lastname_kana,:firstname_kana)
+    params.require(:user).permit(:nickname,:lastname,:firstname,:zipcode,:pref_id,:city,:address,:buildingname,:phone,:birthyear_id,:birthmonth_id,:birthday_id,:lastname_kana,:firstname_kana)
     # 入力された値を受け取る
   end
 

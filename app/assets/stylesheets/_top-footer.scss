@@ -1,0 +1,91 @@
+body {
+  font-family: "游ゴシック", "Yu Gothic", "游ゴシック体", YuGothic, sans-serif;
+}
+
+h1 {
+  font-size: 3.7em;
+}
+
+h3 {
+  font-size: 1.2em;
+}
+
+.top-footer {
+  &__top {
+    background-image: image-url('pict/bg-appBanner-pict.jpg');
+    background-size: cover;
+    background-position: center 60%;
+    width: 100%;
+    color: white;
+    text-shadow: 0px 0px 5px #646464;
+    text-align: center;
+    &__title {
+      padding-top: 100px;
+      font-weight: bold;
+      font-size: 1.5em;
+    }
+    &__text {
+      font-size: 2.2em;
+    }
+    &__button {
+      padding-top: 30px;
+      display: flex;
+      justify-content: center;
+      padding-bottom: 100px;
+      &__apple {
+        height: 55px;
+        margin-right: 10px;
+        &:hover {
+          opacity: 0.5;
+        }
+      }
+      &__google {
+        height: 55px;
+        &:hover {
+          opacity: 0.5;
+        }
+      }
+    }
+  }
+  &__bottom {
+    color: white;
+    background-color: #272727;
+    height: 300px;
+    padding-top: 60px;
+    &__contents {
+      display: flex;
+      justify-content: center;
+      &__content {
+        width: 300px;
+        text-align: center;
+        a {
+          text-decoration: none;
+          color: white;
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+        &__title {
+          font-weight: bold;
+          padding-bottom: 30px;
+        }
+        &__list {
+          font-size: 0.8em;
+          li {
+            margin-bottom: 12px;
+          }
+        }
+      }
+    }
+    &__logo {
+      margin: 0 auto;
+      max-width: 160px;
+      width: 100%;
+      height: 47px;
+    }
+    &__copyright {
+      text-align: center;
+      font-size: 0.9em;
+    }
+  }
+}

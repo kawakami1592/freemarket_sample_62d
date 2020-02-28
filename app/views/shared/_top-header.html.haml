@@ -1,0 +1,65 @@
+.top-header
+  .top-header__top
+    .top-header__top__logo
+      = link_to image_tag('logo/logo.png', height: '40px', alt: 'ロゴ'), '#'
+    = form_with url: 'root', class: 'top-header__top__search' do |f|
+      = f.text_field :text, placeholder: 'キーワードから探す', class: 'top-header__top__search__textarea'
+      %button{type: 'submit', class: 'top-header__top__search__submit'} 
+        = image_tag('icon/icon-search 1.png', height: '18px', width: '18px', alt: '検索')
+  .top-header__nav
+    %ul.top-header__nav__left
+      %li.top-header__nav__left__list<
+        = link_to '#' do
+          カテゴリー
+          %ul.top-header__nav__left__list__categories
+            = link_to '#' do
+              %li#list-first.top-header__nav__left__list__categories__category
+                レディース
+            = link_to '#' do
+              %li.top-header__nav__left__list__categories__category
+                メンズ
+            = link_to '#' do
+              %li.top-header__nav__left__list__categories__category
+                ベビー・キッズ
+            = link_to '#' do
+              %li.top-header__nav__left__list__categories__category
+                インテリア・住まい・小物
+            = link_to '#' do
+              %li.top-header__nav__left__list__categories__category
+                本・音楽・ゲーム
+            = link_to '#' do
+              %li.top-header__nav__left__list__categories__category
+                おもちゃ・ホビー・グッズ
+            = link_to '#' do
+              %li.top-header__nav__left__list__categories__category
+                コスメ・香水・美容
+            = link_to '#' do
+              %li.top-header__nav__left__list__categories__category
+                家電・スマホ・カメラ
+            = link_to '#' do
+              %li.top-header__nav__left__list__categories__category
+                スポーツ・レジャー
+            = link_to '#' do
+              %li.top-header__nav__left__list__categories__category
+                ハンドメイド
+            = link_to '#' do
+              %li.top-header__nav__left__list__categories__category
+                チケット
+            = link_to '#' do
+              %li.top-header__nav__left__list__categories__category
+                自動車・オートバイ
+            = link_to '#' do
+              %li.top-header__nav__left__list__categories__category
+                その他
+      .top-header__nav__left__brand
+        = link_to '#' do
+          ブランド
+    .top-header__nav__right
+      %ul
+        %li.top-header__nav__right__list<
+          = link_to '#' do
+            ログイン
+        %li.top-header__nav__right__list<
+          = link_to '#' do
+            新規会員登録
+  %ul.top-header__categories
