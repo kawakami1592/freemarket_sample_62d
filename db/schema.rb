@@ -45,19 +45,14 @@ ActiveRecord::Schema.define(version: 2020_02_28_131146) do
     t.string "name", null: false
     t.text "text"
     t.bigint "user_id"
-    t.bigint "category_id"
-    t.bigint "condition_id"
-    t.bigint "deliverycost_id"
-    t.bigint "pref_id"
-    t.bigint "delivery_days_id"
+    t.integer "category_id"
+    t.integer "condition_id"
+    t.integer "deliverycost_id"
+    t.integer "pref_id"
+    t.integer "delivery_days_id"
     t.integer "price", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["category_id"], name: "index_items_on_category_id"
-    t.index ["condition_id"], name: "index_items_on_condition_id"
-    t.index ["delivery_days_id"], name: "index_items_on_delivery_days_id"
-    t.index ["deliverycost_id"], name: "index_items_on_deliverycost_id"
-    t.index ["pref_id"], name: "index_items_on_pref_id"
     t.index ["user_id"], name: "index_items_on_user_id"
   end
 

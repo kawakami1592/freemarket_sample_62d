@@ -1,9 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users
-  root 'items#new'
-  resources :users, only: [:edit, :update, :show, :destroy,] do
-    resources :items
-  end
+  root 'items#index'
+  resources :users, only: [:edit, :update, :show, :destroy,]
+  resources :items
 
 
   # 以下ガイドページ用のルート
