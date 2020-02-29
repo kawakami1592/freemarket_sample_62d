@@ -1,0 +1,25 @@
+.header
+  .header__top
+    .header__top__logo
+      = link_to image_tag('logo/logo.png', height: '40px', alt: 'ロゴ'), '#'
+    = form_with url: 'root', class: 'header__top__search' do |f|
+      = f.text_field :text, placeholder: 'キーワードから探す', class: 'header__top__search__textarea'
+      %button{typre: 'submit', class: 'header__top__search__submit'} 
+        = image_tag('icon/icon-search 1.png', height: '18px', width: '18px', alt: '検索')
+  .header__nav
+    %ul.header__nav__left
+      %li.header__nav__left__list<
+        = link_to '#' do
+          カテゴリー
+      .header__nav__left__brand
+        = link_to '#' do
+          ブランド
+    .header__nav__right
+      %ul
+        %li.header__nav__right__list<
+          = link_to '#' do
+            ログイン
+        %li.header__nav__right__list<
+          = link_to '#' do
+            新規会員登録
+  %ul.header__categories
