@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   devise_for :users
   resources :users, only: [:edit, :update, :show, :destroy,] do
     resources :items, only: [:new]
+    resources :mypage, only: [:index]
   end
 
 
