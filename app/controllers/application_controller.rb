@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   # 登録時のストロングパラメータ追加
   protected
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:nickname,:lastname,:firstname,:zipcode,:pref_id,:city,:address,:buildingname,:phone,:birthyear_id,:birthmonth_id,:birthday_id,:lastname_kana,:firstname_kana])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:nickname,:lastname,:firstname,:lastname_kana,:firstname_kana,:birthyear_id,:birthmonth_id,:birthday_id,:zipcode,:pref_id,:city,:address,:buildingname,:phone])
   end
 
   private
