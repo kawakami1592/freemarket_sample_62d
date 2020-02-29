@@ -85,3 +85,5 @@ gem 'font-awesome-sass'
 gem 'mini_magick'
 gem 'active_hash'
 gem 'ancestry'
+
+gem 'payjp'
