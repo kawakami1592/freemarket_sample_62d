@@ -7,10 +7,11 @@ Rails.application.routes.draw do
   devise_for :users
   resources :users, only: [:edit, :update, :show, :destroy,] do
     resources :items, only: [:new]
-    resources :mypage, only: [:index]
+    # resources :mypage, only: [:index]
   end
 
-
+  get 'users/:id/:viewname', controller: 'users', action: 'edit' #新たにコントローラを作成せずに、users_controllerのeditアクションのみで関連画面を複数表示するために、viewファイルの名前の変化のみで接続先が変わるようにしました。
+  
   # 以下ガイドページ用のルート
   get 'delivery', to: 'guides#delivery'
   get 'price', to: 'guides#price'
