@@ -1,0 +1,17 @@
+.header
+  = render 'shared/top-header'
+          
+.mypage
+  .mypage__row
+    .mypage__row__right
+      .mypage__row__right__main
+        .mypage__row__right__main__padding
+        .mypage__row__right__main__archive__body
+          .mypage__row__right__main__archive__body__content
+            .mypage__row__right__main__archive__body__content__button
+              = link_to "ログアウト", destroy_user_session_path, method: :delete #ログアウトボタンでsessionデータを破棄します
+    .mypage__row__sidebar
+      = render 'shared/side_bar'
+
+.footer
+  = render 'shared/top-footer'

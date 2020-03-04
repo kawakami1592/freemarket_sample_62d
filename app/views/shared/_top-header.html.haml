@@ -1,7 +1,7 @@
 .top-header
   .top-header__top
     .top-header__top__logo
-      = link_to image_tag('logo/logo.png', height: '40px', alt: 'ロゴ'), '#'
+      = link_to image_tag('logo/logo.png', height: '40px', alt: 'ロゴ'), root_path(current_user)  #ロゴからトップ画面に遷移できるようにしました
     = form_with url: 'root', class: 'top-header__top__search' do |f|
       = f.text_field :text, placeholder: 'キーワードから探す', class: 'top-header__top__search__textarea'
       %button{type: 'submit', class: 'top-header__top__search__submit'} 
@@ -57,15 +57,12 @@
     .top-header__nav__right
       %ul
         %li.top-header__nav__right__list<
-        -#   = link_to '#' do
-        -#     ログイン
-        -# %li.top-header__nav__right__list<
-        -#   = link_to '#' do
         -if user_signed_in?
-          = link_to "ログアウト", destroy_user_session_path, method: :delete
+          = link_to "マイページ", {controller: "users", action: "edit", id:current_user.id, viewname: "mypage"} #editアクションで複数のviewを表示できるようにしたのでroot.rbの記述に必要なデータの呼び出しをしています
         -else
           = link_to new_user_session_path  do
             ログイン&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           = link_to new_user_registration_path  do
             新規会員登録
+
   %ul.top-header__categories

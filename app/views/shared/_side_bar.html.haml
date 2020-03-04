@@ -1,0 +1,52 @@
+%h2.mypage__row__sidebar__top
+  マイページメニュー
+%ul.mypage__row__sidebar__list
+  %li.mypage__row__sidebar__list__item
+    = link_to "マイページ", {controller: "users", action: "edit", id:current_user.id, viewname: "mypage"}  #editアクションで複数のviewを表示できるようにしたのでroot.rbの記述に必要なデータの呼び出しをしています
+  %li.mypage__row__sidebar__list__item
+    = link_to '#' do
+      お知らせ
+  %li.mypage__row__sidebar__list__item
+    = link_to '#' do
+      やることリスト
+  %li.mypage__row__sidebar__list__item
+    = link_to '#' do
+      いいね!一覧
+  %li.mypage__row__sidebar__list__item
+    = link_to '#' do
+      出品する
+  %li.mypage__row__sidebar__list__item
+    = link_to '#' do
+      出品した商品-出品中
+  %li.mypage__row__sidebar__list__item
+    = link_to '#' do
+      出品した商品-取引中
+  %li.mypage__row__sidebar__list__item
+    = link_to '#' do
+      出品した商品-売却済
+  %li.mypage__row__sidebar__list__item
+    = link_to '#' do
+      購入した商品-取引中
+  %li.mypage__row__sidebar__list__item
+    = link_to '#' do
+      購入した商品-過去の取引
+  %li.mypage__row__sidebar__list__item
+    = link_to '#' do
+      ニュース一覧
+  %li.mypage__row__sidebar__list__item
+    = link_to '#' do
+      評価一覧
+  %li.mypage__row__sidebar__list__item
+    = link_to '#' do
+      ガイド
+  %li.mypage__row__sidebar__list__item
+    = link_to '#' do
+      クレジット登録
+  %li.mypage__row__sidebar__list__item
+    = link_to '#' do
+      クレジット変更
+  %li.mypage__row__sidebar__list__item
+    = link_to "ログアウト", {controller: "users", action: "edit", id:current_user.id, viewname: "logout"}  #editアクションで複数のviewを表示できるようにしたのでroot.rbの記述に必要なデータの呼び出しをしています
+  %li.mypage__row__sidebar__list__item
+    = link_to '#' do
+      お問い合わせ
