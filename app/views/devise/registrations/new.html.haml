@@ -1,21 +1,97 @@
-%h2 Sign up
-= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-  = render "devise/shared/error_messages", resource: resource
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .field
-    = f.label :password
-    - if @minimum_password_length
-      %em
-        (#{@minimum_password_length} characters minimum)
-    %br/
-    = f.password_field :password, autocomplete: "new-password"
-  .field
-    = f.label :password_confirmation
-    %br/
-    = f.password_field :password_confirmation, autocomplete: "new-password"
-  .actions
-    = f.submit "Sign up"
-= render "devise/shared/links"
+#account-page.account-page
+  .account-page__inner.clearfix
+    .account-page__inner--left.account-page__header
+      %h2 Create Account
+      %h5 新規アカウントの作成
+      = render "devise/shared/links"
+    .account-page__inner--right.user-form
+      = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+        = devise_error_messages!
+        .field
+          .field-label
+            = f.label :email
+          .field-input
+            = f.email_field :email, autofocus: true
+        .field
+          .field-label
+            = f.label :password
+            %i (英数字8文字以上)
+          .field-input
+            = f.password_field :password, autocomplete: "off"
+        .field
+          .field-label
+            = f.label :password_confirmation
+          .field-input
+            = f.password_field :password_confirmation, autocomplete: "off"          
+        .field
+          .field-label
+            = f.label :nickname
+          .field-input
+            = f.text_field :nickname          
+        .field
+          .field-label
+            = f.label :lastname
+          .field-input
+            = f.text_field :lastname
+        .field
+          .field-label
+            = f.label :firstname
+          .field-input
+            = f.text_field :firstname
+        .field
+          .field-label
+            = f.label :lastname_kana
+          .field-input
+            = f.text_field :lastname_kana        
+        .field
+          .field-label
+            = f.label :firstname_kana
+          .field-input
+            = f.text_field :firstname_kana
+        .field
+          .field-label
+            = f.label :zipcode
+          .field-input
+            = f.text_field :zipcode
+        .field
+          .field-label
+            = f.label :pref_id
+          .field-input
+            = f.collection_select :pref_id, Pref.all, :id, :name     
+        .field
+          .field-label
+            = f.label :city
+          .field-input
+            = f.text_field :city
+        .field
+          .field-label
+            = f.label :address
+          .field-input
+            = f.text_field :address
+        .field
+          .field-label
+            = f.label :buildingname
+          .field-input
+            = f.text_field :buildingname       
+        .field
+          .field-label
+            = f.label :phone
+          .field-input
+            = f.text_field :phone
+        .field
+          .field-label
+            = f.label :birthyear_id
+          .field-input
+            = f.collection_select :birthyear_id, Birthyear.all, :id, :year
+        .field
+          .field-label
+            = f.label :birthmonth_id
+          .field-input
+            = f.collection_select :birthmonth_id, Birthmonth.all, :id, :month
+        .field
+          .field-label
+            = f.label :birthday_id
+          .field-input
+            = f.collection_select :birthday_id, Birthday.all, :id, :day
+        .actions
+          = f.submit "Create Account", class: 'btn'

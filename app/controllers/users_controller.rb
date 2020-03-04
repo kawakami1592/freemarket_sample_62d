@@ -1,9 +1,14 @@
 class UsersController < ApplicationController
    
   before_action :set_user, only: [:show, :edit]
+  before_action :authenticate_user!
+  
+  def index
+  end
 
   def edit
     # ユーザー登録情報の変更画面へ
+    render "users/#{params[:viewname]}" #viewファイルの呼び出し場所を、app/views/usersのファイルに指定しました
   end
 
   def update
@@ -25,7 +30,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:nickname,:lastname,:firstname,:zipcode,:pref_id,:city,:address,:buildingname,:phone,:birthyear_id,:birthmonth_id,:birthday_id,:lastname_kana,:firstname_kana)
+    params.require(:user).permit(:nickname,:lastname,:firstname,:lastname_kana,:firstname_kana,:birthyear_id,:birthmonth_id,:birthday_id,:zipcode,:pref_id,:city,:address,:buildingname,:phone)
     # 入力された値を受け取る
   end
 
