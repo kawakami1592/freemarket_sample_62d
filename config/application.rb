@@ -2,8 +2,8 @@ require_relative 'boot'
 
 require 'rails/all'
 
-# require 'carrierwave'
-# require 'carrierwave/orm/activerecord'
+require 'carrierwave'
+require 'carrierwave/orm/activerecord'
 
 Bundler.require(*Rails.groups)
 
