@@ -63,3 +63,5 @@ set :unicorn_rack_env, "production"
 #     auth_methods: %w(publickey password)
 #     # password: "please use keys"
 #   }
+
+config.require_master_key = true
