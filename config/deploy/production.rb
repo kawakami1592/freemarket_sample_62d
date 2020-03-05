@@ -64,4 +64,4 @@ set :unicorn_rack_env, "production"
 #     # password: "please use keys"
 #   }
 
-# config.require_master_key = true
+config.require_master_key = true
