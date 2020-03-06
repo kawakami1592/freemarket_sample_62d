@@ -5,6 +5,7 @@ class Item < ApplicationRecord
   belongs_to_active_hash :pref
   belongs_to_active_hash :deliverycost
   belongs_to_active_hash :delivery_days
+  belongs_to_active_hash :boughtflg
   
 # 上記active_hashのアソシエーション
 

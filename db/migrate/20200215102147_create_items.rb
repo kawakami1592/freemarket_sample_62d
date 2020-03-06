@@ -10,6 +10,7 @@ class CreateItems < ActiveRecord::Migration[5.2]
       t.references :pref
       t.references :delivery_days
       t.integer    :price
+      t.references :boughtflg
 
       t.timestamps
     end
