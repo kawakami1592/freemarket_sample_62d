@@ -1,0 +1,160 @@
+// 新規会員登録画面
+.header{
+  width:700px;
+  height:97px;
+  color: #333333;
+  font-size: 22px;
+  padding:32px;
+}
+
+.account-page__inner--left.account-page__header{
+  width:700px;
+  height:97px;
+  color: #333333;
+  font-size: 22px;
+  padding:32px;
+}
+.account-page__inner--right.user-form{
+
+}
+.email{
+  &__field-label{
+  font-size: 18px;
+  font-weight: bold;
+  }
+  &__field-input{
+  }
+}
+.password{
+  &__field-label{
+  font-size: 18px;
+  font-weight: bold;
+  }
+  &__field-input{
+  }
+}
+.password_confirmation{
+  &__field-label{
+  font-size: 18px;
+  font-weight: bold;
+  }
+  &__field-input{    
+  }
+}
+.nickname{
+  &__field-label{
+  font-size: 18px;
+  font-weight: bold;
+  }
+  &__field-input{    
+  }
+}
+.lastname{
+  &__field-label{
+  font-size: 18px;
+  font-weight: bold;
+  }
+  &__field-input{    
+  }
+}
+.firstname{
+  &__field-label{
+  font-size: 18px;
+  font-weight: bold;
+  }
+  &__field-input{    
+  }
+}
+.lastname_kana{
+  &__field-label{
+  font-size: 18px;
+  font-weight: bold;
+  }
+  &__field-input{   
+  }
+}
+.firstname_kana{
+  &__field-label{
+  font-size: 18px;
+  font-weight: bold;
+  }
+  &__field-input{    
+  }
+}
+.zipcode{
+  &__field-label{
+  font-size: 18px;
+  font-weight: bold;
+  }
+  &__field-input{    
+  }
+}
+.pref_id{
+  &__field-label{
+  font-size: 18px;
+  font-weight: bold;
+  }
+  &__field-input{    
+  }
+}
+.city{
+  &__field-label{
+  font-size: 18px;
+  font-weight: bold;
+  }
+  &__field-input{    
+  }
+}
+.address{
+  &__field-label{
+  font-size: 18px;
+  font-weight: bold;
+  }
+  &__field-input{   
+  }
+}
+.buildingname{
+  &__field-label{
+  font-size: 18px;
+  font-weight: bold;
+  }
+  &__field-input{    
+  }
+}
+.phone{
+  &__field-label{
+  font-size: 18px;
+  font-weight: bold;
+  }
+  &__field-input{   
+  }
+}
+.birthyear__id{
+  &__field-label{
+  font-size: 18px;
+  font-weight: bold;
+  }
+  &__field-input{    
+  }
+}
+.birthmonth__id{
+  &__field-label{
+  font-size: 18px;
+  font-weight: bold;
+  }
+  &__field-input{   
+  }
+}
+.birthday_id{
+  &__field-label{
+  font-size: 18px;
+  font-weight: bold;
+  }
+  &__field-input{    
+  }
+}
+.actions{  
+}
+
+
+
