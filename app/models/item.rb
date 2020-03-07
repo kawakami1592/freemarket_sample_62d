@@ -5,13 +5,13 @@ class Item < ApplicationRecord
   belongs_to_active_hash :pref
   belongs_to_active_hash :deliverycost
   belongs_to_active_hash :delivery_days
-  belongs_to_active_hash :birthyear
-  belongs_to_active_hash :birthmonth
-  belongs_to_active_hash :birthday
+  belongs_to_active_hash :boughtflg
+  
 # 上記active_hashのアソシエーション
 
-  has_many :images
-  belongs_to :user, foreign_key: 'user_id'
+  has_many_attached :images
+  belongs_to :user, foreign_key: 'user_id',optional: true
+  # ,optional: true後で消す　belongs_toのnotnull制約解放のため使用している
   belongs_to :category
 
 end
