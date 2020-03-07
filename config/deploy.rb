@@ -1,6 +1,6 @@
 # config valid only for current version of Capistrano
 # capistranoのバージョンを記載。固定のバージョンを利用し続け、バージョン変更によるトラブルを防止する
-lock '3.11.2'
+lock '3.12.0'
 
 # Capistranoのログの表示に利用する
 set :application, 'freemarket_sample_62d'
@@ -10,6 +10,7 @@ set :repo_url,  'git@github.com:KONTA2019/freemarket_sample_62d'
 
 # バージョンが変わっても共通で参照するディレクトリを指定
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads')
+# set :linked_files, fetch(:linked_files, []).push("config/master.key")
 
 set :rbenv_type, :user
 set :rbenv_ruby, '2.5.1' #カリキュラム通りに進めた場合、2.5.1か2.3.1です
