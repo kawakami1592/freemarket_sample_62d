@@ -82,3 +82,5 @@ gem 'font-awesome-sass'
 gem 'mini_magick'
 gem 'active_hash'
 gem 'ancestry'
+gem 'mini_magick'
+gem 'aws-sdk-s3', require: false
