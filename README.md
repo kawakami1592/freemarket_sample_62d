@@ -40,8 +40,6 @@ Things you may want to cover:
 |address|string|null: false|
 |buildingname|string||
 |phone|string||
-|lastname_kana|string|null: false|
-|firstname_kana|string|null: false|
 |birthyear_id|bigint|null: false|
 |birthmonth_id|bigint|null: false|
 |birthday_id|bigint|null: false|
@@ -90,7 +88,7 @@ Column|Type|Options|
 
 ### Association
 - has_many  :items,  through:  :categories_items
-
+- has_ancestry
 
 ### active hash
 |Column|Type|Options|
