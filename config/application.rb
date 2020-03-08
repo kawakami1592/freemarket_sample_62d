@@ -2,6 +2,12 @@ require_relative 'boot'
 
 require 'rails/all'
 
+<<<<<<< Updated upstream
+=======
+# require 'carrierwave'
+# require 'carrierwave/orm/activerecord'
+
+>>>>>>> Stashed changes
 Bundler.require(*Rails.groups)
 
 module FreemarketSample62d

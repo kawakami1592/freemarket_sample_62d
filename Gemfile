@@ -76,6 +76,20 @@ gem 'unicorn', '5.4.1'
 end
 
 gem 'carrierwave'
+<<<<<<< Updated upstream
 gem 'fog-aws'
 gem 'devise'
 gem 'haml-rails'
+=======
+# gem 'fog'
+gem 'fog-aws'
+gem 'devise'
+gem 'haml-rails'
+gem 'font-awesome-sass'
+gem 'mini_magick'
+gem 'active_hash'
+gem 'ancestry'
+# gem 'aws-sdk-s3', require: false
+# gem 'file_validators'
+# gem "figaro", "~> 1.1.1"
+>>>>>>> Stashed changes
