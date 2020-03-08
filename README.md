@@ -77,8 +77,8 @@ Things you may want to cover:
 - belongs_to :user
 - belongs_to_active_hash :deriverycost
 - belongs_to_active_hash :status
+- belongs_to :category
 - has_many_attached  :images
-- has_many  :categories,  through:  :categorys_items
 
 
 ## categoryテーブル
