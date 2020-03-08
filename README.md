@@ -24,59 +24,64 @@ Things you may want to cover:
 * ...
 
 # freemarket_sample_62d DB設計
-## usersテーブル
+## userテーブル
 |Column|Type|Options|
 |------|----|-------|
 |nickname|string|null: false|
 |email|string|null: false,unique: true|
-|password|string|null: false|
 |encrypted_password|string|null: false|
 |lastname|string|null: false|
 |firstname|string|null: false|
+|lastname_kana|string|null: false|
+|firstname_kana|string|null: false|
 |zipcode|string|null: false|
-|pref|string|null: false|
+|pref_id|bigint|null: false|
 |city|string|null: false|
 |address|string|null: false|
 |buildingname|string||
 |phone|string||
 |lastname_kana|string|null: false|
 |firstname_kana|string|null: false|
-|birthyear|string|null: false|
-|birthmonth|string|null: false|
-|birthday|string|null: false|
+|birthyear_id|bigint|null: false|
+|birthmonth_id|bigint|null: false|
+|birthday_id|bigint|null: false|
 
 ### Association
 - has_many :items
+- has_one :card
 
-## cardsテーブル
+
+## cardテーブル
 |Column|Type|Options|
 |------|----|-------|
-|number|integer|null: false,|
-|customer_id|integer|null: false,foreign_key: true|
-|user_id|integer|null: false, foreign_key: true|
+|number|string|null: false,|
+|customer_id|string|null: false|
+|user_id|bigint|null: false, foreign_key: true|
+
 ### Association
 - belongs_to :user
 
-## itemsテーブル
+
+## itemテーブル
 |Column|Type|Options|
 |------|----|-------|
 |name|string|null: false|
 |text|text|null: false|
-|form|string|null: false|
-|days|string|null: false|
 |price|integer|null: false|
-|delflg|tinyint|null: false|
-|boughtflg|tinyint|null: false|
-|status_id|integer|null: false, foreign_key: true|
+|user_id|bigint|null: false, foreign_key: true|
+|category_id|bigint|null: false, foreign_key: true|
+|condition_id|bigint|null: false, foreign_key: true|
 |deriverycost_id|integer|null: false, foreign_key: true|
-
+|delivery_days_id|bigint|null: false, foreign_key: true|
+|boughtflg_id|bigint|null: false, foreign_key: true|
 
 ### Association
 - belongs_to :user
-- belongs_to :category
-- belongs_to :status
-- has_many  :images,
-- has_many  :categorys,  through:  :categorys_items
+- belongs_to_active_hash :deriverycost
+- belongs_to_active_hash :status
+- has_many_attached  :images
+- has_many  :categories,  through:  :categorys_items
+
 
 ## categoryテーブル
 Column|Type|Options|
@@ -84,29 +89,22 @@ Column|Type|Options|
 |status|string|null: false|
 
 ### Association
-- has_many  :itemss,  through:  :categorys_items
+- has_many  :items,  through:  :categories_items
 
-## imagesテーブル
-Column|Type|Options|
+
+### active hash
+|Column|Type|Options|
+|------|----|-------|
+|pref|string|null: false|
+|birthyear|string|null: false|
+|birthmonth|string|null: false|
+|birthday|string|null: false|
+|conditions|string|null: false|
+|deliverycost|string|null: false|
+|delivery_days|string|null: false|
+
+
+### active storage
+|Column|Type|Options|
 |------|----|-------|
 |image|blob|null: false|
-|item_id|int|null: false,foreign_key: true|
-
-### Association
-- belong_to :item
-
-## statusテーブル
-Column|Type|Options|
-|------|----|-------|
-|status|string|null: false|
-
-### Association
-- has_many :items
-
-## deiverycostsテーブル
-Column|Type|Options|
-|------|----|-------|
-|payer|string|null: false|
-
-### Association
-- has_many :items
