@@ -76,6 +76,7 @@ end
 
 gem 'carrierwave-aws'
 gem 'carrierwave'
+gem 'fog'
 gem 'fog-aws'
 gem 'devise'
 gem 'haml-rails'
