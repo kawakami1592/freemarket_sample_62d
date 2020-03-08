@@ -11,7 +11,7 @@ class Item < ApplicationRecord
 # 上記active_hashのアソシエーション
 
   has_many :images
-  belongs_to :user, foreign_key: 'user_id'
+  belongs_to :user, foreign_key: 'user_id', optional: true
   belongs_to :category
 
 end

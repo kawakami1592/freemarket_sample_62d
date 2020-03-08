@@ -12,6 +12,14 @@ Rails.application.routes.draw do
 
   get 'users/:id/:viewname', controller: 'users', action: 'edit' #新たにコントローラを作成せずに、users_controllerのeditアクションのみで関連画面を複数表示するために、viewファイルの名前の変化のみで接続先が変わるようにしました。
   
+  resources :cards, only: [:new, :show] do
+    collection do
+      post 'show', to: 'cards#show'
+      post 'pay', to: 'cards#pay'
+      post 'delete', to: 'cards#delete'
+    end
+  end
+
   # 以下ガイドページ用のルート
   get 'delivery', to: 'guides#delivery'
   get 'price', to: 'guides#price'

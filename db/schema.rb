@@ -13,10 +13,9 @@
 ActiveRecord::Schema.define(version: 2020_02_28_113559) do
 
   create_table "cards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "exp_month"
-    t.string "exp_year"
-    t.string "brand"
-    t.string "last4"
+    t.integer "user_id", null: false
+    t.string "customer_id", null: false
+    t.string "card_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
