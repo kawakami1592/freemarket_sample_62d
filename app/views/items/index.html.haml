@@ -1,1 +1,204 @@
-仮メインページ
+= render "shared/top-header"
+
+.top-main
+  .top-main__top
+    .top-main__top__title
+      %h1
+        人生を変えるフリマアプリ
+    .top-main__top__text
+      %h3
+        FURIMAはだれでもかんたんに出品・購入できる
+        %br
+        フリマアプリです
+    .top-main__top__button
+      .top-main__top__button__apple
+        = link_to image_tag('appstore-button.svg', height: '100%', alt: 'AppStoreボタン'), '#'
+      .top-main__top__button__google
+        = link_to image_tag('googleplay-button.svg', height: '100%px', alt: 'GooglePlayボタン'), '#'
+  .top-main__reasons
+    .top-main__reasons__title
+      FURIMAが選ばれる3つの理由
+    .top-main__reasons__hr
+    .top-main__reasons__contents
+      .top-main__reasons__contents__content
+        .top-main__reasons__contents__content__img
+          = image_tag('pict/pict-reason-01.jpg', width: '100%', alt: '理由1')
+        .top-main__reasons__contents__content__header
+          1
+        .top-main__reasons__contents__content__title
+          %span 3分
+          ですぐに出品
+        .top-main__reasons__contents__content__text
+          スマホで入力するだけで簡単に出品できる！
+      .top-main__reasons__contents__content
+        .top-main__reasons__contents__content__img
+          = image_tag('pict/pict-reason-02.jpg', width: '100%', alt: '理由2')
+        .top-main__reasons__contents__content__header
+          2
+        .top-main__reasons__contents__content__title
+          %span シンプル
+          で使いやすい
+        .top-main__reasons__contents__content__text
+          めんどくさい入力は必要なく、検索も購入もスムーズ！
+      .top-main__reasons__contents__content
+        .top-main__reasons__contents__content__img
+          = image_tag('pict/pict-reason-03.jpg', width: '100%', alt: '理由3')
+        .top-main__reasons__contents__content__header
+          3
+        .top-main__reasons__contents__content__title
+          手数料
+          %span 業界最安
+        #text-center.top-main__reasons__contents__content__text
+          最大3%でお得に出品&購入！
+  .top-main__middle
+    .top-main__middle__title
+      会員数日本一位
+    .top-main__middle__text
+      %h3
+        FURIMAは、フリマアプリで最も人気。
+        %br
+        出品・購入回数も業界最多です！
+        %br
+        ほしかったあの商品に出会えるかもしれません。
+    .top-main__middle__button
+      .top-main__middle__button__apple
+        = link_to image_tag('appstore-button.svg', height: '100%', alt: 'AppStoreボタン'), '#'
+      .top-main__middle__button__google
+        = link_to image_tag('googleplay-button.svg', height: '100%px', alt: 'GooglePlayボタン'), '#'
+  .top-main__features
+    .top-main__features__title
+      FURIMAの特徴
+    .top-main__features__hr
+    .top-main__features__contents
+      .top-main__features__contents__content
+        .top-main__features__contents__content__img
+          = image_tag('icon/icon-01.png', width: '75%', alt: '特徴1')
+        .top-main__features__contents__content__title
+          簡単に売り買いできる
+        .top-main__features__contents__content__text
+          スマホひとつで、いつでもどこでも簡単に出品・購入が可能！
+      .top-main__features__contents__content
+        .top-main__features__contents__content__img
+          = image_tag('icon/icon-03.png', width: '75%', alt: '特徴2')
+        .top-main__features__contents__content__title
+          売上金は即日振込みに対応
+        .top-main__features__contents__content__text
+          午前9時までに振込を依頼いただければ、翌日に指定の口座に入金いたします!
+      .top-main__features__contents__content
+        .top-main__features__contents__content__img
+          = image_tag('icon/icon-04.png', width: '75%', alt: '特徴3')
+        .top-main__features__contents__content__title
+          様々な支払いに対応
+        .top-main__features__contents__content__text
+          お支払いは、クレジットカードだけでなく、ポイントや売上金など多彩な方法があります。
+  .top-main__pickup
+    .top-main__pickup__title
+      ピックアップカテゴリー
+    .top-main__pickup__new
+      = link_to '#' do
+        新規投稿作品
+    .top-main__pickup__contents
+      = link_to '#' do
+        .top-main__pickup__contents__content
+          .top-main__pickup__contents__content__img
+            = image_tag('icon/icon-01.png', width: '100%', height: '100%', alt: '商品3')
+          .top-main__pickup__contents__content__details
+            .top-main__pickup__contents__content__details__left
+              .top-main__pickup__contents__content__details__left__name
+                product3
+              .top-main__pickup__contents__content__details__left__price
+                30,000円
+              .top-main__pickup__contents__content__details__left__tax
+                (税込)
+            .top-main__pickup__contents__content__details__right
+              %i.fa.fa-star
+              0
+      = link_to '#' do        
+        .top-main__pickup__contents__content
+          .top-main__pickup__contents__content__img
+            = image_tag('pict/bg-appBanner-pict.jpg', width: '100%', height: '100%', alt: '商品2')
+          .top-main__pickup__contents__content__details
+            .top-main__pickup__contents__content__details__left
+              .top-main__pickup__contents__content__details__left__name
+                product2
+              .top-main__pickup__contents__content__details__left__price
+                20,000円
+              .top-main__pickup__contents__content__details__left__tax
+                (税込)
+            .top-main__pickup__contents__content__details__right
+              %i.fa.fa-star
+              0
+      = link_to '#' do
+        .top-main__pickup__contents__content
+          .top-main__pickup__contents__content__img
+            = image_tag('pict/bg-mainVisual-pict_pc.jpg', width: '100%', height: '100%', alt: '商品1')
+          .top-main__pickup__contents__content__details
+            .top-main__pickup__contents__content__details__left
+              .top-main__pickup__contents__content__details__left__name
+                product1
+              .top-main__pickup__contents__content__details__left__price
+                10,000円
+              .top-main__pickup__contents__content__details__left__tax
+                (税込)
+            .top-main__pickup__contents__content__details__right
+              %i.fa.fa-star
+              0
+  .top-main__pickup
+    .top-main__pickup__title
+      ピックアップブランド
+    .top-main__pickup__new
+      = link_to '#' do
+        アーカイバ
+    .top-main__pickup__contents
+      = link_to '#' do
+        .top-main__pickup__contents__content
+          .top-main__pickup__contents__content__img
+            = image_tag('icon/icon-01.png', width: '100%', height: '100%', alt: '商品3')
+          .top-main__pickup__contents__content__details
+            .top-main__pickup__contents__content__details__left
+              .top-main__pickup__contents__content__details__left__name
+                product3
+              .top-main__pickup__contents__content__details__left__price
+                30,000円
+              .top-main__pickup__contents__content__details__left__tax
+                (税込)
+            .top-main__pickup__contents__content__details__right
+              %i.fa.fa-star
+              0
+      = link_to '#' do
+        .top-main__pickup__contents__content
+          .top-main__pickup__contents__content__img
+            = image_tag('pict/bg-appBanner-pict.jpg', width: '100%', height: '100%', alt: '商品2')
+          .top-main__pickup__contents__content__details
+            .top-main__pickup__contents__content__details__left
+              .top-main__pickup__contents__content__details__left__name
+                product2
+              .top-main__pickup__contents__content__details__left__price
+                20,000円
+              .top-main__pickup__contents__content__details__left__tax
+                (税込)
+            .top-main__pickup__contents__content__details__right
+              %i.fa.fa-star
+              0
+      = link_to '#' do
+        .top-main__pickup__contents__content
+          .top-main__pickup__contents__content__img
+            = image_tag('pict/bg-mainVisual-pict_pc.jpg', width: '100%', height: '100%', alt: '商品1')
+          .top-main__pickup__contents__content__details
+            .top-main__pickup__contents__content__details__left
+              .top-main__pickup__contents__content__details__left__name
+                product1
+              .top-main__pickup__contents__content__details__left__price
+                10,000円
+              .top-main__pickup__contents__content__details__left__tax
+                (税込)
+            .top-main__pickup__contents__content__details__right
+              %i.fa.fa-star
+              0
+
+= render "shared/top-footer"
+
+= link_to 'items/new' do
+  .sell-link
+    出品する
+    = image_tag('icon/icon_camera.png', width: '50px', alt: '出品する')

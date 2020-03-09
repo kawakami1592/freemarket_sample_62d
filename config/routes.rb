@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
-  devise_for :users
-<<<<<<< Updated upstream
+
   root 'items#index'
-  resources :users, only: [:edit, :update, :show, :destroy,]
-=======
+  devise_scope :user do
+    get "/sign_in" => "devise/sessions#new" # login/sign_inへのカスタムパス
+    get "/sign_up" => "devise/registrations#new", as: "new_user_registration" # sign_up/registrationへのカスタムパス
+  end
+  devise_for :users
   resources :users, only: [:edit, :update, :show, :destroy,] do
     resources :items, only: [:new]
     # resources :mypage, only: [:index]
@@ -18,5 +20,5 @@ Rails.application.routes.draw do
   get 'prohibited_conduct', to: 'guides#prohibited_conduct'
   get 'counterfeit_goods', to: 'guides#counterfeit_goods'
   get 'seller_terms', to: 'guides#seller_terms'
->>>>>>> Stashed changes
+
 end
