@@ -34,11 +34,7 @@ Things you may want to cover:
 |firstname|string|null: false|
 |lastname_kana|string|null: false|
 |firstname_kana|string|null: false|
-|zipcode|string|null: false|
-|pref_id|bigint|null: false|
-|city|string|null: false|
-|address|string|null: false|
-|buildingname|string||
+|adress_id|bigint|null: false, foreign_key: true|
 |phone|string||
 |birthyear_id|bigint|null: false|
 |birthmonth_id|bigint|null: false|
@@ -47,6 +43,7 @@ Things you may want to cover:
 ### Association
 - has_many :items
 - has_one :card
+- belongs_to :adress
 
 
 ## cardテーブル
@@ -72,12 +69,14 @@ Things you may want to cover:
 |deriverycost_id|integer|null: false, foreign_key: true|
 |delivery_days_id|bigint|null: false, foreign_key: true|
 |boughtflg_id|bigint|null: false, foreign_key: true|
+|adress_id|bigint|null: false, foreign_key: true|
 
 ### Association
 - belongs_to :user
 - belongs_to_active_hash :deriverycost
 - belongs_to_active_hash :status
 - belongs_to :category
+- belongs_to :adress
 - has_many_attached  :images
 
 
@@ -87,8 +86,23 @@ Column|Type|Options|
 |status|string|null: false|
 
 ### Association
-- has_many  :items,  through:  :categories_items
+- has_many  :items
 - has_ancestry
+
+
+## addressテーブル
+|Column|Type|Options|
+|------|----|-------|
+|zipcode|string|null: false|
+|pref_id|bigint|null: false|
+|city|string|null: false|
+|address|string|null: false|
+|buildingname|string||
+
+### Association
+- has_one :user
+- has_many  :items
+
 
 ### active hash
 |Column|Type|Options|
