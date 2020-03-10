@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, except:[:index,:show]
-  # before_action :set_item, only: [:show]
+   before_action :authenticate_user!, except:[:index,:show]
+   before_action :set_item, only: [:show]
   def index
     @items = Item.all
   end
@@ -11,14 +11,10 @@ class ItemsController < ApplicationController
   end
   
   def show
-      #@item = Item.find(params[:id])
-       # @item = Product.where(user_id: @product.user_id)
-       # @next_product = Product.where("id > ?", @product.id).order("id ASC").first
-       # @prev_product = Product.where("id < ?", @product.id).order("id DESC").first
+    @items = Item.includes(:user)
   end
   def create
     @item = Item.new(item_params)
-
     if @item.save
       redirect_to  edit_user_path
      
@@ -34,6 +30,8 @@ class ItemsController < ApplicationController
   def item_params
     params.require(:item).permit(:name, :text, :category_id, :condition_id, :deliverycost_id, :pref_id, :delivery_days_id, :price, images: []).merge(user_id: current_user.id, boughtflg_id:"1")
   end
- 
+  def set_item
+    @item = Item.find(params[:id])
+  end
 end
 
