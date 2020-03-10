@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except:[:index]
   def index
-    @items = Item.all
+    @items = Item.where.not(boughtflg_id: '2').includes(:user).last(3)
   end
 
   def new

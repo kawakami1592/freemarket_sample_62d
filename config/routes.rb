@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     get "/sign_up" => "devise/registrations#new", as: "new_user_registration" # sign_up/registrationへのカスタムパス
   end
   devise_for :users
+  resources :items
   resources :users, only: [:edit, :update, :show, :destroy,] do
     member do 
       get :logout 
