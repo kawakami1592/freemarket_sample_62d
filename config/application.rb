@@ -1,6 +1,6 @@
-# require_relative 'boot'
+require_relative 'boot'
 
-# require 'rails/all'
+require 'rails/all'
 
 # require 'carrierwave'
 # require 'carrierwave/orm/activerecord'
