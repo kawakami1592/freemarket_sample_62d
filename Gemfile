@@ -74,9 +74,6 @@ group :production do
 gem 'unicorn', '5.4.1'
 end
 
-gem 'carrierwave-aws'
-gem 'carrierwave'
-gem 'fog'
 gem 'fog-aws'
 gem 'devise'
 gem 'haml-rails'
@@ -84,5 +81,5 @@ gem 'font-awesome-sass'
 gem 'mini_magick'
 gem 'active_hash'
 gem 'ancestry'
-gem 'mini_magick'
 gem 'aws-sdk-s3', require: false
+

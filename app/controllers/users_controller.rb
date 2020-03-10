@@ -8,7 +8,7 @@ class UsersController < ApplicationController
 
   def edit
     # ユーザー登録情報の変更画面へ
-    render "users/#{params[:viewname]}" #viewファイルの呼び出し場所を、app/views/usersのファイルに指定しました
+    # render "users/#{params[:viewname]}" #viewファイルの呼び出し場所を、app/views/usersのファイルに指定しました
   end
 
   def update
@@ -26,6 +26,10 @@ class UsersController < ApplicationController
   def show
       #マイページへ
   end
+
+  def logout
+  end
+
 
   private
 
