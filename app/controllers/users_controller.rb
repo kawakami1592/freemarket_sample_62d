@@ -27,9 +27,6 @@ class UsersController < ApplicationController
       #マイページへ
   end
 
-  def mypage
-  end
-
   def logout
   end
 
