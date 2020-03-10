@@ -14,7 +14,4 @@ class Item < ApplicationRecord
   # ,optional: true後で消す　belongs_toのnotnull制約解放のため使用している
   belongs_to :category
 
-#  下記の記載により active storage の validation にかかったデータを自動削除します(公式のコードをそのまま引用)
-  # Active Storage::Blob.unattached.find_each(&:purge_later)
-
 end
