@@ -43,7 +43,7 @@ Things you may want to cover:
 ### Association
 - has_many :items
 - has_one :card
-- belongs_to :adress
+- has_one :address
 
 
 ## cardテーブル
@@ -76,7 +76,7 @@ Things you may want to cover:
 - belongs_to_active_hash :deriverycost
 - belongs_to_active_hash :status
 - belongs_to :category
-- belongs_to :adress
+- belongs_to :address
 - has_many_attached  :images
 
 
