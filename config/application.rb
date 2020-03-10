@@ -1,10 +1,10 @@
-require_relative 'boot'
+# require_relative 'boot'
 
-require 'rails/all'
+# require 'rails/all'
 
 # require 'carrierwave'
 # require 'carrierwave/orm/activerecord'
-
+require File.expand_path('../boot', __FILE__)
 Bundler.require(*Rails.groups)
 
 module FreemarketSample62d
