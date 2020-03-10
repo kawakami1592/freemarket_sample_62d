@@ -13,7 +13,7 @@ class ItemsController < ApplicationController
     @item = Item.new(item_params)
 
     if @item.save
-      redirect_to  edit_user_path
+      redirect_to  edit_user_path(@item.user_id)
      
     else
       render :new
