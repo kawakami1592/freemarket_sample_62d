@@ -29,8 +29,8 @@ Rails.application.configure do
   # Do not fallback to assets pipeline if a precompiled asset is missed.
 
 
-  # config.assets.compile = false
-  config.assets.compile = true
+  config.assets.compile = false
+  # config.assets.compile = true
 
 
 
@@ -50,7 +50,7 @@ Rails.application.configure do
   # config.active_storage.service = :local
   config.active_storage.service = :amazon
 
-
+  config.assets.debug = false
   
   # Mount Action Cable outside main process or domain
   # config.action_cable.mount_path = nil
