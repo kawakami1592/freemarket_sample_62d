@@ -5,10 +5,10 @@ Rails.application.routes.draw do
     get "/sign_up" => "devise/registrations#new", as: "new_user_registration" # sign_up/registrationへのカスタムパス
   end
   devise_for :users
-  resources :users, only: [:edit, :update, :show, :destroy,] do
-    resources :items, only: [:new]
-    # resources :mypage, only: [:index]
-  end
+  resources :users, only: [:edit, :update, :show, :destroy,]
+  resources :items
+  
+  
 
   get 'users/:id/:viewname', controller: 'users', action: 'edit' #新たにコントローラを作成せずに、users_controllerのeditアクションのみで関連画面を複数表示するために、viewファイルの名前の変化のみで接続先が変わるようにしました。
   

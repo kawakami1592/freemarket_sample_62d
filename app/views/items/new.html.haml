@@ -20,10 +20,10 @@
             .sell-container__content__upload__items
               .sell-container__content__upload__items__box
                 %ul#output-box
-                  = f.label :images, class: 'sell-container__content__upload__items__box__label'do
-                    .sell-container__content__upload__items__box--have-item-0
-                      = f.file_field :images, multiple: true, class: "sell-container__content__upload__items__box__input",style: 'display: none;'
-                      %pre.sell-container__content__upload__items__box__input__drop-box
+                  = f.label :images,for:"item_images0", class: 'sell-container__content__upload__items__box__label', id: 'image-input' do
+                    .sell-container__content__upload__items__box--have-item
+                      = f.file_field :images, multiple: true, class: "sell-container__content__upload__items__box__input",id:"item_images0",style: 'display: none;'
+                      .sell-container__content__upload__items__box__input__drop-box
                         %i.fas.fa-camera
                         %pre.sell-container__content__upload__items__box__input__drop-box__text
                           ドラッグアンドドロップ
