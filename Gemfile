@@ -83,3 +83,4 @@ gem 'active_hash'
 gem 'ancestry'
 gem 'aws-sdk-s3', require: false
 
+gem 'sprockets-rails'
