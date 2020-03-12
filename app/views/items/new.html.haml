@@ -48,12 +48,10 @@
               商品の説明
               %span.sell-title__require
                 必須
-          = f.text_area :text,{class: 'sell-container__content__description', rows: '7', maxlength: '1000', placeholder: text_placeholder}
-          -# iplaceholderでtems_helperを呼び出す
+          = f.text_area :text, {class: 'sell-container__content__description', rows: '7', placeholder: text_placeholder}
+          -# items_helperを呼び出す
           .sell-container__content__word-count
-            %span#word-count
-              0
-            &#47;1000
+            0/1000
           .erroe-messages
             エラー文を表示
             -# = render partial: 'error_messages', locals: { item: @item, column: 'images'} エラー文表示

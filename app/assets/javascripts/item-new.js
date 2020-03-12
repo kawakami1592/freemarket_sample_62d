@@ -1,6 +1,6 @@
 $(document).on('turbolinks:load', function(){
   
-  // 画像が選択された時、プレビュー表示
+  // 画像アップロード時プレビュー表示
   $('#output-box').on('change', function(e){
   
     //ファイルオブジェクトを取得する
@@ -17,6 +17,7 @@ $(document).on('turbolinks:load', function(){
         return function(e){
           let itemLength = $('#output-box').children('li').length;
           // 選択されたファイルのプレビューの数を数える
+          console.log(itemLength)
 
           if (itemLength == 9) {
             $('[for=item_images9]').css('display','none');
@@ -24,19 +25,17 @@ $(document).on('turbolinks:load', function(){
             return false;
           } else {
           // プレビュー表示
-          $('#output-box').children('#image-input').before(`<li class="upload-image${itemLength} id="asdf" data-image-id="${itemLength}">
+          $('#output-box').children('#image-input').before(`<li class="upload-image${itemLength}">
                                                               <figure class="upload-image__figure">
                                                                 <img src='${e.target.result}' title='${file.name}' width="100px" height="100px">
                                                               </figure>
                                                               <div class="upload-image__button">
-                                                                <a class="upload-image__button__edit$" href="">編集</a>
-                                                                <a class="upload-image__button__delete" data-image-id="${itemLength}">削除</a>
+                                                                <a class="upload-image__button__edit${itemLength}" href="">編集</a>
+                                                                <a class="upload-image__button__delete${itemLength}">削除</a>
                                                               </div>
                                                             </li>`);
-                                                            
-          // 入力されたlabelを見えなくする or 表示されているlabelを見えなくする
+          // 入力されたinputを見えなくする
           $(`[for=item_images${itemLength}]`).css('display','none');
-
           // 新たにinputを生成する
           $("#output-box").append(`<label for="item_images${itemLength+1}" class="sell-container__content__upload__items__box__label">
                                     <div class="sell-container__content__upload__items__box--have-item">
@@ -54,34 +53,8 @@ $(document).on('turbolinks:load', function(){
     });
   });
 
-  //削除ボタンが押された時
-  $(document).on('click', '.upload-image__button__delete', function(){
-    let targetImageId = $(this).data('image-id');
-    // イベント元のカスタムデータ属性の値を取得
-    
-    $(`.upload-image${targetImageId}`).remove();
-    //プレビューを削除
 
-    $(`[for=item_images${targetImageId}]`).remove();
-    //削除したプレビューに関連したinputを削除
-    
-    $('#output-box').children('li').length;
-    // 表示されているプレビューの数を数える
-
-    $(`[for=item_images${itemsLength+1}]`).attr('for', `item_images${targetImageId}`);
-    $(`#item_images${itemsLength+1}`).attr('id', `item_images${targetImageId}`);
-    //可視状態のフォームを取得し、forとidを削除したフォームのものにする
-
-
-  });
-
-  // f.text_areaの文字数カウント
-  $(function () {
-    $("textarea").keyup(function(){
-      let txtcount = $(this).val().length;
-      $("#word-count").text(txtcount);
-    })
-  });
 
 });
+
 
