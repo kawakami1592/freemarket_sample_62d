@@ -12,6 +12,6 @@ class Item < ApplicationRecord
   has_many_attached :images
   belongs_to :user, foreign_key: 'user_id',optional: true
   # ,optional: true後で消す　belongs_toのnotnull制約解放のため使用している
-  belongs_to :category
+  belongs_to :category,optional: true
 
 end
