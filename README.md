@@ -34,13 +34,15 @@ Things you may want to cover:
 |firstname|string|null: false|
 |lastname_kana|string|null: false|
 |firstname_kana|string|null: false|
-|adress_id|bigint|null: false, foreign_key: true|
 |phone|string||
 |birthyear_id|bigint|null: false|
 |birthmonth_id|bigint|null: false|
 |birthday_id|bigint|null: false|
 
 ### Association
+- belongs_to_active_hash :birthyear_id
+- belongs_to_active_hash :birthmonth_id
+- belongs_to_active_hash :birthday_id
 - has_many :items
 - has_one :card
 - has_one :address
@@ -74,9 +76,11 @@ Things you may want to cover:
 ### Association
 - belongs_to :user
 - belongs_to_active_hash :deriverycost
-- belongs_to_active_hash :status
+- belongs_to_active_hash :delivery_days
+- belongs_to_active_hash :condition
+- belongs_to_active_hash :boughtflg
 - belongs_to :category
-- belongs_to :address
+- belongs_to :address, through: :users
 - has_many_attached  :images
 
 
@@ -98,10 +102,12 @@ Column|Type|Options|
 |city|string|null: false|
 |address|string|null: false|
 |buildingname|string||
+|user_id|bigint|null: false, foreign_key: true|
 
 ### Association
 - belongs_to :user
-- has_many  :items
+- belongs_to_active_hash :pref
+- has_many  :items, through: :users
 
 
 ### active hash
