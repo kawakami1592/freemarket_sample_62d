@@ -100,7 +100,7 @@ Column|Type|Options|
 |buildingname|string||
 
 ### Association
-- has_one :user
+- belongs_to :user
 - has_many  :items
 
 
