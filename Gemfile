@@ -8,7 +8,7 @@ gem 'rails', '~> 5.2.3'
 # Use mysql as the database for Active Record
 gem 'mysql2', '>= 0.4.4', '< 0.6.0'
 # Use Puma as the app server
-gem 'puma', '~> 3.11'
+gem 'puma', '~> 3.12'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -33,9 +33,6 @@ gem 'jbuilder', '~> 2.5'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
-
-gem 'haml-rails'
-gem 'font-awesome-sass'
 gem 'jquery-rails'
 
 group :development, :test do
@@ -46,7 +43,7 @@ group :development, :test do
   gem 'rails-controller-testing'
   gem 'factory_bot_rails'
   gem 'faker'
-  gem 'capistrano'
+  gem 'capistrano','3.12.0'
   gem 'capistrano-rbenv'
   gem 'capistrano-bundler'
   gem 'capistrano-rails'
@@ -77,11 +74,13 @@ group :production do
 gem 'unicorn', '5.4.1'
 end
 
-gem 'carrierwave'
 gem 'fog-aws'
 gem 'devise'
 gem 'haml-rails'
-
 gem 'font-awesome-sass'
-gem 'payjp'
-gem 'rails-controller-testing'
+gem 'mini_magick'
+gem 'active_hash'
+gem 'ancestry'
+gem 'aws-sdk-s3', require: false
+
+gem 'sprockets-rails'

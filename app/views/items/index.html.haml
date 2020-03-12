@@ -97,108 +97,56 @@
     .top-main__pickup__new
       = link_to '#' do
         新規投稿作品
-    .top-main__pickup__contents
-      = link_to '#' do
-        .top-main__pickup__contents__content
-          .top-main__pickup__contents__content__img
-            = image_tag('icon/icon-01.png', width: '100%', height: '100%', alt: '商品3')
-          .top-main__pickup__contents__content__details
-            .top-main__pickup__contents__content__details__left
-              .top-main__pickup__contents__content__details__left__name
-                product3
-              .top-main__pickup__contents__content__details__left__price
-                30,000円
-              .top-main__pickup__contents__content__details__left__tax
-                (税込)
-            .top-main__pickup__contents__content__details__right
-              %i.fa.fa-star
-              0
-      = link_to '#' do        
-        .top-main__pickup__contents__content
-          .top-main__pickup__contents__content__img
-            = image_tag('pict/bg-appBanner-pict.jpg', width: '100%', height: '100%', alt: '商品2')
-          .top-main__pickup__contents__content__details
-            .top-main__pickup__contents__content__details__left
-              .top-main__pickup__contents__content__details__left__name
-                product2
-              .top-main__pickup__contents__content__details__left__price
-                20,000円
-              .top-main__pickup__contents__content__details__left__tax
-                (税込)
-            .top-main__pickup__contents__content__details__right
-              %i.fa.fa-star
-              0
-      = link_to '#' do
-        .top-main__pickup__contents__content
-          .top-main__pickup__contents__content__img
-            = image_tag('pict/bg-mainVisual-pict_pc.jpg', width: '100%', height: '100%', alt: '商品1')
-          .top-main__pickup__contents__content__details
-            .top-main__pickup__contents__content__details__left
-              .top-main__pickup__contents__content__details__left__name
-                product1
-              .top-main__pickup__contents__content__details__left__price
-                10,000円
-              .top-main__pickup__contents__content__details__left__tax
-                (税込)
-            .top-main__pickup__contents__content__details__right
-              %i.fa.fa-star
-              0
+    - if @items.empty?
+      %p#text-center 出品された商品はありません。
+    - else
+      .top-main__pickup__contents
+        - @items.reverse_each do |item| 
+          = link_to item_path(item) do
+            .top-main__pickup__contents__content
+              .top-main__pickup__contents__content__img          
+                = image_tag(item.images.first, width: '100%', height: '100%', alt: '商品3')
+              .top-main__pickup__contents__content__details
+                .top-main__pickup__contents__content__details__left
+                  .top-main__pickup__contents__content__details__left__name
+                    = item.name
+                  .top-main__pickup__contents__content__details__left__price
+                    = "#{item.price.to_s(:delimited)}円"
+                  .top-main__pickup__contents__content__details__left__tax
+                    (税込)
+                .top-main__pickup__contents__content__details__right
+                  %i.fa.fa-star
+                  0
   .top-main__pickup
     .top-main__pickup__title
       ピックアップブランド
     .top-main__pickup__new
       = link_to '#' do
         アーカイバ
-    .top-main__pickup__contents
-      = link_to '#' do
-        .top-main__pickup__contents__content
-          .top-main__pickup__contents__content__img
-            = image_tag('icon/icon-01.png', width: '100%', height: '100%', alt: '商品3')
-          .top-main__pickup__contents__content__details
-            .top-main__pickup__contents__content__details__left
-              .top-main__pickup__contents__content__details__left__name
-                product3
-              .top-main__pickup__contents__content__details__left__price
-                30,000円
-              .top-main__pickup__contents__content__details__left__tax
-                (税込)
-            .top-main__pickup__contents__content__details__right
-              %i.fa.fa-star
-              0
-      = link_to '#' do
-        .top-main__pickup__contents__content
-          .top-main__pickup__contents__content__img
-            = image_tag('pict/bg-appBanner-pict.jpg', width: '100%', height: '100%', alt: '商品2')
-          .top-main__pickup__contents__content__details
-            .top-main__pickup__contents__content__details__left
-              .top-main__pickup__contents__content__details__left__name
-                product2
-              .top-main__pickup__contents__content__details__left__price
-                20,000円
-              .top-main__pickup__contents__content__details__left__tax
-                (税込)
-            .top-main__pickup__contents__content__details__right
-              %i.fa.fa-star
-              0
-      = link_to '#' do
-        .top-main__pickup__contents__content
-          .top-main__pickup__contents__content__img
-            = image_tag('pict/bg-mainVisual-pict_pc.jpg', width: '100%', height: '100%', alt: '商品1')
-          .top-main__pickup__contents__content__details
-            .top-main__pickup__contents__content__details__left
-              .top-main__pickup__contents__content__details__left__name
-                product1
-              .top-main__pickup__contents__content__details__left__price
-                10,000円
-              .top-main__pickup__contents__content__details__left__tax
-                (税込)
-            .top-main__pickup__contents__content__details__right
-              %i.fa.fa-star
-              0
+    - if @items.empty?
+      %p#text-center 出品された商品はありません。
+    - else
+      .top-main__pickup__contents
+        - @items.reverse_each do |item| 
+          = link_to item_path(item) do
+            .top-main__pickup__contents__content
+              .top-main__pickup__contents__content__img          
+                = image_tag(item.images.first, width: '100%', height: '100%', alt: '商品3')
+              .top-main__pickup__contents__content__details
+                .top-main__pickup__contents__content__details__left
+                  .top-main__pickup__contents__content__details__left__name
+                    = item.name
+                  .top-main__pickup__contents__content__details__left__price
+                    = "#{item.price.to_s(:delimited)}円"
+                  .top-main__pickup__contents__content__details__left__tax
+                    (税込)
+                .top-main__pickup__contents__content__details__right
+                  %i.fa.fa-star
+                  0
 
 = render "shared/top-footer"
 
-= link_to '#' do
-  .sell
+= link_to 'items/new' do
+  .sell-link
     出品する
     = image_tag('icon/icon_camera.png', width: '50px', alt: '出品する')
