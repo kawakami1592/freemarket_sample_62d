@@ -71,7 +71,7 @@ Things you may want to cover:
 |deriverycost_id|integer|null: false, foreign_key: true|
 |delivery_days_id|bigint|null: false, foreign_key: true|
 |boughtflg_id|bigint|null: false, foreign_key: true|
-|adress_id|bigint|null: false, foreign_key: true|
+|pref_id|bigint|null: false, foreign_key: true|
 
 ### Association
 - belongs_to :user
@@ -79,6 +79,7 @@ Things you may want to cover:
 - belongs_to_active_hash :delivery_days
 - belongs_to_active_hash :condition
 - belongs_to_active_hash :boughtflg
+- belongs_to_active_hash :pref
 - belongs_to :category
 - belongs_to :address, through: :users
 - has_many_attached  :images
