@@ -1,14 +1,52 @@
-.header
-  = render 'shared/top-header'
+-# .header
+-#   = render 'shared/top-header'
 
 .itembuy-container
 %section.itembuy-content
   %h1.itembuy-content__name
-    -# = @item.name
-    .itembuy-content__clearfix
-      .itembuy-content__photo
-        .itembuy-content__auter
-          .itembuy-content__owl-carousel
-           
-.footer
-  = render 'shared/top-footer'
+    = @item.name
+  .itembuy-content__clearfix
+  .itembuy-content__photo
+    = image_tag(@item.images.first, width: '50%', height: '50%', alt: '商品3')
+  .itembuy-content__auter
+  .itembuy-content__owl-carousel
+    = "¥#{@item.price.to_s(:delimited)}円"
+  .itembuy-content__price-detail
+    = '(税込)送料込み'
+  .itembuy-content__itemDetail
+    = @item.text
+  .itembuy-content__table
+    %ul
+      %li.itembuy-content__table__seller
+        出品者
+        %li.itembuy-content__table__seller__name
+          = @item.user.nickname
+      %li.itembuy-content__table__category
+        カテゴリー
+        %li.itembuy-content__table__category__name
+          = link_to '#' do
+            = @item.category.name
+      %li.itembuy-content__table__brand
+        ブランド
+        %li.itembuy-content__table__brand__name
+      %li.itembuy-content__table__size
+        商品のサイズ
+        %li.itembuy-content__table__size__name
+      %li.itembuy-content__table__condition
+        商品の状態
+        %li.itembuy-content__table__condition__name
+          = @item.condition.condition
+      %li.itembuy-content__table__delivery-cost
+        配送料の負担
+        %li.itembuy-content__table__delivery-cost__name
+          = @item.deliverycost.payer
+      %li.itembuy-content__table__from
+        発送元の地域
+        %li.itembuy-content__table__from__name
+          = @item.pref.name
+      %li.itembuy-content__table__days
+        発送日の目安
+        %li.itembuy-content__table__days__name
+          = @item.delivery_days.days
+-# .footer
+-#   = render 'shared/top-footer'
