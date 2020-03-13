@@ -11,7 +11,7 @@ class ItemsController < ApplicationController
   end
   
   def show
-    @items = Item.includes(:user)
+    
   end
   def create
     @item = Item.new(item_params)
