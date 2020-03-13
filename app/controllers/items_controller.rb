@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
    before_action :authenticate_user!, except:[:index,:show]
    before_action :set_item, only: [:show]
   def index
-    @items = Item.all
+    @items = Item.where.not(boughtflg_id: '2').includes(:user).last(3)
   end
 
   def new
@@ -16,7 +16,7 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     if @item.save
-      redirect_to  edit_user_path
+      redirect_to  edit_user_path(@item.user_id)
      
     else
       render :new

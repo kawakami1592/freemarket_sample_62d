@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   root 'items#index'
   devise_scope :user do
     get "/sign_in" => "devise/sessions#new" # login/sign_inへのカスタムパス
