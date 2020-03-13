@@ -12,7 +12,6 @@ Rails.application.routes.draw do
     end
     resources :items, only: [:new]
   end
-  resources :items
   
   # 以下ガイドページ用のルート
   get 'delivery', to: 'guides#delivery'
