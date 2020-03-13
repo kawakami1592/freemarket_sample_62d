@@ -43,7 +43,7 @@ group :development, :test do
   gem 'rails-controller-testing'
   gem 'factory_bot_rails'
   gem 'faker'
-  gem 'capistrano'
+  gem 'capistrano','3.12.0'
   gem 'capistrano-rbenv'
   gem 'capistrano-bundler'
   gem 'capistrano-rails'
@@ -74,7 +74,6 @@ group :production do
 gem 'unicorn', '5.4.1'
 end
 
-gem 'carrierwave'
 gem 'fog-aws'
 gem 'devise'
 gem 'haml-rails'
@@ -82,3 +81,5 @@ gem 'font-awesome-sass'
 gem 'mini_magick'
 gem 'active_hash'
 gem 'ancestry'
+gem 'aws-sdk-s3', require: false
+gem 'sprockets-rails'

@@ -2,7 +2,7 @@
   マイページメニュー
 %ul.mypage__row__sidebar__list
   %li.mypage__row__sidebar__list__item
-    = link_to "マイページ", {controller: "users", action: "edit", id:current_user.id, viewname: "mypage"}  #editアクションで複数のviewを表示できるようにしたのでroot.rbの記述に必要なデータの呼び出しをしています
+    = link_to "マイページ", edit_user_path(current_user.id)
   %li.mypage__row__sidebar__list__item
     = link_to '#' do
       お知らせ
@@ -46,7 +46,7 @@
     = link_to '#' do
       クレジット変更
   %li.mypage__row__sidebar__list__item
-    = link_to "ログアウト", {controller: "users", action: "edit", id:current_user.id, viewname: "logout"}  #editアクションで複数のviewを表示できるようにしたのでroot.rbの記述に必要なデータの呼び出しをしています
+    = link_to "ログアウト", logout_user_path(current_user.id)
   %li.mypage__row__sidebar__list__item
     = link_to '#' do
       お問い合わせ
