@@ -57,7 +57,7 @@ Rails.application.configure do
 
   config.assets.debug = false
   config.serve_static_assets = true
-  config.assets.compile = true # fontawesomeを表示させるのに必要だった
+  # config.assets.compile = true # fontawesomeを表示させるのに必要だった
 
 
 
