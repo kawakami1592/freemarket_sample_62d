@@ -1,10 +1,11 @@
 // 新規会員登録画面
-.header{
+.account-page__inner.clearfix{
   width:700px;
   height:97px;
   color: #333333;
   font-size: 22px;
   padding:32px;
+  margin: 0px auto;
 }
 
 .account-page__inner--left.account-page__header{
@@ -12,148 +13,222 @@
   height:97px;
   color: #333333;
   font-size: 22px;
-  padding:32px;
+  // padding:32px;
+  margin: 0 auto;
+  text-align: center;
 }
 .account-page__inner--right.user-form{
+  margin: 0 auto;
+  text-align: center;
+}
+.field-email{
+  padding-bottom: 30px;
+  &__label{
+    font-size: 18px;
+    font-weight: bold;
+  }
+  &__input{ 
+    outline-color: red;
+  }
+}
+.field-password{
+  padding-bottom: 30px;
+  &__label{
+  font-size: 18px;
+  font-weight: bold;
+  }
+  &__input{
 
+  }
 }
-.email{
-  &__field-label{
+.field-password_confirmation{
+  padding-bottom: 30px;
+  &__label{
   font-size: 18px;
   font-weight: bold;
   }
-  &__field-input{
+  &__input{    
   }
 }
-.password{
-  &__field-label{
+.field-nickname{
+  padding-bottom: 30px;
+  &__label{
   font-size: 18px;
   font-weight: bold;
   }
-  &__field-input{
+  &__input{    
   }
 }
-.password_confirmation{
-  &__field-label{
+.field-name-kanji{
+  padding-bottom: 30px;
+  display:flex;
+  justify-content: center;
+}
+.field-lastname{
+  
+  &__label{
   font-size: 18px;
   font-weight: bold;
   }
-  &__field-input{    
+  &__input{    
   }
 }
-.nickname{
-  &__field-label{
+.field-firstname{
+  
+  &__label{
   font-size: 18px;
   font-weight: bold;
   }
-  &__field-input{    
+  &__input{    
   }
 }
-.lastname{
-  &__field-label{
+.field-name-kana{
+  padding-bottom: 30px;
+  display:flex;
+  justify-content: center;
+}
+.field-lastname_kana{
+  &__label{
   font-size: 18px;
   font-weight: bold;
   }
-  &__field-input{    
+  &__input{   
   }
 }
-.firstname{
-  &__field-label{
+.field-firstname_kana{
+  &__label{
   font-size: 18px;
   font-weight: bold;
   }
-  &__field-input{    
+  &__input{    
   }
 }
-.lastname_kana{
-  &__field-label{
+.field-address-zippref{
+  padding-bottom: 30px;
+  display:flex;
+}
+.field-zipcode{
+  padding-bottom: 30px;
+  &__label{
   font-size: 18px;
   font-weight: bold;
   }
-  &__field-input{   
+  &__input{    
   }
 }
-.firstname_kana{
-  &__field-label{
+.field-prefcity{
+  padding-bottom: 30px;
+  display:flex;
+  justify-content: center;
+}
+#user_pref_id{
+  width: 250px;
+  height: 35px;
+}
+.field-pref_id{
+  margin-right: 10px;
+  text-align: center;
+ 
+  &__label{
+    font-size: 18px;
+    font-weight: bold; 
+  
+  }
+  &__input{    
+    font-size: 15px;
+   
+  }
+}
+.field-city{
+  margin-left: 10px;
+  &__label{
   font-size: 18px;
   font-weight: bold;
   }
-  &__field-input{    
+  &__input{    
   }
 }
-.zipcode{
-  &__field-label{
+.field-addressbuilding{
+  
+  padding-bottom: 30px;
+  display:flex;
+  justify-content: center;
+}
+.field-address{
+  margin-right: 10px;
+  &__label{
   font-size: 18px;
   font-weight: bold;
   }
-  &__field-input{    
+  &__input{   
   }
 }
-.pref_id{
-  &__field-label{
+.field-buildingname{
+  &__label{
   font-size: 18px;
   font-weight: bold;
   }
-  &__field-input{    
+  &__input{    
   }
 }
-.city{
-  &__field-label{
+.field-phone{
+  padding-bottom: 30px;
+  &__label{
   font-size: 18px;
   font-weight: bold;
   }
-  &__field-input{    
+  &__input{   
   }
 }
-.address{
-  &__field-label{
+.field-birth{
+  padding-bottom: 30px;
+  display:flex;
+  justify-content: center;
+}
+.field-birthyear_id{
+  &__label{
   font-size: 18px;
   font-weight: bold;
   }
-  &__field-input{   
+  &__input{  
+    font-size: 15px;  
   }
 }
-.buildingname{
-  &__field-label{
+#user_birthyear_id{
+  width: 100px;
+  height: 35px;
+}
+.field-birthmonth_id{
+  &__label{
   font-size: 18px;
   font-weight: bold;
   }
-  &__field-input{    
+  &__input{  
+
+    font-size: 15px; 
   }
 }
-.phone{
-  &__field-label{
+#user_birthmonth_id{
+  width: 100px;
+  height: 35px;
+}
+.field-birthday_id{
+  &__label{
   font-size: 18px;
   font-weight: bold;
   }
-  &__field-input{   
+  &__input{ 
+    font-size: 15px;   
   }
 }
-.birthyear__id{
-  &__field-label{
+#user_birthday_id{
+  width: 100px;
+  height: 35px;
+}
+.actions{
+  padding-bottom: 30px; 
   font-size: 18px;
   font-weight: bold;
-  }
-  &__field-input{    
-  }
-}
-.birthmonth__id{
-  &__field-label{
-  font-size: 18px;
-  font-weight: bold;
-  }
-  &__field-input{   
-  }
-}
-.birthday_id{
-  &__field-label{
-  font-size: 18px;
-  font-weight: bold;
-  }
-  &__field-input{    
-  }
-}
-.actions{  
 }
 
 

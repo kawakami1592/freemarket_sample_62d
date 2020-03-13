@@ -9,5 +9,5 @@ class User < ApplicationRecord
 
   validates :lastname,:firstname,:lastname_kana,:firstname_kana, 
   format: { with: /\A[ぁ-んァ-ン一-龥]/ }
-  devise :database_authenticatable, :registerable,
+  devise :database_authenticatable, :registerable
 end
