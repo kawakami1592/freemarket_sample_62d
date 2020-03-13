@@ -1,9 +1,9 @@
 .header
-  =render :partial=> "header"
+  =render :partial=> "shared/top-header"
 
-.body
+.credit-index-body
   .sidebar
-    =render :partial=> "sidebar"
+    =render :partial=> "shared/side_bar"
 
   .method-of-payment
     .method-of-payment__header
@@ -17,11 +17,11 @@
         = link_to "/cards/new", class: 'method-of-payment__body__button__icon' do
           = icon('fas', 'credit-card') 
           %span
-          クレジットカードを追加する
+          &nbsp;&nbsp;&nbsp;&nbsp;クレジットカードを追加する
       .method-of-payment__body__line
       .method-of-payment__body__subfooter      
         =link_to "#" ,class:"method-of-payment__body__subfooter__link" do
           支払い方法について
 
 .footer
-  =render :partial=> "footer"
+  =render :partial=> "shared/top-footer"
