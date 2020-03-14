@@ -1,5 +1,4 @@
 #account-page.account-page
-  
 
   .account-page__inner.clearfix
     .account-page__inner--left.account-page__header
@@ -12,66 +11,92 @@
         .field-email
           .field-email__label
             = f.label :メールアドレス
+            .require
+              必須
           .field-email__input
             = f.email_field :email, autofocus: true
         .field-password
           .field-password__label
             = f.label :password
             %i (英数字7文字以上)
+            .require
+              必須
           .field-password__input
             = f.password_field :password, autocomplete: "off"
         .field-password_confirmation
           .field-password_confirmation__label
             = f.label :password_confirmation
+            .require
+              必須
           .field-password_confirmation-__input
             = f.password_field :password_confirmation, autocomplete: "off"          
         .field-nickname
           .field-nickname__label
             = f.label :ニックネーム
+            .require
+              必須
           .field-nickname__input
             = f.text_field :nickname      
         .field-name-kanji    
           .field-lastname
             .field-lastname__label
               = f.label :お名前（氏）
+              .require
+                必須
             .field-lastname__input
               = f.text_field :lastname
           .field-firstname
             .field-firstname__label
-              = f.label :お名前（名）
+              = f.label :"お名前（名）"
+              .require
+                必須
+              
+
             .field-firstname__input
               = f.text_field :firstname
         .field-name-kana
           .field-lastname_kana
             .field-lastname_kana__label
               = f.label :カナ表記（氏）
+              .require
+                必須
             .field-lastname__input
               = f.text_field :lastname_kana        
           .field-firstname_kana
             .field-firstname_kana__label
               = f.label :カナ表記（名）
+              .require
+                必須
             .field-firstname_kana__input
               = f.text_field :firstname_kana
         .field-zipcode
           .field-zipcode__label
             = f.label :住所（郵便番号）
+            .require
+              必須
           .field-zipcode__input
             = f.text_field :zipcode
         .field-prefcity
           .field-pref_id
             .field-pref_id__label
               = f.label :住所（県名）
+              .require
+                必須
             .field-pref_id__input
               = f.collection_select :pref_id, Pref.all, :id, :name  
           .field-city
             .field-city__label
               = f.label  :住所（市名）
+              .require
+                必須
             .field-city__input
               = f.text_field :city
         .field-addressbuilding
           .field-address
             .field-address__label
               = f.label :住所（町名）
+              .require
+                必須
             .field-address__input
               = f.text_field :address
           .field-buildingname
@@ -88,16 +113,22 @@
           .field-birthyear_id
             .field-birthyear_id__label
               = f.label :誕生年
+              .require
+                必須
             .field-birthyear_id__input
               = f.collection_select :birthyear_id, Birthyear.all, :id, :year
           .field-birthmonth_id
             .field-birthmonth_id__label
               = f.label :月
+              .require
+                必須
             .field-birthmonth_id__input
               = f.collection_select :birthmonth_id, Birthmonth.all, :id, :month
           .field-birthday_id
             .field-birthday_id__label
               = f.label :日
+              .require
+                必須
             .field-birthday_id__input
               = f.collection_select :birthday_id, Birthday.all, :id, :day
         .actions
