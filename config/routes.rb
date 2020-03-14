@@ -11,9 +11,7 @@ Rails.application.routes.draw do
     member do 
       get :logout 
     end
-    resources :items, only: [:new]
   end
-  resources :items
   
   # 以下ガイドページ用のルート
   get 'delivery', to: 'guides#delivery'

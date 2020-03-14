@@ -1,7 +1,7 @@
 .sell
   %header.sell-header
     = link_to root_path do
-      = image_tag 'mercari_top_logo.svg',alt: 'mercari', height: '49', width: '185'
+      = image_tag 'mercari_top_logo.svg', alt: 'mercari', height: '49', width: '185'
   -#メイン部分
   %main
     %section.sell-container
@@ -20,9 +20,9 @@
             .sell-container__content__upload__items
               .sell-container__content__upload__items__box
                 %ul#output-box
-                  = f.label :images,for:"item_images0", class: 'sell-container__content__upload__items__box__label', id: 'image-input' do
-                    .sell-container__content__upload__items__box--have-item
-                      = f.file_field :images, multiple: true, class: "sell-container__content__upload__items__box__input",id:"item_images0",style: 'display: none;'
+                  %div#image-input
+                    = f.label :images, for: "item_images0", class: 'sell-container__content__upload__items__box__label', data: {label_id: 0 } do
+                      = f.file_field :images, multiple: true, class: "sell-container__content__upload__items__box__inputAA", id: "item_images0", style: 'display: none;'
                       .sell-container__content__upload__items__box__input__drop-box
                         %i.fas.fa-camera
                         %pre.sell-container__content__upload__items__box__input__drop-box__text
