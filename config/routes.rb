@@ -13,8 +13,14 @@ Rails.application.routes.draw do
     end
     resources :items, only: [:new]
   end
-  resources :cards, only: [:index]
 
+  resources :cards, only: [:index, :new, :show] do
+    collection do
+      post 'show', to: 'cards#show'
+      post 'create', to: 'cards#create'
+      post 'delete', to: 'cards#delete'
+    end
+  end
 
   # 以下ガイドページ用のルート
   get 'delivery', to: 'guides#delivery'

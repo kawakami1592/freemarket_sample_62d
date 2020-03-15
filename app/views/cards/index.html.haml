@@ -11,9 +11,8 @@
     .method-of-payment__body
       .method-of-payment__body__subheading
         クレジットカード一覧
+      -# -if card.present? を使ってボタンの表示を後ほど変更する
       .method-of-payment__body__button
-        -# = icon('fas', 'credit-card', class: 'method-of-payment__body__subheading__icon')
-        -# クレジットカードを追加する
         = link_to "/cards/new", class: 'method-of-payment__body__button__icon' do
           = icon('fas', 'credit-card') 
           %span
