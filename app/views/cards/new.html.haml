@@ -2,7 +2,7 @@
   %h2 クレジットカード情報入力
 .content__credit-card
   .content__credit-card__inner
-    = form_with url: cards_path, method: :post, html: { name: "inputForm" } do |f| # createアクションのパスを指定
+    = form_with url: pay_cards_path, method: :post, id: 'charge-form',html: { name: "inputForm" }do |f|    
       = f.label :カード番号, class: 'label'
       %span 必須
       = f.text_field :card_number, type: 'text', class: 'input-number', placeholder: '半角数字のみ', maxlength: "16"

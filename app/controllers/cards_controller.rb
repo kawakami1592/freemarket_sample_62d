@@ -1,35 +1,25 @@
 class CardsController < ApplicationController
-  # before_action :set_card,only:[:pay]
+  protect_from_forgery
   require "payjp"
 
   def new
     card = Card.where(user_id: current_user.id)
-    if  card.exists? 
-      redirect_to action: "show" 
-      
-    # else
-    #   redirect_to action: "create"
-    end
+    redirect_to action: "show" if card.exists?
   end
 
-  def create #payjpとCardのデータベース作成を実施します。
+  def pay #payjpとCardのデータベース作成を実施します。
     Payjp.api_key = Rails.application.credentials.dig(:payjp, :PAYJP_SECRET_KEY)
     
     if params['payjp-token'].blank?
 
        redirect_to action: "new"
     else
-      customer = Payjp::Customer.create(
-      # description: '登録テスト', #なくてもOK
-      # email: current_user.email, #なくてもOK
-      card: params['payjp-token']
-      # metadata: {user_id: current_user.id}
-      ) #念の為metadataにuser_idを入れましたがなくてもOK
+      customer = Payjp::Customer.create(card: params['payjp-token']) 
       @card = Card.new(user_id: current_user.id, customer_id: customer.id, card_id: customer.default_card)
       if @card.save
         redirect_to action: "show"
       else
-        redirect_to action: "create"
+        redirect_to action: "pay"
       end
     end
   end
@@ -56,16 +46,4 @@ class CardsController < ApplicationController
       @default_card_information = customer.cards.retrieve(card.card_id)
     end
   end
-
-#   private
-#   def card_params
-#     params.require(:card).permit(:user_id, :customer_id, :card_id)
-#   end
-
-
-
-
-#   def set_card
-#     @card = Card.new(card_params)
-#   end
 end
