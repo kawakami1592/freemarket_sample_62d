@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     get "/sign_in" => "devise/sessions#new" # login/sign_inへのカスタムパス
     get "/sign_up" => "devise/registrations#new", as: "new_user_registration" # sign_up/registrationへのカスタムパス
   end
+  
   devise_for :users
   resources :items
   resources :users, only: [:edit, :update, :show, :destroy,] do
@@ -13,7 +14,6 @@ Rails.application.routes.draw do
       get 'card',to: 'cards#show'
       get :nocard
     end
-    resources :items, only: [:new]
   end
 
   resources :cards, only: [:index, :new, :show] do

@@ -1,6 +1,9 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, except:[:index]
-  before_action :set_card, except:[:index]  #クレジットカード削除の判定に使用しているので消さないでください
+  
+   before_action :authenticate_user!, except:[:index,:show]
+   before_action :set_item, only: [:show]
+   before_action :set_card, except:[:index]  #クレジットカード削除の判定に使用しているので消さないでください
+
   def index
     @items = Item.where.not(boughtflg_id: '2').includes(:user).last(3)
   end
@@ -10,9 +13,11 @@ class ItemsController < ApplicationController
     @categories = Category.all
   end
   
+  def show
+    
+  end
   def create
     @item = Item.new(item_params)
-
     if @item.save
       redirect_to  edit_user_path(@item.user_id)
      
@@ -28,6 +33,8 @@ class ItemsController < ApplicationController
   def item_params
     params.require(:item).permit(:name, :text, :category_id, :condition_id, :deliverycost_id, :pref_id, :delivery_days_id, :price, images: []).merge(user_id: current_user.id, boughtflg_id:"1")
   end
- 
+  def set_item
+    @item = Item.find(params[:id])
+  end
 end
 
