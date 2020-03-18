@@ -7,6 +7,7 @@ $(document).on('turbolinks:load', function(){
     let files = e.target.files;
     $.each(files, function(index, file) {
       let reader = new FileReader();
+      console.log(index)
 
       //画像でない場合は処理終了
       if(file.type.indexOf("image") < 0){
@@ -23,13 +24,13 @@ $(document).on('turbolinks:load', function(){
           // #image-inputの子要素labelの中から最後の要素のカスタムデータidを取得
 
           // プレビュー表示
-          $('#image-input').before(`<li class="upload-image${labelLength} data-image-id="${labelLength}">
-                                      <figure class="upload-image__figure">
-                                        <img src='${e.target.result}' title='${file.name}' width="100px" height="100px">
+          $('#image-input').before(`<li class="preview-image" id="upload-image${labelLength}" data-image-id="${labelLength}">
+                                      <figure class="preview-image__figure">
+                                        <img src='${e.target.result}' title='${file.name}' >
                                       </figure>
-                                      <div class="upload-image__button">
-                                        <a class="upload-image__button__edit$" href="">編集</a>
-                                        <a class="upload-image__button__delete" data-image-id="${labelLength}">削除</a>
+                                      <div class="preview-image__button">
+                                        <a class="preview-image__button__edit" href="">編集</a>
+                                        <a class="preview-image__button__delete" data-image-id="${labelLength}">削除</a>
                                       </div>
                                     </li>`);
           $("#image-input>label").eq(-1).css('display','none');
@@ -39,11 +40,7 @@ $(document).on('turbolinks:load', function(){
             // 表示されているプレビューが９以下なら、新たにinputを生成する
             $("#image-input").append(`<label for="item_images${labelLength+1}" class="sell-container__content__upload__items__box__label" data-label-id="${labelLength+1}">
                                         <input multiple="multiple" class="sell-container__content__upload__items__box__input" id="item_images${labelLength+1}" style="display: none;" type="file" name="item[images][]">
-                                        <class="sell-container__content__upload__items__box__input__drop-box">
-                                          <i class="fas fa-camera"></i>
-                                          <pre class="sell-container__content__upload__items__box__input__drop-box__text">ドラッグアンドドロップ
-                                          またはクリックしてファイルをアップロード</pre>
-                                        </pre>
+                                        <i class="fas fa-camera fa-lg"></i>
                                       </label>`);
           };
         };
@@ -53,10 +50,10 @@ $(document).on('turbolinks:load', function(){
   });
 
   //削除ボタンが押された時
-  $(document).on('click', '.upload-image__button__delete', function(){
+  $(document).on('click', '.preview-image__button__delete', function(){
     let targetImageId = $(this).data('image-id');
     // イベント元のカスタムデータ属性の値を取得
-    $(`.upload-image${targetImageId}`).remove();
+    $(`#upload-image${targetImageId}`).remove();
     //プレビューを削除
     $(`[for=item_images${targetImageId}]`).remove();
     //削除したプレビューに関連したinputを削除
@@ -68,11 +65,7 @@ $(document).on('turbolinks:load', function(){
       // 表示されているプレビューが９なら,#image-inputの子要素labelの中から最後の要素のカスタムデータidを取得
       $("#image-input").append(`<label for="item_images${labelLength+1}" class="sell-container__content__upload__items__box__label" data-label-id="${labelLength+1}">
                                   <input multiple="multiple" class="sell-container__content__upload__items__box__input" id="item_images${labelLength+1}" style="display: none;" type="file" name="item[images][]">
-                                  <class="sell-container__content__upload__items__box__input__drop-box">
-                                    <i class="fas fa-camera"></i>
-                                    <pre class="sell-container__content__upload__items__box__input__drop-box__text">ドラッグアンドドロップ
-                                    またはクリックしてファイルをアップロード</pre>
-                                  </pre>
+                                  <i class="fas fa-camera fa-lg"></i>
                                 </label>`);
     };
   });

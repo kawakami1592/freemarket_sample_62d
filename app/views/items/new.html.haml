@@ -22,12 +22,11 @@
                 %ul#output-box
                   %div#image-input
                     = f.label :images, for: "item_images0", class: 'sell-container__content__upload__items__box__label', data: {label_id: 0 } do
-                      = f.file_field :images, multiple: true, class: "sell-container__content__upload__items__box__inputAA", id: "item_images0", style: 'display: none;'
-                      .sell-container__content__upload__items__box__input__drop-box
-                        %i.fas.fa-camera
-                        %pre.sell-container__content__upload__items__box__input__drop-box__text
-                          ドラッグアンドドロップ
-                          またはクリックしてファイルをアップロード
+                      = f.file_field :images, multiple: true, class: "sell-container__content__upload__items__box__input", id: "item_images0", style: 'display: none;'
+                      %pre
+                        %i.fas.fa-camera.fa-lg
+                        ドラッグアンドドロップ
+                        またはクリックしてファイルをアップロード
           .erroe-messages
             エラー文を表示
             -# = render partial: 'error_messages', locals: { item: @item, column: 'images'} エラー文表示
