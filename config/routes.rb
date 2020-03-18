@@ -9,15 +9,13 @@ Rails.application.routes.draw do
   resources :items
   resources :users, only: [:edit, :update, :show, :destroy,] do
     member do 
-      get :logout 
+      get :logout
+      get 'card',to: 'cards#show'
+      get :nocard
     end
     resources :items, only: [:new]
   end
 
-
-
-
-  
   resources :cards, only: [:index, :new, :show] do
     collection do
       post 'show', to: 'cards#show'

@@ -13,6 +13,10 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: [:nickname,:lastname,:firstname,:lastname_kana,:firstname_kana,:birthyear_id,:birthmonth_id,:birthday_id,:zipcode,:pref_id,:city,:address,:buildingname,:phone])
   end
 
+  def set_card
+    @card=Card.find_by(user_id:current_user.id) #クレジットカード削除の判定に使用しているので消さないでください
+  end
+
   private
 
   def production?

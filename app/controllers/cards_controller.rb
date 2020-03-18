@@ -1,6 +1,8 @@
 class CardsController < ApplicationController
   protect_from_forgery
   require "payjp"
+  before_action :set_card  #クレジットカード削除の判定に使用しているので消さないでください
+
 
   def new
     card = Card.where(user_id: current_user.id)

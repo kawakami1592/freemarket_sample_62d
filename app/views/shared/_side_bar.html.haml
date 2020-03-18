@@ -43,8 +43,10 @@
     = link_to '/cards' do
       クレジット登録
   %li.mypage__row__sidebar__list__item
-    = link_to '#' do
-      クレジット変更
+    -if @card.present?
+      = link_to "クレジット変更（削除）", card_user_path(current_user.id)
+    - else
+      = link_to "クレジット変更（削除）", nocard_user_path(current_user.id)
   %li.mypage__row__sidebar__list__item
     = link_to "ログアウト", logout_user_path(current_user.id)
   %li.mypage__row__sidebar__list__item
