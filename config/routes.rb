@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     member do 
       get :logout 
     end
+    resources :items,only: [:edit, :update]
   end
   
   # 以下ガイドページ用のルート

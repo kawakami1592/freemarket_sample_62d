@@ -1,8 +1,15 @@
 class ItemsController < ApplicationController
    before_action :authenticate_user!, except:[:index,:show]
-   before_action :set_item, only: [:show]
+   before_action :set_item, only: [:show, :edit, :update]
+
   def index
     @items = Item.where.not(boughtflg_id: '2').includes(:user).last(3)
+
+    if user_signed_in?
+      if :item.present?
+        @currentitem=Item.find_by(user_id:current_user.id) 
+      end
+    end
   end
 
   def new
@@ -23,7 +30,12 @@ class ItemsController < ApplicationController
     end
   end
 
-  
+  def edit   
+  end
+
+  def update
+    item.update(item_params)
+  end
 
   private
 

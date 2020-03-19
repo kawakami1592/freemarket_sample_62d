@@ -2,6 +2,7 @@ class UsersController < ApplicationController
    
   before_action :set_user, only: [:show, :edit]
   before_action :authenticate_user!
+  before_action :set_current_item #出品者かどうかの判定に使用しているので消さないでください
   
   def index
   end
@@ -41,5 +42,12 @@ class UsersController < ApplicationController
   def set_user
     @user = User.find(params[:id])
   end
+
+  def set_current_item
+    if :item.present?
+      @currentitem=Item.find_by(user_id:current_user.id) #出品者かどうかの判定に使用しているので消さないでください
+    end
+  end
+
 
 end
