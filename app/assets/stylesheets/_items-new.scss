@@ -8,11 +8,11 @@ a {
 img {
   vertical-align: middle;
 }
-.erroe-messages{
+.error-messages{
   color: #ff0211;
   font-size: 14px;
   line-height: 1.4em;
-  margin-top: 16px;
+  margin: 16px 0;
 }
 
 .sell-title{
@@ -203,6 +203,10 @@ img {
                   align-items: center;
                   justify-content: center;
 
+
+                  i{
+                    margin-bottom: 8px;
+                  }
                 }
               }
             }
@@ -210,9 +214,6 @@ img {
         }
       }
     }
-
-
-
 
 
 
@@ -276,11 +277,7 @@ img {
           text-align: right;
         }
       }
-      .erroe-messages-price{
-        color: #ff0211;
-        font-size: 14px;
-        line-height: 1.4em;
-        margin-top: 16px;
+      #error-price{
         text-align: right;
       }
       &__commission{

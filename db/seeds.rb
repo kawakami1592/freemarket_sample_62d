@@ -67,3 +67,22 @@ end
 # 'チケット':['音楽','スポーツ','演劇/芸能','イベント','映画','施設利用券','優待券/割引券','その他']
 # '自動車・オートバイ':['自動車本体','自動車タイヤ/ホイール','自動車パーツ','自動車アクセサリー','オートバイ車体','オートバイパーツ','オートバイアクセサリー','その他']
 # 'その他':['まとめ売り','ペット用品','食品','飲料/酒','日用品/生活雑貨/旅行','アンティーク/コレクション','文房具/事務用品','事務/店舗用品','その他']
+User.create!(
+  nickname:'まーたろー',
+  email:'hoge@hoge',
+  password:'11111111',
+  password_confirmation:'11111111',
+  lastname:'太郎',
+  firstname:'真',
+  zipcode:'111-1111',
+  pref_id:'13',
+  city:'王家',
+  address:'hoge',
+  buildingname:'hoge',
+  phone:'07012345678',
+  lastname_kana:'タロウ',
+  firstname_kana:'シン',
+  birthyear_id:'20',
+  birthmonth_id:'5',
+  birthday_id:'20'
+)
