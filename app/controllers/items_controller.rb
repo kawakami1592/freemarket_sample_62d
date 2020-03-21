@@ -23,7 +23,18 @@ class ItemsController < ApplicationController
     end
   end
 
-  
+  def destroy
+    item = Item.find_by(params[:id])
+    if item.present?
+      if item.destroy
+        redirect_to root_path, notice: "削除に成功しました"
+      else
+        redirect_to root_path, notice: "削除に失敗しました"
+      end
+    else
+      redirect_to root_path, notice: "商品が見つかりません"
+    end
+  end
 
   private
 
