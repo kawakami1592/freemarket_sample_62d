@@ -50,7 +50,7 @@
           = @item.delivery_days.days
       %li
         - if user_signed_in? && current_user.id == @item.user_id
-          = link_to "/items/#{@item.id}", method: :delete do
+          = link_to item_path, method: :delete do
             削除
         - else
           = link_to '#' do
