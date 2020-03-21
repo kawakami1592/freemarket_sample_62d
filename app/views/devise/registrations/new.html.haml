@@ -1,9 +1,11 @@
 #account-page.account-page
 
   .account-page__inner.clearfix
+    .signup-header
+      = link_to image_tag('logo/logo.png', height: '40px', alt: 'ロゴ'), root_path(current_user) 
     .account-page__inner--left.account-page__header
-      %h2 会員情報入力
-      
+      %h4 会員情報入力
+    
       -# = render "devise/shared/links"
     .account-page__inner--right.user-form
       = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
@@ -28,7 +30,7 @@
             = f.label :password_confirmation
             .require
               必須
-          .field-password_confirmation-__input
+          .field-password_confirmation__input
             = f.password_field :password_confirmation, autocomplete: "off"          
         .field-nickname
           .field-nickname__label
@@ -40,35 +42,28 @@
         .field-name-kanji    
           .field-lastname
             .field-lastname__label
-              = f.label :お名前（氏）
+              = f.label :お名前（漢字氏名）
               .require
                 必須
             .field-lastname__input
               = f.text_field :lastname
-          .field-firstname
-            .field-firstname__label
-              = f.label :"お名前（名）"
-              .require
-                必須
-              
-
-            .field-firstname__input
               = f.text_field :firstname
         .field-name-kana
           .field-lastname_kana
             .field-lastname_kana__label
-              = f.label :カナ表記（氏）
+              = f.label :カナ表記（氏名）
               .require
                 必須
-            .field-lastname__input
-              = f.text_field :lastname_kana        
-          .field-firstname_kana
-            .field-firstname_kana__label
-              = f.label :カナ表記（名）
-              .require
-                必須
-            .field-firstname_kana__input
-              = f.text_field :firstname_kana
+            .field-lastname_kana__input
+              = f.text_field :lastname_kana  
+              = f.text_field :firstname_kana      
+            -# .field-firstname_kana
+            -# .field-firstname_kana__label
+            -#   = f.label :カナ表記（名）
+            -#   .require
+            -#     必須
+            -# .field-firstname_kana__input
+              
         .field-zipcode
           .field-zipcode__label
             = f.label :住所（郵便番号）
@@ -83,7 +78,9 @@
               .require
                 必須
             .field-pref_id__input
-              = f.collection_select :pref_id, Pref.all, :id, :name  
+              = f.collection_select :pref_id, Pref.all, :id, :name 
+              -# .file-field-pref_id__input__icon
+              -#   = icon('fas', 'chevron-down')
           .field-city
             .field-city__label
               = f.label  :住所（市名）
@@ -131,5 +128,24 @@
                 必須
             .field-birthday_id__input
               = f.collection_select :birthday_id, Birthday.all, :id, :day
-        .actions
+        .actions              
           = f.submit "Create Account", class: 'btn'
+
+.signup__footer
+  %footer.sell-footer
+    %nav
+      %ul.clearfix
+        %li
+          = link_to '#' do
+            プライバシーポリシー
+        %li
+          = link_to '#' do
+            メルカリ利用規約
+        %li
+          = link_to '#' do
+            特定商取引に関する表記
+    = link_to root_path, class: 'footer__logo' do
+      = image_tag 'logo-gray.svg', alt: 'mercari', height: '65', width: '80'
+    %p
+      %small
+        &copy; Mercari, Inc.

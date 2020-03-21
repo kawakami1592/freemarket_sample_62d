@@ -41,16 +41,8 @@ ActiveRecord::Schema.define(version: 2020_02_28_131146) do
     t.index ["ancestry"], name: "index_categories_on_ancestry"
   end
 
-  create_table "images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "image"
-    t.bigint "item_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["item_id"], name: "index_images_on_item_id"
-  end
-
   create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "name", null: false
+    t.string "name"
     t.text "text"
     t.bigint "user_id"
     t.bigint "category_id"
@@ -58,9 +50,11 @@ ActiveRecord::Schema.define(version: 2020_02_28_131146) do
     t.bigint "deliverycost_id"
     t.bigint "pref_id"
     t.bigint "delivery_days_id"
-    t.integer "price", null: false
+    t.integer "price"
+    t.bigint "boughtflg_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["boughtflg_id"], name: "index_items_on_boughtflg_id"
     t.index ["category_id"], name: "index_items_on_category_id"
     t.index ["condition_id"], name: "index_items_on_condition_id"
     t.index ["delivery_days_id"], name: "index_items_on_delivery_days_id"
@@ -100,5 +94,4 @@ ActiveRecord::Schema.define(version: 2020_02_28_131146) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "images", "items"
 end
