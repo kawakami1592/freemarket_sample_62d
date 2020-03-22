@@ -105,18 +105,6 @@ img {
     margin: 0px auto;
     background-color: rgb(255, 255, 255);
 
-
-
-
-
-
-
-
-
-
-
-
-
     // 画像部分
     &__content{
       height: auto;
@@ -157,12 +145,11 @@ img {
                 width: 20%;
                 padding: 0px 4px;
                 margin-top: 8px;
-                
+
                 &__figure{
                   margin:0 auto;
                   height: 118px;
                   background-color: rgb(245, 245, 245);
-
                   img{
                     width: 100%;
                     height: 100%;
@@ -180,7 +167,6 @@ img {
                   height: 32px;
                   color: rgb(0, 149, 238);
                 }
-                
               }
 
               #image-input{
@@ -188,22 +174,17 @@ img {
                 -webkit-flex: 1;
                 flex: 1;
                 margin-top: 8px;
-                padding: 0px 4px;
-               
-                
+
                 .sell-container__content__upload__items__box__label{
                   background-color: rgb(245, 245, 245);
                   height: 150px;
                   border-width: 1px;
                   border-style: dashed;
                   border-color: rgb(204, 204, 204);
-                  display: block;
                   text-align: center;
                   display: flex;
                   align-items: center;
                   justify-content: center;
-
-
                   i{
                     margin-bottom: 8px;
                   }
@@ -214,14 +195,6 @@ img {
         }
       }
     }
-
-
-
-
-
-
-
-
 
     // 商品名部分
     &__content{

@@ -20,8 +20,8 @@
             .sell-container__content__upload__items
               .sell-container__content__upload__items__box
                 %ul#output-box
-                  %div#image-input
-                    = f.label :images, for: "item_images0", class: 'sell-container__content__upload__items__box__label', data: {label_id: 0 } do
+                  %div#image-input{tabindex:"0"}
+                    = f.label :images, for: "item_images0", class: 'sell-container__content__upload__items__box__label', data: {label_id: 0 } do 
                       = f.file_field :images, multiple: true, class: "sell-container__content__upload__items__box__input", id: "item_images0", style: 'display: none;'
                       %pre
                         %i.fas.fa-camera.fa-lg

@@ -1,8 +1,7 @@
 $(document).on('turbolinks:load', function(){
-  
   // 画像が選択された時プレビュー表示、inputの親要素のulをイベント元に指定
   $('#image-input').on('change', function(e){
-
+    
     //ファイルオブジェクトを取得する
     let files = e.target.files;
     $.each(files, function(index, file) {
@@ -93,35 +92,26 @@ $(document).on('turbolinks:load', function(){
 
   // 各フォームの入力チェック
   $(function(){
-    //画像　作成中
-    // $('.sell-container__content__upload__items__box__input').on('click',function(){
-    //   let images = $(this).val();
-    //   console.log(images)    
-    //   $('#error-image').text('画像がありません').css('display','none');
-     
-    //   if[$('.sell-container__content__upload__items__box__input').on('change')]{
-        
-    //       $('#error-image').text('画像がありません').css('display','block');
-    //     }else{
-    //       $('#error-image').text('OK').css('display','block');
-    //     }
-
-    //   });
-     
-    // });
-
-
-
-
-
     //画像
-    $('.sell-container__content__upload__items__box__label').on('change',function(){
-      let images = $(this).val();
-      console.log(images)
-      if(images ==''){
+    $('#image-input').on('blur',function(){
+      $('#image-input').on('blur',function(){
+      let imageLength = $('#output-box').children('li').length;
+      if(imageLength ==''){
         $('#error-image').text('画像がありません');
       }else{
-        $('#error-image').text('OK');
+        $('#error-image').text('');
+      }
+     });
+    });
+
+    //送信しようとした時
+    $('form').on('submit',function(){
+      let imageLength = $('#output-box').children('li').length;
+      if(imageLength ==''){
+        $('body, html').animate({ scrollTop: 0 }, 500);
+        $('#error-image').text('画像がありません');
+      }else{
+        return false;
       }
     });
 
@@ -220,5 +210,6 @@ $(document).on('turbolinks:load', function(){
         $(this).css('border-color','rgb(204, 204, 204)');
       }
     });
+
   });
 });
