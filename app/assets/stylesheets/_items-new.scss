@@ -1,6 +1,6 @@
-// * {
-//   box-sizing: border-box;
-//}
+* {
+  box-sizing: border-box;
+}
 a {
   color: inherit;
   text-decoration: none;
@@ -8,11 +8,11 @@ a {
 img {
   vertical-align: middle;
 }
-.erroe-messages{
+.error-messages{
   color: #ff0211;
   font-size: 14px;
   line-height: 1.4em;
-  margin-top: 16px;
+  margin: 16px 0;
 }
 
 .sell-title{
@@ -104,8 +104,10 @@ img {
     width: 100%;
     margin: 0px auto;
     background-color: rgb(255, 255, 255);
+
     // 画像部分
     &__content{
+      height: auto;
       padding: 40px;
       border-bottom: 1px;
       border-bottom-color: #efefef;
@@ -118,31 +120,82 @@ img {
         display: flex;
         flex-wrap: wrap;
         &__items{
-          height: 150px;
+          height: auto;
           width: 100%;
+
           &__box{
-            height: 100%;
+            height: auto;
             align-content: center;
             align-items: center;
-            background-color: rgb(245, 245, 245);
             cursor: pointer;
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             position: relative;
             border-width: 1px;
-            border-style: dashed;
-            border-color: rgb(204, 204, 204);
-            border-image: initial;
-            transition: all 0.5s ease-out 0s;
 
-            &__input__drop-box{
-              text-align: center;
+            #output-box{
+              display: flex;
+              flex-wrap: wrap;
+              width: 100%;
+              height: auto;
+
+              .preview-image{
+                height: 150px;
+                width: 20%;
+                padding: 0px 4px;
+                margin-top: 8px;
+
+                &__figure{
+                  margin:0 auto;
+                  height: 118px;
+                  background-color: rgb(245, 245, 245);
+                  img{
+                    width: 100%;
+                    height: 100%;
+                    object-fit: contain;
+                  }
+                }
+                &__button{
+                  border-top-width: 1px;
+                  border-top-color: rgb(204, 204, 204);
+                  border-top-style: solid;
+                  background-color: rgb(245, 245, 245);
+                  justify-content: space-around;
+                  display: flex;
+                  align-items: center;
+                  height: 32px;
+                  color: rgb(0, 149, 238);
+                }
+              }
+
+              #image-input{
+                height: 100%;
+                -webkit-flex: 1;
+                flex: 1;
+                margin-top: 8px;
+
+                .sell-container__content__upload__items__box__label{
+                  background-color: rgb(245, 245, 245);
+                  height: 150px;
+                  border-width: 1px;
+                  border-style: dashed;
+                  border-color: rgb(204, 204, 204);
+                  text-align: center;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  i{
+                    margin-bottom: 8px;
+                  }
+                }
+              }
             }
           }
         }
       }
     }
+
     // 商品名部分
     &__content{
       &__name{
@@ -197,11 +250,7 @@ img {
           text-align: right;
         }
       }
-      .erroe-messages-price{
-        color: #ff0211;
-        font-size: 14px;
-        line-height: 1.4em;
-        margin-top: 16px;
+      #error-price{
         text-align: right;
       }
       &__commission{
