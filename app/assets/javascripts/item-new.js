@@ -93,15 +93,19 @@ $(document).on('turbolinks:load', function(){
   // 各フォームの入力チェック
   $(function(){
     //画像
-    $('#image-input').on('blur',function(){
+    $('#image-input').on('focus',function(){
+      $('#error-image').text('');
       $('#image-input').on('blur',function(){
-      let imageLength = $('#output-box').children('li').length;
-      if(imageLength ==''){
-        $('#error-image').text('画像がありません');
-      }else{
         $('#error-image').text('');
-      }
-     });
+        let imageLength = $('#output-box').children('li').length;
+        if(imageLength ==''){
+          $('#error-image').text('画像がありません');
+        }else if(imageLength >10){
+          $('#error-image').text('画像を10枚以下にして下さい');
+        }else{
+          $('#error-image').text('');
+        }
+      });
     });
 
     //送信しようとした時
@@ -110,8 +114,23 @@ $(document).on('turbolinks:load', function(){
       if(imageLength ==''){
         $('body, html').animate({ scrollTop: 0 }, 500);
         $('#error-image').text('画像がありません');
+      }else if(imageLength >10){
+        $('body, html').animate({ scrollTop: 0 }, 500);
+        $('#error-image').text('画像を10枚以下にして下さい');
       }else{
         return false;
+      }
+    });
+
+     //画像を削除した時
+    $(document).on('click','.preview-image__button__delete',function(){
+      let imageLength = $('#output-box').children('li').length;
+      if(imageLength ==''){
+        $('#error-image').text('画像がありません');
+      }else if(imageLength >10){
+        $('#error-image').text('画像を10枚以下にして下さい');
+      }else{
+        $('#error-image').text('');
       }
     });
 
