@@ -15,6 +15,7 @@ class Item < ApplicationRecord
   belongs_to :user, foreign_key: 'user_id'
   belongs_to :category
 
+  
   def images_presence
     if images.attached?
       # inputに保持されているimagesがあるかを確認
