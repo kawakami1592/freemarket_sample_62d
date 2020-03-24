@@ -1,18 +1,20 @@
 class ItemsController < ApplicationController
    before_action :authenticate_user!, except:[:index,:show]
    before_action :set_item, only: [:show]
+
   def index
     @items = Item.where.not(boughtflg_id: '2').includes(:user).last(3)
+  end
+
+  def show
   end
 
   def new
     @item = Item.new
     @categories = Category.all
+    @category_parent =  Category.where("ancestry is null")
   end
-  
-  def show
-    
-  end
+
   def create
     @item = Item.new(item_params)
     if @item.save
