@@ -118,7 +118,7 @@ $(document).on('turbolinks:load', function(){
         $('body, html').animate({ scrollTop: 0 }, 500);
         $('#error-image').text('画像を10枚以下にして下さい');
       }else{
-        return false;
+        // return false;
       }
     });
 
