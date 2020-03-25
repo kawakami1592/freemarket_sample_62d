@@ -1,5 +1,5 @@
 $(document).on('turbolinks:load', function(){
-  // 画像が選択された時プレビュー表示、inputの親要素のulをイベント元に指定
+  // 画像が選択された時プレビュー表示、inputの親要素のdivをイベント元に指定
   $('#image-input').on('change', function(e){
     
     //ファイルオブジェクトを取得する
@@ -90,8 +90,109 @@ $(document).on('turbolinks:load', function(){
     }
   });
 
+  $(function(){
+    // カテゴリーセレクトボックスのオプションを作成
+    function categoryOption(category){
+      var optionHtml = `<option value="${category.id}">${category.name}</option>`;
+      return optionHtml;
+    }
+    // 親カテゴリー選択後のイベント
+    $('#category-select-parent').on('change', function(){
+      let parentCategoryId = $(this).val();
+      //選択された親カテゴリーのIDを取得
+      if (parentCategoryId != ''){
+        //親カテゴリーが初期値でないことを確認
+        $.ajax({
+          url: '/items/category_children',
+          type: 'GET',
+          data: { parent_id: parentCategoryId },
+          dataType: 'json'
+        })
+        .done(function(category_children){
+          $('#select-children-box').remove();
+          //親が変更された時、子以下を削除するする
+          $('#select-grandchildren-box').remove();
+          let optionHtml = '';
+          category_children.forEach(function(child){
+            optionHtml += categoryOption(child);
+            //option要素を作成する
+          });
+          $('#error-category').before(`<div class="sell-collection_select " id="select-children-box">
+                                          <label class="sell-collection_select__label" for="item_category_id">
+                                            <select class="sell-collection_select__input" id="category-select-children" required="required" name="item[category_id]">
+                                              <option value="">選択して下さい</option>
+                                              ${optionHtml}
+                                            </select>
+                                            <i class="fas fa-chevron-down"></i>
+                                          </label>
+                                        </div>`
+          );
+        })
+        .fail(function(){
+          alert('カテゴリー取得に失敗しました');
+        });
+      }else{
+        $('#select-children-box').remove();
+        //親が変更された時、子以下を削除するする
+        $('#select-grandchildren-box').remove();
+      }
+    });
+    // 子カテゴリー選択後のイベント
+    $('.sell-container__content__details').on('change', '#category-select-children', function(){
+      let childrenCategoryId = $(this).val();
+      //選択された子カテゴリーのIDを取得
+      if (childrenCategoryId != ''){
+        //子カテゴリーが初期値でないことを確認
+        $.ajax({
+          url: '/items/category_grandchildren',
+          type: 'GET',
+          data: { child_id: childrenCategoryId },
+          dataType: 'json'
+        })
+        .done(function(category_grandchildren){
+          $('#select-grandchildren-box').remove();
+          //子が変更された時、孫以下を削除するする
+          let optionHtml = '';
+          category_grandchildren.forEach(function(grandchildren){
+            optionHtml += categoryOption(grandchildren);
+            //option要素を作成する
+          });
+          $('#error-category').before(`<div class="sell-collection_select " id="select-grandchildren-box">
+                                          <label class="sell-collection_select__label" for="item_category_id">
+                                            <select class="sell-collection_select__input" id="category-select-grandchildren" required="required" name="item[category_id]">
+                                              <option value="">選択して下さい</option>
+                                              ${optionHtml}
+                                            </select>
+                                            <i class="fas fa-chevron-down"></i>
+                                          </label>
+                                        </div>`
+          );
+        })
+        .fail(function(){
+          alert('カテゴリー取得に失敗しました');
+        });
+      }else{
+        $('#select-grandchildren-box').remove(); 
+        //子カテゴリーが初期値になった時、孫以下を削除する
+      }
+    });
+  });
+
+
   // 各フォームの入力チェック
   $(function(){
+    //カテゴリーのエラーハンドリング
+    function categoryError(categorySelect){
+      let value = $(categorySelect).val();
+      if(value == ""){
+        $('#error-category').text('選択して下さい');
+        $(categorySelect).css('border-color','red');
+      }else{
+        $('#error-category').text('');
+        $(categorySelect).css('border-color','rgb(204, 204, 204)');
+      }
+    };
+
     //画像
     $('#image-input').on('focus',function(){
       $('#error-image').text('');
@@ -158,16 +259,17 @@ $(document).on('turbolinks:load', function(){
       }
     });
 
-    //カテゴリー
-    $('#category-select').on('blur',function(){
-      let value = $(this).val();
-      if(value == ""){
-        $('#error-category').text('選択して下さい');
-        $(this).css('border-color','red');
-      }else{
-        $('#error-category').text('');
-        $(this).css('border-color','rgb(204, 204, 204)');
-      }
+    //親カテゴリー
+    $('#category-select-parent').on('blur',function(){
+      categoryError('#category-select-parent')
+    });
+    //子カテゴリー
+    $('.sell-container__content__details').on('blur', '#category-select-children', function(){
+      categoryError('#category-select-children')
+    });
+    //孫カテゴリー
+    $('.sell-container__content__details').on('blur', '#category-select-grandchildren', function(){
+      categoryError('#category-select-grandchildren')
     });
 
     //状態
@@ -229,6 +331,5 @@ $(document).on('turbolinks:load', function(){
         $(this).css('border-color','rgb(204, 204, 204)');
       }
     });
-
-  });
+  });  
 });

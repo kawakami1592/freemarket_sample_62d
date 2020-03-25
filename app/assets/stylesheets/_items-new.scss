@@ -1,6 +1,3 @@
-// * {
-//   box-sizing: border-box;
-// }
 a {
   color: inherit;
   text-decoration: none;
@@ -91,6 +88,8 @@ img {
   width: 100%;
   }
 }
+// ここより上は繰り返し使用するパーツ
+
 
 .sell {
   box-sizing: border-box;
