@@ -1,18 +1,31 @@
 class ItemsController < ApplicationController
    before_action :authenticate_user!, except:[:index,:show]
    before_action :set_item, only: [:show]
+
   def index
     @items = Item.where.not(boughtflg_id: '2').includes(:user).last(3)
   end
 
+  def show
+  end
+
   def new
     @item = Item.new
-    @categories = Category.all
+    @category_parent =  Category.where("ancestry is null")
   end
-  
-  def show
-    
+
+  # 親カテゴリーが選択された後に動くアクション
+  def category_children
+    @category_children = Category.find("#{params[:parent_id]}").children
+    #親カテゴリーに紐付く子カテゴリーを取得
   end
+
+  # 子カテゴリーが選択された後に動くアクション
+  def category_grandchildren
+    @category_grandchildren = Category.find("#{params[:child_id]}").children
+    #子カテゴリーに紐付く孫カテゴリーの配列を取得
+  end
+
   def create
     @item = Item.new(item_params)
     if @item.save
