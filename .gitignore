@@ -27,3 +27,11 @@
 /config/master.key
 
 .DS_Store
+
+/app/.DS_Store
+
+/app/assets/.DS_Store
+
+/app/assets/images/.DS_Store
+
+/app/assets/images/credit-card3/.DS_Store
