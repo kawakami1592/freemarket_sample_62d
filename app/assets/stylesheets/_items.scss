@@ -201,9 +201,10 @@ h3 {
       display: flex;
       margin: 0 auto;
       width: 770px;
-      justify-content: space-between;
+      justify-content: flex-start;
       &__content {
         background-color: #fff;
+        margin-right: 40px;
         &__img {
           width: 230px;
           height: 160px;
