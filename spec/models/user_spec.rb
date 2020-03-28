@@ -1,9 +1,11 @@
 require 'rails_helper'
 
-describe User do
-  describe "#create" do
-    context '保存できる' do
 
+RSpec.describe User, type: :model do
+  
+  describe "#create" do
+
+    context '保存できる' do
       it "全て入力されていれば" do
         user = build(:user)
         expect(user).to be_valid
@@ -11,7 +13,6 @@ describe User do
     end
 
     context '保存できない' do
-
       it "ニックネームがない" do
         user = build(:user, nickname: nil)
         user.valid?
@@ -74,21 +75,21 @@ describe User do
       end
 
       it "生年月日の年がない" do
-        user = build(:user, birthyear: nil)
+        user = build(:user, birthyear_id: nil)
         user.valid?
-        expect(user.errors[:birthyear]).to include("を入力してください")
+        expect(user.errors[:birthyear_id]).to include("を入力してください")
       end
 
       it "生年月日の月がない" do
-        user = build(:user, birthmonth: nil)
+        user = build(:user, birthmonth_id: nil)
         user.valid?
-        expect(user.errors[:birthmonth]).to include("を入力してください")
+        expect(user.errors[:birthmonth_id]).to include("を入力してください")
       end
 
       it "生年月日の日がない" do
-        user = build(:user, birthday: nil)
+        user = build(:user, birthday_id: nil)
         user.valid?
-        expect(user.errors[:birthday]).to include("を入力してください")
+        expect(user.errors[:birthday_id]).to include("を入力してください")
       end
 
       it "郵便番号がない" do
@@ -98,9 +99,9 @@ describe User do
       end
 
       it "都道府県がない" do
-        user = build(:user, pref: nil)
+        user = build(:user, pref_id: nil)
         user.valid?
-        expect(user.errors[:pref]).to include("を入力してください")
+        expect(user.errors[:pref_id]).to include("を入力してください")
       end
 
       it "市町村がない" do
