@@ -1,6 +1,9 @@
 class ItemsController < ApplicationController
+  
    before_action :authenticate_user!, except:[:index,:show]
    before_action :set_item, only: [:show]
+   before_action :set_card, except:[:index]  #クレジットカード削除の判定に使用しているので消さないでください
+
 
   def index
     @items = Item.where.not(boughtflg_id: '2').includes(:user).last(3)
