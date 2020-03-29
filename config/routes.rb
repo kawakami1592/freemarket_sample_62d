@@ -7,7 +7,13 @@ Rails.application.routes.draw do
   end
   
   devise_for :users
-  resources :items
+  resources :items do
+    collection do
+      # カテゴリーの階層分けのルート
+      get 'category_children', defaults: { format: 'json' }
+      get 'category_grandchildren', defaults: { format: 'json' }
+    end
+  end
   resources :users, only: [:edit, :update, :show, :destroy,] do
     member do 
       get :logout
