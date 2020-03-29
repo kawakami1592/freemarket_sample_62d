@@ -28,8 +28,7 @@ class CardsController < ApplicationController
 
   def delete #PayjpとCardデータベースを削除します
     card = Card.where(user_id: current_user.id).first
-    if card.blank?
-    else
+    if card.present?
       Payjp.api_key = Rails.application.credentials.dig(:payjp, :PAYJP_SECRET_KEY)
       customer = Payjp::Customer.retrieve(card.customer_id)
       customer.delete
