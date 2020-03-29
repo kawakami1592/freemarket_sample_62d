@@ -40,7 +40,7 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    item = Item.find_by(params[:id])
+    item = Item.find_by(id: params[:id])
     if item.present?
       if item.destroy
         redirect_to root_path, notice: "削除に成功しました"
