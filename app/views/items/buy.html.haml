@@ -1,0 +1,21 @@
+= render "shared/top-header"
+
+.item-buy-confirmation
+  .title
+    購入内容の確認
+  .image
+    = image_tag(@item.images.first, width: '50%', height: '50%', alt: '商品画像')
+  .name
+    = @item.name
+  .price
+    = @item.price
+  .address-title
+    配送先
+  .address-zipcode
+    = "〒#{@user.zipcode}"
+  .address
+    = "#{@user.pref.name}#{@user.city}#{@user.address}#{@user.buildingname}"
+  .address-name
+    = "#{@user.lastname} #{@user.firstname}"
+
+= render "shared/top-footer"

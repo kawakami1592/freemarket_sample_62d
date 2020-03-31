@@ -52,6 +52,12 @@ class ItemsController < ApplicationController
     end
   end
 
+  def buy
+    @user = current_user
+    @item = Item.find(params[:id])
+    @card = Card.where(user_id: current_user.id)
+  end
+
   private
 
   def item_params
