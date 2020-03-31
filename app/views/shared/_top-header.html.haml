@@ -59,6 +59,8 @@
         %li.top-header__nav__right__list<
         -if user_signed_in?
           = link_to "マイページ",  edit_user_path(current_user.id)
+          = link_to destroy_user_session_path, method: :delete do
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ログアウト
         -else
           = link_to new_user_session_path  do
             ログイン&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

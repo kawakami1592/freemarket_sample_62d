@@ -1,0 +1,29 @@
+.header
+  =render :partial=> "shared/top-header"
+
+.credit-index-body
+  .sidebar
+    =render :partial=> "shared/side_bar"
+
+  .method-of-payment
+    .method-of-payment__header
+      支払い方法
+    .method-of-payment__body
+      .method-of-payment__body__subheading
+        クレジットカード一覧
+      .method-of-payment__body__button
+        = link_to "/cards/new", class: 'method-of-payment__body__button__icon' do
+          = icon('fas', 'credit-card') 
+          %span
+          -if @card.present?
+            &nbsp;&nbsp;&nbsp;&nbsp;クレジットカードを確認する            
+          - else
+            &nbsp;&nbsp;&nbsp;&nbsp;クレジットカードを追加する
+      .method-of-payment__body__line
+      .method-of-payment__body__subfooter      
+        =link_to "#",class:"method-of-payment__body__subfooter__link" do
+          支払い方法について
+          = icon('fas', 'chevron-right')
+          
+.footer
+  =render :partial=> "shared/top-footer"

@@ -3,18 +3,20 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit]
   before_action :authenticate_user!
   before_action :set_current_item #出品者かどうかの判定に使用しているので消さないでください
+  before_action :set_card  #クレジットカード削除の判定に使用しているので消さないでください
   
   def index
   end
 
   def edit
+    
     # ユーザー登録情報の変更画面へ
     # render "users/#{params[:viewname]}" #viewファイルの呼び出し場所を、app/views/usersのファイルに指定しました
   end
 
   def update
     # ユーザー登録情報の変更を保存する
-    if current_user.update(user_params)
+    if current_user.update(user_params) 
       # ログインしているユーザーが入力した値を保存する
       redirect_to root_path
       # 成功したら、ルートにリダイレクトする
@@ -25,7 +27,6 @@ class UsersController < ApplicationController
   end
 
   def show
-      #マイページへ
   end
 
   def logout
