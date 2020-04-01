@@ -69,7 +69,16 @@ class ItemsController < ApplicationController
   end
 
   def pay
-    
+    @item = Item.find(params[:id])
+    @card = Card.where(user_id: current_user.id).first
+    Payjp.api_key = Rails.application.credentials.dig(:payjp, :PAYJP_SECRET_KEY)
+    charge = Payjp::Charge.create(
+      amount: @item.price,
+      customer: @card.customer_id,
+      currency: 'jpy'
+    )
+    @item.update(boughtflg_id: '2')
+    redirect_to root_path, notice: "商品の購入が完了しました"
   end
 
   private
