@@ -53,9 +53,23 @@ class ItemsController < ApplicationController
   end
 
   def buy
+    @card = Card.where(user_id: current_user.id).first
+    if @card.blank?
+      # カード情報が登録されていない場合は登録画面へ遷移
+      redirect_to new_card_path
+    else
+      Payjp.api_key = Rails.application.credentials.dig(:payjp, :PAYJP_SECRET_KEY)
+      # 保管した顧客IDでpayjpから情報取得
+      customer = Payjp::Customer.retrieve(@card.customer_id)
+      # 保管したカードIDでpayjpから情報取得、カード情報表示のためインスタンス変数に代入
+      @default_card_information = customer.cards.retrieve(@card.card_id)
+    end
     @user = current_user
     @item = Item.find(params[:id])
-    @card = Card.where(user_id: current_user.id)
+  end
+
+  def pay
+    
   end
 
   private
