@@ -1,12 +1,12 @@
 class ItemsController < ApplicationController
   
    before_action :authenticate_user!, except:[:index,:show]
-   before_action :set_item, only: [:show]
+   before_action :set_item, only: [:show, :buy, :pay]
    before_action :set_card, except:[:index]  #クレジットカード削除の判定に使用しているので消さないでください
 
 
   def index
-    @items = Item.where.not(boughtflg_id: '2').includes(:user).last(3)
+    @items = Item.includes(:user).last(3)
   end
 
   def show
@@ -53,10 +53,15 @@ class ItemsController < ApplicationController
   end
 
   def buy
-    @card = Card.where(user_id: current_user.id).first
-    if @card.blank?
+    if @item.boughtflg_id == 2
+      # 購入済みの場合はトップに遷移し売り切れの旨を表示
+      redirect_to root_path, notice: "この商品は売り切れました"
+    elsif @item.user_id == current_user.id
+      # その商品の出品者の場合は詳細画面に戻り、出品者は購入できない旨を表示
+      redirect_to item_path(@item), notice: "出品者は商品を購入できません"
+    elsif @card.blank?
       # カード情報が登録されていない場合は登録画面へ遷移
-      redirect_to new_card_path
+      redirect_to new_card_path, notice: "クレジットカード情報を登録してください"
     else
       Payjp.api_key = Rails.application.credentials.dig(:payjp, :PAYJP_SECRET_KEY)
       # 保管した顧客IDでpayjpから情報取得
@@ -65,12 +70,9 @@ class ItemsController < ApplicationController
       @default_card_information = customer.cards.retrieve(@card.card_id)
     end
     @user = current_user
-    @item = Item.find(params[:id])
   end
 
   def pay
-    @item = Item.find(params[:id])
-    @card = Card.where(user_id: current_user.id).first
     Payjp.api_key = Rails.application.credentials.dig(:payjp, :PAYJP_SECRET_KEY)
     charge = Payjp::Charge.create(
       amount: @item.price,

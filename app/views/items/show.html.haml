@@ -49,11 +49,13 @@
         %li.itembuy-content__table__days__name
           = @item.delivery_days.days
       %li
-        - if user_signed_in? && current_user.id == @item.user_id
+        - if user_signed_in? && current_user.id == @item.user_id && @item.boughtflg_id != 2
           = link_to item_path, method: :delete do
             削除
-        - else
+        - elsif @item.boughtflg_id != 2
           = link_to buy_item_path do
             購入
+        - else
+          売り切れました
 .footer
   = render 'shared/top-footer'
