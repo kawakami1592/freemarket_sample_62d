@@ -3,9 +3,6 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit]
   before_action :authenticate_user!
   
-  def index
-  end
-
   def edit
     # ユーザー登録情報の変更画面へ
     # render "users/#{params[:viewname]}" #viewファイルの呼び出し場所を、app/views/usersのファイルに指定しました

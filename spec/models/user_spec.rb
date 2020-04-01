@@ -25,6 +25,12 @@ RSpec.describe User, type: :model do
         expect(user.errors[:email]).to include("を入力してください")
       end
 
+      it "メールアドレスのフォーマットが適切では無い" do
+        user = build(:user, email: "aaaaaa")
+        user.valid?
+        expect(user.errors[:email]).to include("は不正な値です")
+      end
+
       it "メールアドレスが重複している" do
         user = create(:user)
         another_user = build(:user, email: user.email)
