@@ -6,7 +6,6 @@
   %main
     %section.sell-container
       = form_with model: @item do |f|
-        -# 後ほど修正
 
         -# 画像部分
         .sell-container__content
@@ -20,16 +19,24 @@
             .sell-container__content__upload__items
               .sell-container__content__upload__items__box
                 %ul#output-box
+                  
                   %div#image-input
+
+                    -# - @item.images.each .with_index(0) do |image, index|
+                    -#   = image_tag image
+                    
+                    
                     = f.label :images, for: "item_images0", class: 'sell-container__content__upload__items__box__label', data: {label_id: 0 } do
+                      - @item.images.each.with_index(0) do |image, index|       
+                        = image_tag image
                       = f.file_field :images, multiple: true, class: "sell-container__content__upload__items__box__input", id: "item_images0", style: 'display: none;'
                       %pre
                         %i.fas.fa-camera.fa-lg
                         ドラッグアンドドロップ
                         またはクリックしてファイルをアップロード
-          .erroe-messages
-            エラー文を表示
-            -# = render partial: 'error_messages', locals: { item: @item, column: 'images'} エラー文表示
+                    
+                      
+          .error-messages#error-image
 
         -#商品名部分
         .sell-container__content
@@ -39,24 +46,21 @@
               %span.sell-title__require
                 必須
           = f.text_field :name, {class:'sell-container__content__name', placeholder: '商品名（必須 40文字まで)'}
-          .erroe-messages
-            エラー文を表示
-            -# = render partial: 'error_messages', locals: { item: @item, column: 'name'} エラー文表示
+          .error-messages#error-name
+
           .sell-title
             %h3.sell-title__text
               商品の説明
               %span.sell-title__require
                 必須
           = f.text_area :text, {class: 'sell-container__content__description', rows: '7', placeholder: text_placeholder}
-          -# items_helperを呼び出す
+
           .sell-container__content__word-count
             %span#word-count
               0
             &#47;1000
-          .erroe-messages
-            エラー文を表示
-            -# = render partial: 'error_messages', locals: { item: @item, column: 'images'} エラー文表示
-
+          .error-messages#error-text
+          
         -# 詳細部分
         .sell-container__content
           %h3.sell-sub-head 商品の詳細
@@ -68,11 +72,19 @@
                   必須
             .sell-collection_select
               = f.label :category_id, {class: 'sell-collection_select__label'} do
-                = f.collection_select :category_id, Category.all, :id, :name, {prompt: "選択して下さい"},{ class: 'sell-collection_select__input'}
-                %i.fas.fa-chevron-down
-            .erroe-messages
-              エラー文を表示
-            -# = render partial: 'error_messages', locals: { item: @item, column: 'name'} エラー文表示
+                -if @category_grandchildren.present?
+                  = f.collection_select :category_id,@category_grandchildren.parent.parent.siblings, :id, :name, {prompt: "選択して下さい"},{ class: 'sell-collection_select__input', id: 'category-select-parent', required: "required"}
+                  %i.fas.fa-chevron-down
+                  = f.collection_select :category_id,@category_grandchildren.parent.siblings, :id, :name, {prompt: "選択して下さい"},{ class: 'sell-collection_select__input', id: 'edit_select-children_box', required: "required"}
+                  %i.fas.fa-chevron-down
+                  = f.collection_select :category_id,@category_grandchildren.siblings, :id, :name, {prompt: "選択して下さい"},{ class: 'sell-collection_select__input', id: 'edit_select-grandchildren_box', required: "required"}
+                  %i.fas.fa-chevron-down
+
+                -else
+                  = f.collection_select :category_id,@category_parent, :id, :name, {prompt: "選択して下さい"},{ class: 'sell-collection_select__input', id: 'category-select-parent', required: "required"}
+                  %i.fas.fa-chevron-down
+            .erroe-messages#error-category
+
             .sell-title
               %h3.sell-title__text
                 商品の状態
@@ -80,12 +92,9 @@
                   必須
             .sell-collection_select
               = f.label :condition_id, {class: 'sell-collection_select__label'} do
-                = f.collection_select :condition_id, Condition.all, :id, :condition, {prompt: '選択して下さい'},{ class: 'sell-collection_select__input'}
+                = f.collection_select :condition_id, Condition.all, :id, :condition, {prompt: '選択して下さい'},{ class: 'sell-collection_select__input', id: 'condition-select', required: "required"}
                 %i.fas.fa-chevron-down
-            .erroe-messages
-              エラー文を表示
-              -# = render partial: 'error_messages', locals: { item: @item, column: 'name'} エラー文表示
-
+            
 
         -# 配送部分
         .sell-container__content

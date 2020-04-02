@@ -1,6 +1,9 @@
-let file = doument.getElementById('file');
-let reader = new FileReader();
-
-reader.addEventListener('load',function(e){
-  document.getElementById('result').src = reader.result;
-},false);
+// $(function() {
+//   for (let i = 0; i < $('img').length; i++) {
+//       let img = $('<img>');
+//       img.load(function() {
+//           console.log('読み込み完了');
+//       });
+//       img.attr('src', $('img').eq(i).attr('src'));
+//   };
+// })

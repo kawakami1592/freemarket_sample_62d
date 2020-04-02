@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   
    before_action :authenticate_user!, except:[:index,:show]
-   before_action :set_item, only: [:show]
+   before_action :set_item, only: [:show,:edit]
    before_action :set_card, except:[:index]  #クレジットカード削除の判定に使用しているので消さないでください
 
 
@@ -45,13 +45,20 @@ class ItemsController < ApplicationController
     end
   end
 
-  def edit   
+  def edit 
+    @category_grandchildren = Category.find(@item.category_id)
+    @category_parent =  Category.where("ancestry is null")
+    # binding.pry
+    # @category_children = @grandchildren_category.parent
+    # @category_parent = @children_category.parent
+
   end
 
   def update
     @item.update(item_params)
+    redirect_to root_path
   end
-  
+
   def destroy
     item = Item.find_by(id: params[:id])
     if item.present?

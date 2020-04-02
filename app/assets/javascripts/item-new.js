@@ -1,4 +1,18 @@
 $(document).on('turbolinks:load', function(){
+  
+  $(function() {
+    for (let i = 0; i < $('img').length; i++) {
+        let img = $('<img>');
+        img.load(function() {
+            console.log('読み込み完了');
+        });
+        img.attr('src', $('img').eq(i).attr('src'));
+        console.log(img);
+    };
+  })
+
+  
+  
   // 画像が選択された時プレビュー表示、inputの親要素のdivをイベント元に指定
   $('#image-input').on('change', function(e){
     
@@ -16,6 +30,7 @@ $(document).on('turbolinks:load', function(){
       reader.onload = (function(file){
         return function(e){
           let imageLength = $('#output-box').children('li').length;
+          
           // 表示されているプレビューの数を数える
           
           let labelLength = $("#image-input>label").eq(-1).data('label-id');
@@ -33,7 +48,7 @@ $(document).on('turbolinks:load', function(){
                                     </li>`);
           $("#image-input>label").eq(-1).css('display','none');
           // 入力されたlabelを見えなくする
-
+          
           if (imageLength < 9) {
             // 表示されているプレビューが９以下なら、新たにinputを生成する
             $("#image-input").append(`<label for="item_images${labelLength+1}" class="sell-container__content__upload__items__box__label" data-label-id="${labelLength+1}">
@@ -43,6 +58,7 @@ $(document).on('turbolinks:load', function(){
           };
         };
       })(file);
+      
       reader.readAsDataURL(file);
     });
   });
