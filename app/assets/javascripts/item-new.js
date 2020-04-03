@@ -1,40 +1,24 @@
 $(document).on('turbolinks:load', function(){
-  
-  // $(function() {
-  //   for (let i = 0; i < $('img').length; i++) {
-  //       let img = $('<img>');
-  //       img.load(function() {
-  //           console.log('読み込み完了');
-  //       });
-  //       img.attr('src', $('img').eq(i).attr('src'));
-  //       console.log(img);
-  //   };
-  // })
-
-
+ 
 
   $(function() {
 
-    // 表示用のクラスの子要素のimgオブジェクトの中のsrcを取得(imgだとsrcとカスタムデータの２属性をもつオブジェクトになってしまい上手くいかない)
+    // 表示用のクラスの子要素のimgオブジェクトの中のsrcを取得(imgだとsrcとカスタムデータの２属性をもつオブジェクトになってしまい取得後の再表示が上手くいかない)
     let img = $('.editimage').children('img').attr('src');
 
-    // 
+    // imgオブジェクトの個数をimageLengthに指定
       let imageLength = $(".editimage").find("img").length;
       console.log(imageLength);
+
+      // 以下で全ての既存画像に保存順にlabelLengthに名前をつけながらプレビュー表示する（.eachだと一括表示されているものは同じ番号としてlabelLengthに変化をつけられない）
       for (let i = 0; i < $(".editimage").find("img").length; i++) {
       let labelLength = $(".editimage").eq(i).data('index');
       console.log(labelLength);
 
-
-
-    // プレビュー表示
+    // プレビュー表示（最初に定義したsrcを再表示させます）
     $('#image-input').before(`<li class="preview-image" id="upload-image${labelLength}" data-image-id="${labelLength}">
                                 <figure class="preview-image__figure">
-                                  <img src='${img}' >
-
-
-
-
+                                <img src='${img}' >
                                 </figure>
                                 <div class="preview-image__button">
                                   <a class="preview-image__button__edit" href="">編集</a>
@@ -51,7 +35,6 @@ $(document).on('turbolinks:load', function(){
                                 </label>`);
       };
     };
-    // });   
   })
   
 
