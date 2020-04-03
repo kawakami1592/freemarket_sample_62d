@@ -10,7 +10,7 @@ $(document).on('turbolinks:load', function(){
       let imageLength = $(".editimage").find("img").length;
       console.log(imageLength);
 
-      // 以下で全ての既存画像に保存順にlabelLengthに名前をつけながらプレビュー表示する（.eachだと一括表示されているものは同じ番号としてlabelLengthに変化をつけられない）
+      // 以下で全ての既存画像に保存順にlabelLengthに名前をつけながらプレビュー表示する（.eachだと一括表示されているものは同じ番号としてlabelLengthに変化をつけられないのでfor文を使用）
       for (let i = 0; i < $(".editimage").find("img").length; i++) {
       let labelLength = $(".editimage").eq(i).data('index');
       console.log(labelLength);
