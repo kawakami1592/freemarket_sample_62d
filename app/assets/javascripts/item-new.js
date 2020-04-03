@@ -1,15 +1,59 @@
 $(document).on('turbolinks:load', function(){
   
+  // $(function() {
+  //   for (let i = 0; i < $('img').length; i++) {
+  //       let img = $('<img>');
+  //       img.load(function() {
+  //           console.log('読み込み完了');
+  //       });
+  //       img.attr('src', $('img').eq(i).attr('src'));
+  //       console.log(img);
+  //   };
+  // })
+
+
+
   $(function() {
-    for (let i = 0; i < $('img').length; i++) {
-        let img = $('<img>');
-        img.load(function() {
-            console.log('読み込み完了');
-        });
-        img.attr('src', $('img').eq(i).attr('src'));
-        console.log(img);
+
+    // let img = $(".editimage").find("img");
+    let img = $('.image').children('img')
+    
+    // $.each(img, function(index) {
+      let imageLength = $(".editimage").find("img").length;
+      console.log(imageLength);
+      for (let i = 0; i < $(".editimage").find("img").length; i++) {
+      let labelLength = $(".editimage").eq(i).data('index');
+      console.log(labelLength);
+
+
+
+    // プレビュー表示
+    $('#image-input').before(`<li class="preview-image" id="upload-image${labelLength}" data-image-id="${labelLength}">
+                                <figure class="preview-image__figure">
+                                  <img src='${img}' >
+
+
+
+
+                                </figure>
+                                <div class="preview-image__button">
+                                  <a class="preview-image__button__edit" href="">編集</a>
+                                  <a class="preview-image__button__delete" data-image-id="${labelLength}">削除</a>
+                                </div>
+                              </li>`);
+                              $("#image-input>label").eq(-1).css('display','none');
+                  
+    if (imageLength < 9) {
+      // 表示されているプレビューが９以下なら、新たにinputを生成する
+      $("#image-input").append(`<label for="item_images${labelLength+1}" class="sell-container__content__upload__items__box__label" data-label-id="${labelLength+1}">
+                                  <input multiple="multiple" class="sell-container__content__upload__items__box__input" id="item_images${labelLength+1}" style="display: none;" type="file" name="item[images][]">
+                                  <i class="fas fa-camera fa-lg"></i>
+                                </label>`);
+      };
     };
+    // });   
   })
+  
 
   
   
@@ -20,6 +64,7 @@ $(document).on('turbolinks:load', function(){
     let files = e.target.files;
     $.each(files, function(index, file) {
       let reader = new FileReader();
+
 
       //画像でない場合は処理終了
       if(file.type.indexOf("image") < 0){
@@ -49,6 +94,7 @@ $(document).on('turbolinks:load', function(){
           $("#image-input>label").eq(-1).css('display','none');
           // 入力されたlabelを見えなくする
           
+          console.log(imageLength);
           if (imageLength < 9) {
             // 表示されているプレビューが９以下なら、新たにinputを生成する
             $("#image-input").append(`<label for="item_images${labelLength+1}" class="sell-container__content__upload__items__box__label" data-label-id="${labelLength+1}">
@@ -74,6 +120,9 @@ $(document).on('turbolinks:load', function(){
 
     let imageLength = $('#output-box').children('li').length;
     // 表示されているプレビューの数を数える
+    console.log(imageLength);
+
+
     if (imageLength ==9) {
       let labelLength = $("#image-input>label").eq(-1).data('label-id');
       // 表示されているプレビューが９なら,#image-inputの子要素labelの中から最後の要素のカスタムデータidを取得
