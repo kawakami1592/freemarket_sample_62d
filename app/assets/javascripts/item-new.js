@@ -15,10 +15,10 @@ $(document).on('turbolinks:load', function(){
 
   $(function() {
 
-    // let img = $(".editimage").find("img");
-    let img = $('.image').children('img')
-    
-    // $.each(img, function(index) {
+    // 表示用のクラスの子要素のimgオブジェクトの中のsrcを取得(imgだとsrcとカスタムデータの２属性をもつオブジェクトになってしまい上手くいかない)
+    let img = $('.editimage').children('img').attr('src');
+
+    // 
       let imageLength = $(".editimage").find("img").length;
       console.log(imageLength);
       for (let i = 0; i < $(".editimage").find("img").length; i++) {
