@@ -15,7 +15,7 @@ $(document).on('turbolinks:load', function(){
       let labelLength = $(".editimage").eq(i).data('index');
       console.log(labelLength);
 
-    // プレビュー表示（最初に定義したsrcを再表示させます）
+    // プレビュー表示（最初に定義した変数imgでsrcを再表示させます）
     $('#image-input').before(`<li class="preview-image" id="upload-image${labelLength}" data-image-id="${labelLength}">
                                 <figure class="preview-image__figure">
                                 <img src='${img}' >
