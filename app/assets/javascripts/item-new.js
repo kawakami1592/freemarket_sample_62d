@@ -3,7 +3,7 @@ $(document).on('turbolinks:load', function(){
 
   $(function() {
 
-    // 表示用のクラスの子要素のimgオブジェクトの中のsrcを取得(imgだとsrcとカスタムデータの２属性をもつオブジェクトになってしまい取得後の再表示が上手くいかない)
+    // 表示用のクラスの子要素のimgオブジェクトの中のsrcを取得(.attr('img')だとsrcとカスタムデータの２属性をもつオブジェクトになってしまい取得後の再表示が上手くいかない)
     let img = $('.editimage').children('img').attr('src');
 
     // imgオブジェクトの個数をimageLengthに指定
