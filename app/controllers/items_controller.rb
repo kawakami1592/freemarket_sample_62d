@@ -11,7 +11,7 @@ class ItemsController < ApplicationController
   end
   
   def show
-
+    @items = Item.where.not(boughtflg_id: '2').includes(:user).last(10)
   end
   def create
     @item = Item.new(item_params)

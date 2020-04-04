@@ -86,22 +86,23 @@ h1{
       &__option{
         display: flex;
         justify-content: space-between;
-        &__btn{
-            padding: 6px 10px;
-            border-radius: 40px;
-            color: #3CCACE;
-            border: 1px solid #ffb340;
-          }
-        &__button{
+        button{
+          padding: 6px 10px;
+          border-radius: 40px;
+          color: #3CCACE;
+          border: 1px solid #ffb340;
           font-size: 14px;
-          a{
-            padding: 6px 10px;
-            display: inline-block;
-            border-radius: 4px;
-            color: #333;
-            border: 1px solid #333;
-            text-decoration: none;
+          cursor: pointer;
           }
+        &__btn{
+          font-size: 14px;
+          padding: 6px 10px;
+          display: inline-block;
+          border-radius: 4px;
+          color: #333;
+          border: 1px solid #333;
+          text-decoration: none;
+          cursor: pointer;
         }
         ul{
           margin: 10px 0 0;
@@ -113,7 +114,7 @@ h1{
       background-color: #fff;
       margin: 10px 0;
       text-align: center;
-      input{
+      textarea{
         width: 100%;
         min-height: 104px;
       }
