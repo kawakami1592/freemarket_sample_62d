@@ -22,7 +22,7 @@
                   %div#image-input                    
                     = f.label :images, for: "item_images0", class: 'sell-container__content__upload__items__box__label', data: {label_id: 0 } do
                       - @item.images.each_with_index do |image, i|
-                        .editimage{data:{index:i}}       
+                        .editimage{id:"img-#{i}",data:{index:i}}       
                           = image_tag image
                       = f.file_field :images, multiple: true, class: "sell-container__content__upload__items__box__input", id: "item_images0", style: 'display: none;'
                       %pre

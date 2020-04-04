@@ -1,11 +1,6 @@
-$(document).bind("load" , function(){
- 
+$(document).on('turbolinks:load ', function(){
+   
 // 画像保存データがある場合の処理（商品編集画面で新規登録と同じ使用感での画像表示する処理）
-$(function() {
-
-  // 表示用のクラスの子要素のimgオブジェクトの中のsrcを取得(.attr('img')だとsrcとカスタムデータの２属性をもつオブジェクトになってしまい取得後の再表示が上手くいかない)
-  let img = $('.editimage').children('img').attr('src');
-
   // imgオブジェクトの個数をimageLengthに指定
     let imageLength = $(".editimage").find("img").length;
     console.log(imageLength);
@@ -14,6 +9,10 @@ $(function() {
     for (let i = 0; i < $(".editimage").find("img").length; i++) {
     let labelLength = $(".editimage").eq(i).data('index');
     console.log(labelLength);
+
+    // 表示用のクラスの子要素のimgオブジェクトの中のsrcを取得(.attr('img')だとsrcとカスタムデータの２属性をもつオブジェクトになってしまい取得後の再表示が上手くいかない)
+    let img = $('#img-'+i).children('img').attr('src');
+    console.log(img);
 
   // プレビュー表示（最初に定義した変数imgでsrcを再表示させます）
   $('#image-input').before(`<li class="preview-image" id="upload-image${labelLength}" data-image-id="${labelLength}">
@@ -35,25 +34,10 @@ $(function() {
                               </label>`);
     };
   };
-})
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 // カテゴリーボックスにデータがある場合の記述
-  $(function(){
-   
-    // カテゴリーセレクトボックスのオプションを作成
+  // カテゴリーセレクトボックスのオプションを作成
   function categoryOption(category){
     var optionHtml = `<option value="${category.id}">${category.name}</option>`;
     return optionHtml;
@@ -80,7 +64,6 @@ $(function() {
       data: { parent_id: parentCategoryId },
       dataType: 'json'
     })
-
     //呼び出したデータを使ってoption要素(プルダウンの要素)を作成する
     .done(function(category_children){ 
       let optionHtml = '';
@@ -97,10 +80,7 @@ $(function() {
                                       </label>
                                     </div>`
       );
-    })
 
-
-    
   //孫カテゴリーボックス作成
     //ansestryより全孫要素の呼び出し
     $.ajax({
@@ -125,28 +105,22 @@ $(function() {
                                         <i class="fas fa-chevron-down"></i>
                                       </label>
                                     </div>`
-        );
-      })
+                                  );
+                                })
 
-//エラーハンドリング
+  //エラーハンドリング
   .fail(function(){
       alert('カテゴリー取得に失敗しました');
     });
   });
 
 
-
-
-
-
-
-
   //販売価格
-  $(function(){
     var price = $('.sell-container__content__price__form__label').children('a').attr('id');
     console.log(price);
     $("#item_price").val(price);
     //文字列にしないようにvalのなかをクォーテーションで囲まない
+
 
     //消費税計算
     if (price >= 300 && price <= 9999999){
@@ -160,20 +134,11 @@ $(function() {
       $('.sell-container__content__commission__right').html('ー');
       $('.sell-container__content__profit__right').html('ー');
     }
-  })
-
-
-
 
 
 // f.text_areaの文字数カウント
-$(function(){
   let txtcount = $("textarea").val().length;
   $("#word-count").text(txtcount);
-});
-
-
-
 
 });
 
