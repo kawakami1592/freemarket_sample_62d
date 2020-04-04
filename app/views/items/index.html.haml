@@ -134,6 +134,26 @@
                   .top-main__pickup__contents__content__details__right
                     %i.fa.fa-star
                     0
+        -# - @items.reverse_each do |item| 
+        -#   = link_to item_path(item) do
+        -#     .top-main__pickup__contents__content
+        -#       .top-main__pickup__contents__content__img
+        -#         .top-main__pickup__contents__content__img--img
+        -#           = image_tag(item.images.first, width: '100%', height: '100%', alt: '商品3')
+        -#         - if item.boughtflg_id == 2
+        -#           .top-main__pickup__contents__content__img--sold
+        -#             SOLD
+        -#       .top-main__pickup__contents__content__details
+        -#         .top-main__pickup__contents__content__details__left
+        -#           .top-main__pickup__contents__content__details__left__name
+        -#             = item.name
+        -#           .top-main__pickup__contents__content__details__left__price
+        -#             = "#{item.price.to_s(:delimited)}円"
+        -#           .top-main__pickup__contents__content__details__left__tax
+        -#             (税込)
+        -#         .top-main__pickup__contents__content__details__right
+        -#           %i.fa.fa-star
+        -#           0
   .top-main__pickup
     .top-main__pickup__title
       ピックアップブランド
@@ -147,8 +167,12 @@
         - @items.reverse_each do |item| 
           = link_to item_path(item) do
             .top-main__pickup__contents__content
-              .top-main__pickup__contents__content__img          
-                = image_tag(item.images.first, width: '100%', height: '100%', alt: '商品3')
+              .top-main__pickup__contents__content__img
+                .top-main__pickup__contents__content__img--img
+                  = image_tag(item.images.first, width: '100%', height: '100%', alt: '商品3')
+                - if item.boughtflg_id == 2
+                  .top-main__pickup__contents__content__img--sold
+                    SOLD
               .top-main__pickup__contents__content__details
                 .top-main__pickup__contents__content__details__left
                   .top-main__pickup__contents__content__details__left__name
