@@ -11,8 +11,8 @@
     .method-of-payment__body
       .method-of-payment__body__subheading
         クレジットカード一覧
-      .method-of-payment__body__button
-        = link_to "/cards/new", class: 'method-of-payment__body__button__icon' do
+      .method-of-payment__body__button{id: 'register'}
+        = link_to "/cards/new", class: 'method-of-payment__body__button__icon',"data-turbolinks": false do
           = icon('fas', 'credit-card') 
           %span
           -if @card.present?
