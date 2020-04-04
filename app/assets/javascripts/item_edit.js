@@ -43,7 +43,9 @@ $(document).on('turbolinks:load ', function(){
     return optionHtml;
   }
 
-    //カテゴリ欄の親子孫の現在のvカテゴリー名を取得
+    //カテゴリ欄の親子孫の現在のカテゴリー名を取得
+    let parentid = $(".edit_parent_sell-collection_select__input").children("a").attr("data-parentid");
+    console.log(parentid);
     let parentCategoryName = $(".edit_parent_sell-collection_select__input").children("a").attr("id");
     console.log(parentCategoryName);
     let childrenCategoryName = $(".edit_child_sell-collection_select__input").children("a").attr("id");
@@ -52,18 +54,19 @@ $(document).on('turbolinks:load ', function(){
     console.log(grandchildrenCategoryName);
 
     //Ajax用の変数準備(初期値はとりあえず１とするがあとで上書きとなります)
-    let parentCategoryId = 1
-    let childrenCategoryId  = 1
-    let grandchildrenCategoryId  = 1
-
+    let parentCategoryId = 1;
+    let childrenCategoryId  = 1;
+    let grandchildrenCategoryId  = 1;
+    
   //子カテゴリーボックス作成
-    //ansestryより全子要素の呼び出し
+    //ansestryより全親要素の呼び出ししたものをitems#newと連結
     $.ajax({
       url: '/items/category_children',
       type: 'GET',
       data: { parent_id: parentCategoryId },
       dataType: 'json'
     })
+    
     //呼び出したデータを使ってoption要素(プルダウンの要素)を作成する
     .done(function(category_children){ 
       let optionHtml = '';

@@ -63,13 +63,13 @@
                 カテゴリー
                 %span.sell-title__require
                   必須
-            .sell-collection_select
+            .sell-collection_select{id: 'select-parent-box'}
               = f.label :category_id, {class: 'sell-collection_select__label'} do
                 -if @category_grandchildren.present?
                   = f.collection_select :category_id,@category_grandchildren.parent.parent.siblings, :id, :name, {prompt: "選択して下さい"},{ class: 'sell-collection_select__input', id: 'category-select-parent', required: "required"}
                   %i.fas.fa-chevron-down
                   .edit_parent_sell-collection_select__input
-                    %a{id:@category_grandchildren.parent.parent.name}
+                    %a{id:@category_grandchildren.parent.parent.name,data:{parentid:@category_grandchildren.parent.parent.id}}
                   .edit_child_sell-collection_select__input
                     %a{id:@category_grandchildren.parent.name}
                   .edit_grandchild_sell-collection_select__input
