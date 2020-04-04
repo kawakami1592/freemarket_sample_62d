@@ -74,13 +74,26 @@ class ItemsController < ApplicationController
 
   def pay
     Payjp.api_key = Rails.application.credentials.dig(:payjp, :PAYJP_SECRET_KEY)
-    charge = Payjp::Charge.create(
-      amount: @item.price,
-      customer: @card.customer_id,
-      currency: 'jpy'
-    )
-    @item.update(boughtflg_id: '2')
-    redirect_to root_path, notice: "商品の購入が完了しました"
+    begin
+      charge = Payjp::Charge.create(
+        amount: @item.price,
+        customer: @card.customer_id,
+        currency: 'jpy'
+      )
+      @item.update!(boughtflg_id: '2')
+      redirect_to root_path, notice: "商品の購入が完了しました"
+    # カードの有効期限が切れている等、何らかの理由で決済に失敗した場合の例外処理をrescue以降に記述
+    # エラー情報はターミナルに出力する（エンドユーザに提示する内容ではない。PayjpのAPIを参照）
+    rescue Payjp::PayjpError => e
+      body = e.json_body
+      err  = body[:error]
+      puts "Status is: #{e.http_status}"
+      puts "Type is: #{err[:type]}"
+      puts "Code is: #{err[:code]}"
+      puts "Param is: #{err[:param]}"
+      puts "Message is: #{err[:message]}"
+      redirect_to item_path(@item), notice: "クレジットカード決済処理が失敗しました"
+    end
   end
 
   private
