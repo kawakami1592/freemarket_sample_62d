@@ -1,4 +1,4 @@
-$(document).on('turbolinks:load', function(){
+$(document).on('turbolinks:load ', function(){
  
 // 画像保存データがある場合の処理（商品編集画面で新規登録と同じ使用感での画像表示する処理）
 $(function() {
@@ -128,116 +128,53 @@ $(function() {
         );
       })
 
-
+//エラーハンドリング
   .fail(function(){
       alert('カテゴリー取得に失敗しました');
     });
   });
 
+
+
+
+
+
+
+
+  //販売価格
+  $(function(){
+    var price = $('.sell-container__content__price__form__label').children('a').attr('id');
+    console.log(price);
+    $("#item_price").val(price);
+    //文字列にしないようにvalのなかをクォーテーションで囲まない
+
+    //消費税計算
+    if (price >= 300 && price <= 9999999){
+      let fee = Math.floor(price * 0.1);
+      // 小数点以下切り捨て
+      let profit = (price - fee);
+      $('.sell-container__content__commission__right').text('¥'+fee.toLocaleString());
+      // 対象要素の文字列書き換える
+      $('.sell-container__content__profit__right').text('¥'+profit.toLocaleString());
+    } else{
+      $('.sell-container__content__commission__right').html('ー');
+      $('.sell-container__content__profit__right').html('ー');
+    }
+  })
+
+
+
+
+
+// f.text_areaの文字数カウント
+$(function(){
+  let txtcount = $("textarea").val().length;
+  $("#word-count").text(txtcount);
 });
 
 
 
 
+});
 
 
-
-
-
-
-
-
-
-
-
-
-//     //選択された親カテゴリーのIDを取得
-//     if (parentCategoryId == ''){
-//       //親カテゴリーが空（初期値）の時
-//       $('#edit_select-children-box').remove();
-//       $('#editselect-grandchildren-box').remove();
-//       //子と孫を削除するする
-//     }else{
-//       $.ajax({
-//         url: '/items/category_children',
-//         type: 'GET',
-//         data: { parent_id: parentCategoryId },
-//         dataType: 'json'
-//       })
-//       .done(function(category_children){
-//         $('#edit_select-children-box').hide();
-//         $('#edit_select-grandchildren-box').hide();
-//         親が変更された時、子と孫を削除する
-//         let optionHtml = '';
-//         category_children.forEach(function(child){
-//           optionHtml += categoryOption(child);
-//           //option要素(プルダウンの要素)を作成する
-//         });
-//         $('#error-category').before(`<div class="sell-collection_select " id="select-children-box">
-//                                         <label class="sell-collection_select__label" for="item_category_id">
-//                                           <select class="sell-collection_select__input" id="category-select-children" required="required" name="item[category_id]">
-//                                             <option value="">選択して下さい</option>
-//                                             ${optionHtml}
-//                                           </select>
-//                                           <i class="fas fa-chevron-down"></i>
-//                                         </label>
-//                                       </div>`
-//         );
-      
-//     })
-    
-//       .fail(function(){
-//         alert('カテゴリー取得に失敗しました');
-//       });
-//     }
-//     });
-//   // });
-//   // 子カテゴリー選択後のイベント
-//   // $('#edit_select-children_box').on('load', '#category-select-children', function(){
-   
-//   $(function(){
-//     // e.preventDefault();
-//     // let childrenCategoryId = $('.edit_child_sell-collection_select__input').children('value');
-//     let childrenCategoryId = $(".edit_child_sell-collection_select__input").children("a").attr("id");
-//     console.log(childrenCategoryId);
-//     //選択された子カテゴリーのIDを取得
-//     if (childrenCategoryId == ''){
-//       //子カテゴリーが空（初期値）の時
-//       // $('#select-grandchildren-box').remove(); 
-//       //孫以下を削除する
-//     }else{
-//       $.ajax({
-//         url: '/items/category_grandchildren',
-//         type: 'GET',
-//         data: { child_id: childrenCategoryId },
-//         dataType: 'json'
-//       })
-//       .done(function(category_grandchildren){
-//         $('#select-grandchildren-box').remove();
-//         //子が変更された時、孫を削除するする
-//         let optionHtml = '';
-//         category_grandchildren.forEach(function(grandchildren){
-//           optionHtml += categoryOption(grandchildren);
-//           //option要素を作成する
-//         });
-//         $('#error-category').before(`<div class="sell-collection_select " id="select-grandchildren-box">
-//                                         <label class="sell-collection_select__label" for="item_category_id">
-//                                           <select class="sell-collection_select__input" id="category-select-grandchildren" required="required" name="item[category_id]">
-//                                             <option value="">選択して下さい</option>
-//                                             ${optionHtml}
-//                                           </select>
-//                                           <i class="fas fa-chevron-down"></i>
-//                                         </label>
-//                                       </div>`
-//         );
-//       })
-//       .fail(function(){
-//         alert('カテゴリー取得に失敗しました');
-//       });
-//     }
-//   });
-// });
-
-
-
-// // });

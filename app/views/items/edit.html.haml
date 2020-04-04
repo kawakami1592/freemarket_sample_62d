@@ -146,6 +146,7 @@
               = f.label :price, class: 'sell-container__content__price__form__label' do
                 ¥
                 = f.number_field :price, {placeholder: '0', value: '', autocomplete:"off", class: 'sell-container__content__price__form__box', required: "required"}
+                %a{id:@item.price}
           .error-messages#error-price
             
           .sell-container__content__commission
