@@ -1,3 +1,5 @@
+//= require turbolinks
+
 $(document).on('turbolinks:load', function(){
  
   // 画像が選択された時プレビュー表示、inputの親要素のdivをイベント元に指定

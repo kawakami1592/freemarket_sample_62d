@@ -1,4 +1,4 @@
-$(document).on('turbolinks:load ', function(){
+$(document).bind("load" , function(){
  
 // 画像保存データがある場合の処理（商品編集画面で新規登録と同じ使用感での画像表示する処理）
 $(function() {

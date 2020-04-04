@@ -1,3 +1,5 @@
+//= require turbolinks
+
 $(document).on('turbolinks:load', function() {
   $(function(){
     $('.top-header__nav__left__list').on({
