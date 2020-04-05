@@ -69,11 +69,11 @@
                   = f.collection_select :category_id,@category_grandchildren.parent.parent.siblings, :id, :name, {prompt: "選択して下さい"},{ class: 'sell-collection_select__input', id: 'category-select-parent', required: "required"}
                   %i.fas.fa-chevron-down
                   .edit_parent_sell-collection_select__input
-                    %a{id:@category_grandchildren.parent.parent.name,data:{parentid:@category_grandchildren.parent.parent.id}}
+                    %a{id:@category_grandchildren.parent.parent.id,data:{parentname:@category_grandchildren.parent.parent.name}}
                   .edit_child_sell-collection_select__input
-                    %a{id:@category_grandchildren.parent.name}
+                    %a{id:@category_grandchildren.parent.id,data:{childname:@category_grandchildren.parent.name}}
                   .edit_grandchild_sell-collection_select__input
-                    %a{id:@category_grandchildren.name}
+                    %a{id:@category_grandchildren.id,data:{grandchildname:@category_grandchildren.name}}
                 -else
                   = f.collection_select :category_id,@category_parent, :id, :name, {prompt: "選択して下さい"},{ class: 'edit_grandchild_sell-collection_select__input', id: 'category-select-parent', required: "required"}
                   %i.fas.fa-chevron-down

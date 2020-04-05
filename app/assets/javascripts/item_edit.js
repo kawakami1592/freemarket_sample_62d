@@ -41,15 +41,17 @@ $(document).on('turbolinks:load ', function(){
   }
 
     //カテゴリ欄の親子孫の現在のカテゴリー名を取得
-    let parentid = $(".edit_parent_sell-collection_select__input").children("a").attr("data-parentid");
-    let parentCategoryName = $(".edit_parent_sell-collection_select__input").children("a").attr("id");
-    let childrenCategoryName = $(".edit_child_sell-collection_select__input").children("a").attr("id");
-    let grandchildrenCategoryName = $(".edit_grandchild_sell-collection_select__input").children("a").attr("id");
+    let parentid = $(".edit_parent_sell-collection_select__input").children("a").attr("id");
+    let parentCategoryName = $(".edit_parent_sell-collection_select__input").children("a").attr("data-parentname");
+    let childid = $(".edit_child_sell-collection_select__input").children("a").attr("id");
+    let childrenCategoryName = $(".edit_child_sell-collection_select__input").children("a").attr("data-childname");
+    let grandchildid = $(".edit_grandchild_sell-collection_select__input").children("a").attr("id");
+    let grandchildrenCategoryName = $(".edit_grandchild_sell-collection_select__input").children("a").attr("data-grandchildname");
 
-    //Ajax用の変数準備(初期値はとりあえず１とするがあとで上書きとなります)
-    let parentCategoryId ;
-    let childrenCategoryId  ;
-    let grandchildrenCategoryId  = 1;
+    //Ajax用の変数準備
+    let parentCategoryId = parentid;
+    let childrenCategoryId = childid;
+    let grandchildrenCategoryId = grandchildid ;
     
   //子カテゴリーボックス作成
     //ansestryより全親要素の呼び出ししたものをitems#newと連結
@@ -69,7 +71,7 @@ $(document).on('turbolinks:load ', function(){
       $('#error-category').before(`<div class="sell-collection_select " id="select-children-box">
                                       <label class="sell-collection_select__label" for="item_category_id">
                                         <select class="sell-collection_select__input" id="category-select-children" required="required" name="item[category_id]">
-                                          <option value="">${childrenCategoryName}</option>
+                                          <option value="${childid}">${childrenCategoryName}</option>
                                           ${optionHtml}
                                         </select>
                                         <i class="fas fa-chevron-down"></i>
@@ -95,7 +97,7 @@ $(document).on('turbolinks:load ', function(){
       $('#error-category').before(`<div class="sell-collection_select " id="select-grandchildren-box">
                                       <label class="sell-collection_select__label" for="item_category_id">
                                         <select class="sell-collection_select__input" id="category-select-grandchildren" required="required" name="item[category_id]">
-                                          <option value="">${grandchildrenCategoryName}</option>
+                                          <option value="${grandchildid}">${grandchildrenCategoryName}</option>
                                           ${optionHtml}
                                         </select>
                                         <i class="fas fa-chevron-down"></i>
