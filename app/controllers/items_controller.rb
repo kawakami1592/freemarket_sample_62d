@@ -45,12 +45,11 @@ class ItemsController < ApplicationController
   end
 
   def update
-    @currentitem=Item.find_by(user_id:current_user.id) 
     if @item.present?
       if @item.update(item_params)
         redirect_to root_path, notice: "商品情報を編集しました"
       else
-        redirect_to edit_user_item_path(user_id:@currentitem.user_id) ,notice: "商品情報を編集できていません"
+        redirect_to edit_item_path ,notice: "商品情報を編集できていません"
       end
     else
       redirect_to root_path, notice: "商品が見つかりません"

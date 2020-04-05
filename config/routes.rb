@@ -24,7 +24,6 @@ Rails.application.routes.draw do
       get 'card',to: 'cards#show'
       get :nocard
     end
-    resources :items,only: [:edit, :update]
   end
 
   resources :cards, only: [:index, :new, :show] do
