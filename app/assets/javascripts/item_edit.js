@@ -34,7 +34,7 @@ $(document).on('turbolinks:load ', function(){
 
 
 // カテゴリーボックスにデータがある場合の記述
-  // カテゴリーセレクトボックスのオプションを作成
+  // カテゴリーセレクトボックスのオプション(親要素の選択肢)を作成
   function categoryOption(category){
     var optionHtml = `<option value="${category.id}">${category.name}</option>`;
     return optionHtml;
@@ -53,6 +53,9 @@ $(document).on('turbolinks:load ', function(){
     let childrenCategoryId = childid;
     let grandchildrenCategoryId = grandchildid ;
     
+    //親要素で選択されているものを表示
+    $('#category-select-parent').val(parentid);
+  
   //子カテゴリーボックス作成
     //ansestryより全親要素の呼び出ししたものをitems#newと連結
     $.ajax({
