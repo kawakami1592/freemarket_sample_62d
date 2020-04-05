@@ -3,16 +3,13 @@ $(document).on('turbolinks:load ', function(){
 // 画像保存データがある場合の処理（商品編集画面で新規登録と同じ使用感での画像表示する処理）
   // imgオブジェクトの個数をimageLengthに指定
     let imageLength = $(".editimage").find("img").length;
-    console.log(imageLength);
 
     // 以下で全ての既存画像に保存順にlabelLengthに名前をつけながらプレビュー表示する（.eachだと一括表示されているものは同じ番号としてlabelLengthに変化をつけられないのでfor文を使用）
     for (let i = 0; i < $(".editimage").find("img").length; i++) {
     let labelLength = $(".editimage").eq(i).data('index');
-    console.log(labelLength);
 
     // 表示用のクラスの子要素のimgオブジェクトの中のsrcを取得(.attr('img')だとsrcとカスタムデータの２属性をもつオブジェクトになってしまい取得後の再表示が上手くいかない)
     let img = $('#img-'+i).children('img').attr('src');
-    console.log(img);
 
   // プレビュー表示（最初に定義した変数imgでsrcを再表示させます）
   $('#image-input').before(`<li class="preview-image" id="upload-image${labelLength}" data-image-id="${labelLength}">
@@ -45,13 +42,9 @@ $(document).on('turbolinks:load ', function(){
 
     //カテゴリ欄の親子孫の現在のカテゴリー名を取得
     let parentid = $(".edit_parent_sell-collection_select__input").children("a").attr("data-parentid");
-    console.log(parentid);
     let parentCategoryName = $(".edit_parent_sell-collection_select__input").children("a").attr("id");
-    console.log(parentCategoryName);
     let childrenCategoryName = $(".edit_child_sell-collection_select__input").children("a").attr("id");
-    console.log(childrenCategoryName);
     let grandchildrenCategoryName = $(".edit_grandchild_sell-collection_select__input").children("a").attr("id");
-    console.log(grandchildrenCategoryName);
 
     //Ajax用の変数準備(初期値はとりあえず１とするがあとで上書きとなります)
     let parentCategoryId = 1;
@@ -120,7 +113,6 @@ $(document).on('turbolinks:load ', function(){
 
   //販売価格
     var price = $('.sell-container__content__price__form__label').children('a').attr('id');
-    console.log(price);
     $("#item_price").val(price);
     //文字列にしないようにvalのなかをクォーテーションで囲まない
 

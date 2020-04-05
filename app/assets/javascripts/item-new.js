@@ -63,8 +63,6 @@ $(document).on('turbolinks:load', function(){
 
     let imageLength = $('#output-box').children('li').length;
     // 表示されているプレビューの数を数える
-    console.log(imageLength);
-
 
     if (imageLength ==9) {
       let labelLength = $("#image-input>label").eq(-1).data('label-id');
