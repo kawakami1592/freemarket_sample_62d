@@ -47,8 +47,8 @@ $(document).on('turbolinks:load ', function(){
     let grandchildrenCategoryName = $(".edit_grandchild_sell-collection_select__input").children("a").attr("id");
 
     //Ajax用の変数準備(初期値はとりあえず１とするがあとで上書きとなります)
-    let parentCategoryId = 1;
-    let childrenCategoryId  = 1;
+    let parentCategoryId ;
+    let childrenCategoryId  ;
     let grandchildrenCategoryId  = 1;
     
   //子カテゴリーボックス作成
