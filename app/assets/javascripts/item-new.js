@@ -36,8 +36,6 @@ $(document).on('turbolinks:load', function(){
                                     </li>`);
           $("#image-input>label").eq(-1).css('display','none');
           // 入力されたlabelを見えなくする
-          
-          console.log(imageLength);
           if (imageLength < 9) {
             // 表示されているプレビューが９以下なら、新たにinputを生成する
             $("#image-input").append(`<label for="item_images${labelLength+1}" class="sell-container__content__upload__items__box__label" data-label-id="${labelLength+1}">
