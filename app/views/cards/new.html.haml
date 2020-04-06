@@ -1,0 +1,58 @@
+.header
+  =render :partial=> "shared/top-header"
+
+.credit-index-body
+  .sidebar
+    =render :partial=> "shared/side_bar"
+
+  .registration
+    .registration__body
+      .registration__body__subheading
+        クレジットカード情報入力
+      .registration__body__body
+        = form_with url: pay_cards_path, method: :post, id: 'charge-form',html: { name: "inputForm" } do |f|    
+          = f.label :カード番号, class: 'registration__body__body__label'
+          %span 必須
+          .registration__body__body__cards-number
+            = f.text_field :card_number, type: 'text', class: 'registration__body__body__input-number', placeholder: '半角数字のみ', maxlength: "16"
+          .registration__body__body__cards-number__logo
+            = image_tag('credit-card3/credit-card_2.png', height: '30px',width:'40px')
+            = image_tag('credit-card3/credit-card_1.png', height: '30px',width:'35px')
+            = image_tag('credit-card3/credit-card_20.png', height: '30px',width:'40px')
+            = image_tag('credit-card3/credit-card_0.png', height: '30px',width:'40px')
+            = image_tag('credit-card3/credit-card_5.png', height: '30px',width:'35px')
+            = image_tag('credit-card3/credit-card_6.png', height: '30px',width:'36px')
+            = image_tag('credit-card3/credit-card_14.png', height: '30px',width:'40px')
+
+          .cards-expire
+            = f.label :有効期限, class: 'registration__body__body__label'
+            %span 必須
+            %br
+            .registration__body__body__cards-expire__wrap
+              .cards-expire__wrap
+                = f.select :exp_month, [["01",1],["02",2],["03",3],["04",4],["05",5],["06",6],["07",7],["08",8],["09",9],["10",10],["11",11],["12",12]],{} , class: 'input-expire' 
+                .cards-expire__wrap__text
+                月
+              .input-expire__icon
+                = icon('fas', 'chevron-down') 
+              
+              .cards-expire__wrap
+                = f.select :exp_year, [["20",2020],["21",2021],["22",2022],["23",2023],["24",2024],["25",2025],["26",2026],["27",2027],["28",2028],["29",2029],["30",2030]],{} , class: 'input-expire' 
+                .cards-expire__wrap__text
+                年
+              .input-expire__icon
+                = icon('fas', 'chevron-down') 
+            .cards-expire
+              = f.label :セキュリティコード, class: 'registration__body__body__label'
+              %span 必須
+              .registration__body__body__security-code
+                = f.text_field :cvc, type: 'text', class: 'registration__body__body__input-number', placeholder: 'カード背面4桁もしくは3桁の番号', maxlength: "4"
+                .registration__body__body__security-code__explain
+                  =link_to '#' do
+                    =icon('fas', "question-circle")
+                    カード裏面の番号とは？
+            .content-bottom#card_token
+              = f.submit '追加する', class: 'registration__body__body__content-bottom--add-btn', id:'token_submit'
+  
+.footer
+  =render :partial=> "shared/top-footer"
