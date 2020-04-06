@@ -1,21 +1,46 @@
-#account-page.account-page
-  .account-page__inner.clearfix
-    .account-page__inner--left.account-page__header
-      %h2 Log in
-      %h5 登録しているユーザーでログイン
-      = render "devise/shared/links"
-    .account-page__inner--right.user-form
-      = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-        .field
-          .field-label
-            = f.label :email
-          .field-input
-            = f.email_field :email, autofocus: true
-          .field
-            .field-label
-              = f.label :password
-              %i (英数字8文字以上)
-            .field-input
-              = f.password_field :password, autocomplete: "off"
-          .actions
-            = f.submit "Log in", class: 'btn'
+.registration_login-container
+  .signup-header
+    = link_to image_tag('logo/logo.png', height: '40px', alt: 'ロゴ'), root_path(current_user) 
+  %main.registration-main
+    .login__box
+      .login__box--account-blue
+        %p アカウントをお持ちでない方はこちら
+        = link_to "新規会員登録", "devise/shared/links"
+      .login__box--social
+        = link_to "＃" do
+          -# リンク先にユーザーIDがない状態ですので後発で実装必要
+          %button#facebook-login.btn-default.btn-sns-facebook
+            Facebookでログイン
+            %i.fab.fa-facebook-square
+        = link_to "#" do
+          %button#google-login.btn-default.btn-sns-google 
+            <i class="fab fa-google"></i>
+            Googleでログイン
+      = form_with model: @user,url:user_session_path, local: true do |f|
+        .login__box--form
+          .form-email
+            = f.email_field :email, placeholder: "メールアドレス", class: "email_field input-default form-email-input"
+          .form-password
+            = f.password_field :password, placeholder: "パスワード", class: "input-default"
+          .form_captcha
+          = f.submit "ログイン", class: 'btn login-switch btn-default'
+          = link_to "パスワードをお忘れの方","#"
+
+.signup__footer
+  %footer.sell-footer
+    %nav
+      %ul.clearfix
+        %li
+          = link_to '#' do
+            プライバシーポリシー
+        %li
+          = link_to '#' do
+            メルカリ利用規約
+        %li
+          = link_to '#' do
+            特定商取引に関する表記
+    = link_to root_path, class: 'footer__logo' do
+      = image_tag 'logo-gray.svg', alt: 'mercari', height: '65', width: '80'
+    %p
+      %small
+        &copy; Mercari, Inc.

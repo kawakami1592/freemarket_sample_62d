@@ -1,10 +1,29 @@
 // 新規会員登録画面
+#account-page.account-page{
+  background-color: #f5f5f5;
+  height:1300px;
+}
+
+.account-page__inner.clearfix{
+
+.signup-header{
+  text-align: center;
+  padding-top: 50px;
+  
+}
+  
 .header{
-  // width:700px;
+  
   height:97px;
   color: #333333;
   font-size: 22px;
   padding:32px;
+  margin: 0px auto;
+ 
+}
+// .account-page__inner--right.user-form{
+//   background-color: #c8c9ad;
+//   margin: 0 auto;
 }
 
 .account-page__inner--left.account-page__header{
@@ -12,149 +31,336 @@
   height:97px;
   color: #f5f5f5;
   font-size: 22px;
-  padding:32px;
+  // padding:32px;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  h4{
+    font-weight: bold;
+  }
 }
 .account-page__inner--right.user-form{
+  margin: 0 32% 0 32%;
+  text-align: left;
+  background-color: ghostwhite;
+  
+}
+.field-email{
+  padding-bottom: 30px;
+  margin: 0 15% 0 15%;
+  
+  &__label{
+    font-size: 18px;
+    font-weight: bold;
+    text-align: left;
+  }
+  &__input{ 
+    #user_email{
+    width: 100%;
+    }
+  }
+}
+.field-password{
+  padding-bottom: 30px;
+  margin: 0 15% 0 15%;
+  &__label{
+  font-size: 18px;
+  font-weight: bold;
+  }
+  &__input{
+    #user_password{
+    width: 100%;
+    }
+  }
+}
+.field-password_confirmation{
+  padding-bottom: 30px;
+  margin: 0 15% 0 15%;
+  &__label{
+  font-size: 18px;
+  font-weight: bold;
+  }
+  &__input{ 
+    #user_password_confirmation{
+    width: 100%;
+    }   
+  }
+}
+.field-nickname{
+  padding-bottom: 30px;
+  margin: 0 15% 0 15%;
+  &__label{
+  font-size: 18px;
+  font-weight: bold;
+  }
+  &__input{    
+    #user_nickname{
+    width: 100%;
+    }
+  }
+}
+.field-name-kanji{
+  padding-bottom: 30px;
+  display:flex;
+  justify-content: flex-start;
+  margin: 0 15% 0 15%;
+  
+}
+.field-lastname{
+  width: 100%;
+  &__label{ 
+  font-size: 18px;
+  font-weight: bold;
+  text-align: left;
+  }
+  &__input{
+    #user_lastname{
+      width: 39%;
+    }
+    #user_firstname{
+      width: 39%;
+      margin-left: 3%;
+    }    
+  }
+}
+.field-firstname{
+
+  // &__label{
+  // font-size: 18px;
+  // font-weight: bold;
+  // }
+  &__input{    
+  }
+}
+.field-name-kana{
+  padding-bottom: 30px;
+  display:flex;
+  justify-content: center;
+  margin: 0 15% 0 15%;
+}
+.field-lastname_kana{
+  &__label{
+  font-size: 18px;
+  font-weight: bold;
+  text-align: left;
+  }
+  &__input{  
+    #user_lastname_kana{
+      width: 39%;
+    }
+    #user_firstname_kana{
+      width: 39%;
+      margin-left: 3%; 
+    }
+  }
+}
+// .field-firstname_kana{
+  // &__label{
+  // font-size: 18px;
+  // font-weight: bold;
+  // }
+//   &__input{    
+//   }
+// }
+.field-address-zippref{
+  padding-bottom: 30px;
+  display:flex;
+}
+.field-zipcode{
+  padding-bottom: 30px;
+  margin: 0 15% 0 15%;
+  &__label{
+  font-size: 18px;
+  font-weight: bold;
+  }
+  &__input{ 
+    #user_zipcode{
+      width: 100%;
+    }   
+  }
+}
+.field-prefcity{
+  padding-bottom: 30px;
+  display:flex;
+  justify-content: center;
+}
+#user_pref_id{
+  width: 150px;
+  height:28px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 0;
+  box-sizing: border-box;
+  color: #222;
+  font-size: 16px;
+
+  line-height: 1;
+  margin: 0;
+  outline: none;
+  padding: 0 56px 0 16px;
+  width: 100%;
+}
+
+.field-pref_id{
+  margin-right: 10px;
+  text-align: center;
+ 
+  &__label{
+    font-size: 18px;
+    font-weight: bold; 
+  
+  }
+  &__input{    
+    font-size: 15px;
+    // &__icon{
+
+    
+    
+  }
+}
+.field-city{
+  margin-left: 10px;
+  &__label{
+  font-size: 18px;
+  font-weight: bold;
+  }
+  &__input{    
+  }
+}
+.field-addressbuilding{
+  padding-bottom: 30px;
+  display:flex;
+  justify-content: center;
+  margin: 0 15% 0 15%;
 
 }
-.email{
-  &__field-label{
+.field-address{
+  &__label{
   font-size: 18px;
   font-weight: bold;
   }
-  &__field-input{
+  &__input{
+     
   }
 }
-.password{
-  &__field-label{
+.field-buildingname{
+  &__label{
   font-size: 18px;
   font-weight: bold;
   }
-  &__field-input{
+  &__input{    
   }
 }
-.password_confirmation{
-  &__field-label{
+.field-phone{
+  padding-bottom: 30px;
+  margin: 0 15% 0 15%;
+  &__label{
   font-size: 18px;
   font-weight: bold;
   }
-  &__field-input{    
+  &__input{ 
+    #user_phone{
+      width: 100%;
+    }  
   }
 }
-.nickname{
-  &__field-label{
+.field-birth{
+  padding-bottom: 30px;
+  display:flex;
+  justify-content: center;
+}
+.field-birthyear_id{
+  &__label{
   font-size: 18px;
   font-weight: bold;
   }
-  &__field-input{    
+  &__input{  
+    font-size: 15px;  
   }
 }
-.lastname{
-  &__field-label{
+#user_birthyear_id{
+  width: 100px;
+  height: 35px;
+}
+.field-birthmonth_id{
+  &__label{
   font-size: 18px;
   font-weight: bold;
   }
-  &__field-input{    
+  &__input{  
+
+    font-size: 15px; 
   }
 }
-.firstname{
-  &__field-label{
+#user_birthmonth_id{
+  width: 100px;
+  height: 35px;
+}
+.field-birthday_id{
+  &__label{
   font-size: 18px;
   font-weight: bold;
   }
-  &__field-input{    
+  &__input{ 
+    font-size: 15px;   
   }
 }
-.lastname_kana{
-  &__field-label{
-  font-size: 18px;
-  font-weight: bold;
-  }
-  &__field-input{   
-  }
-}
-.firstname_kana{
-  &__field-label{
-  font-size: 18px;
-  font-weight: bold;
-  }
-  &__field-input{    
-  }
-}
-.zipcode{
-  &__field-label{
-  font-size: 18px;
-  font-weight: bold;
-  }
-  &__field-input{    
-  }
-}
-.pref_id{
-  &__field-label{
-  font-size: 18px;
-  font-weight: bold;
-  }
-  &__field-input{    
-  }
-}
-.city{
-  &__field-label{
-  font-size: 18px;
-  font-weight: bold;
-  }
-  &__field-input{    
-  }
-}
-.address{
-  &__field-label{
-  font-size: 18px;
-  font-weight: bold;
-  }
-  &__field-input{   
-  }
-}
-.buildingname{
-  &__field-label{
-  font-size: 18px;
-  font-weight: bold;
-  }
-  &__field-input{    
-  }
-}
-.phone{
-  &__field-label{
-  font-size: 18px;
-  font-weight: bold;
-  }
-  &__field-input{   
-  }
-}
-.birthyear__id{
-  &__field-label{
-  font-size: 18px;
-  font-weight: bold;
-  }
-  &__field-input{    
-  }
-}
-.birthmonth__id{
-  &__field-label{
-  font-size: 18px;
-  font-weight: bold;
-  }
-  &__field-input{   
-  }
-}
-.birthday_id{
-  &__field-label{
-  font-size: 18px;
-  font-weight: bold;
-  }
-  &__field-input{    
-  }
-}
-.actions{  
+#user_birthday_id{
+  width: 100px;
+  height: 35px;
 }
 
+.require{
+  margin-left: 8px;
+  font-size: 12px;
+  padding: 0 4px;
+  background-color: #ff0211;
+  color: #fff;
+  border-radius: 2px;
+  display: inline-block;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 1.4em;
+  margin: 0;
+}
 
+.actions{
+  padding-bottom: 30px; 
+  font-size: 50px;
+  font-weight: bold;
+  width: 0 15% 0 15%;
+  text-align: center;
+  .btn{
+    width: 70%;
+  
+    height:28px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: #222;
+    font-size: 16px;
+
+    line-height: 1;
+    margin: 0;
+    outline: none;
+    
+    
+    
+  }
+}
+
+.signup__footer{
+  text-align: center;
+  background-color: #f5f5f5;
+}
 
