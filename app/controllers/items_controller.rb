@@ -3,8 +3,7 @@ class ItemsController < ApplicationController
    before_action :authenticate_user!, except:[:index,:show]
    before_action :set_item, only: [:show, :buy, :pay, :edit, :update]
    before_action :set_card, except:[:index]  #クレジットカード削除の判定に使用しているので消さないでください
-
-
+   
   def index
     @items = Item.includes(:user).last(3)
   end
@@ -40,8 +39,12 @@ class ItemsController < ApplicationController
   end
 
   def edit 
-    @category_grandchildren = Category.find(@item.category_id)
-    @category_parent =  Category.where("ancestry is null")
+    if @item.user_id == current_user.id
+      @category_grandchildren = Category.find(@item.category_id)
+      @category_parent =  Category.where("ancestry is null")
+    else
+      redirect_to root_path,notice: "出品者のみ編集を行うことができます"
+    end
   end
 
   def update
@@ -118,6 +121,7 @@ class ItemsController < ApplicationController
   def item_params
     params.require(:item).permit(:name, :text, :category_id, :condition_id, :deliverycost_id, :pref_id, :delivery_days_id, :price, images: []).merge(user_id: current_user.id, boughtflg_id:"1")
   end
+
   def set_item
     @item = Item.find_by(id:params[:id])
   end

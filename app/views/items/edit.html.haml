@@ -164,15 +164,15 @@
           .attention-box
             %p
               禁止されている
-              = link_to '行為', '/prohibited_conduct', target: '_blank'
+              = link_to '行為', prohibited_conduct_guides_path, target: '_blank'
               および
-              = link_to '出品物', '/prohibited_item', target: '_blank'
+              = link_to '出品物', prohibited_item_guides_path, target: '_blank'
               を必ずご確認ください。
-              = link_to '偽ブランド品', '/counterfeit_goods', target: '_blank'
+              = link_to '偽ブランド品', counterfeit_goods_guides_path, target: '_blank'
               や
-              = link_to '盗品物', '/stolen_goods', target: '_blank'
+              = link_to '盗品物', stolen_goods_guides_path, target: '_blank'
               などの販売は犯罪であり、法律により処罰される可能性があります。また、出品をもちまして
-              = link_to '加盟店規約', '/seller_terms', target: '_blank'
+              = link_to '加盟店規約', seller_terms_guides_path, target: '_blank'
               に同意したことになります。
             
   %footer.sell-footer
