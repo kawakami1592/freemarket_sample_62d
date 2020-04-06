@@ -5,8 +5,6 @@
       = link_to image_tag('logo/logo.png', height: '40px', alt: 'ロゴ'), root_path(current_user) 
     .account-page__inner--left.account-page__header
       %h4 会員情報入力
-    
-      -# = render "devise/shared/links"
     .account-page__inner--right.user-form
       = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
         = devise_error_messages!
