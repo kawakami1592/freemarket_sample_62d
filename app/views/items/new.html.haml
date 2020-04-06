@@ -1,13 +1,11 @@
 .sell
-  -# = render partial: 'items-header'
-  -# %header.sell-header
-  -#   = link_to root_path do
-  -#     = image_tag 'mercari_top_logo.svg',alt: 'mercari', height: '49', width: '185'
+  %header.sell-header
+    = link_to root_path do
+      = image_tag 'mercari_top_logo.svg', alt: 'mercari', height: '49', width: '185'
   -#メイン部分
   %main
     %section.sell-container
       = form_with model: @item do |f|
-        -# 後ほど修正
 
         -# 画像部分
         .sell-container__content
@@ -21,17 +19,14 @@
             .sell-container__content__upload__items
               .sell-container__content__upload__items__box
                 %ul#output-box
-                  = f.label :images, class: 'sell-container__content__upload__items__box__label'do
-                    .sell-container__content__upload__items__box--have-item-0
-                      = f.file_field :images, multiple: true,class: "sell-container__content__upload__items__box__input",style: 'display: none;'
-                      %pre.sell-container__content__upload__items__box__input__drop-box
-                        %i.fas.fa-camera
-                        %pre.sell-container__content__upload__items__box__input__drop-box__text
-                          ドラッグアンドドロップ
-                          またはクリックしてファイルをアップロード
-          .erroe-messages
-            エラー文を表示
-            -# = render partial: 'error_messages', locals: { item: @item, column: 'images'} エラー文表示
+                  %div#image-input{tabindex:"0"}
+                    = f.label :images, for: "item_images0", class: 'sell-container__content__upload__items__box__label', data: {label_id: 0 } do 
+                      = f.file_field :images, multiple: true, class: "sell-container__content__upload__items__box__input", id: "item_images0", style: 'display: none;'
+                      %pre
+                        %i.fas.fa-camera.fa-lg
+                        ドラッグアンドドロップ
+                        またはクリックしてファイルをアップロード
+          .error-messages#error-image
 
         -#商品名部分
         .sell-container__content
@@ -40,22 +35,21 @@
               商品名
               %span.sell-title__require
                 必須
-          = f.text_field :name, {class:'sell-container__content__name', placeholder: '商品名（必須 40文字まで)'}
-          .erroe-messages
-            エラー文を表示
-            -# = render partial: 'error_messages', locals: { item: @item, column: 'name'} エラー文表示
+          = f.text_field :name, {class:'sell-container__content__name', required: "required", placeholder: '商品名（必須 40文字まで)'}
+          .error-messages#error-name
+
           .sell-title
             %h3.sell-title__text
               商品の説明
               %span.sell-title__require
                 必須
-          = f.text_area :text, {class: 'sell-container__content__description', rows: '7', placeholder: text_placeholder}
-          -# items_helperを呼び出す
+          = f.text_area :text,{class: 'sell-container__content__description', required: "required", rows: '7', maxlength: '1000', placeholder: text_placeholder}
+          -# iplaceholderでtems_helperを呼び出す
           .sell-container__content__word-count
-            0/1000
-          .erroe-messages
-            エラー文を表示
-            -# = render partial: 'error_messages', locals: { item: @item, column: 'images'} エラー文表示
+            %span#word-count
+              0
+            &#47;1000
+          .error-messages#error-text
 
         -# 詳細部分
         .sell-container__content
@@ -68,11 +62,10 @@
                   必須
             .sell-collection_select
               = f.label :category_id, {class: 'sell-collection_select__label'} do
-                = f.collection_select :category_id, Category.all, :id, :name, {prompt: "選択して下さい"},{ class: 'sell-collection_select__input'}
+                = f.collection_select :category_id, @category_parent, :id, :name, {prompt: "選択して下さい"},{ class: 'sell-collection_select__input', id: 'category-select-parent', required: "required"}
                 %i.fas.fa-chevron-down
-            .erroe-messages
-              エラー文を表示
-            -# = render partial: 'error_messages', locals: { item: @item, column: 'name'} エラー文表示
+            .error-messages#error-category
+
             .sell-title
               %h3.sell-title__text
                 商品の状態
@@ -80,12 +73,9 @@
                   必須
             .sell-collection_select
               = f.label :condition_id, {class: 'sell-collection_select__label'} do
-                = f.collection_select :condition_id, Condition.all, :id, :condition, {prompt: '選択して下さい'},{ class: 'sell-collection_select__input'}
+                = f.collection_select :condition_id, Condition.all, :id, :condition, {prompt: '選択して下さい'},{ class: 'sell-collection_select__input', id: 'condition-select', required: "required"}
                 %i.fas.fa-chevron-down
-            .erroe-messages
-              エラー文を表示
-              -# = render partial: 'error_messages', locals: { item: @item, column: 'name'} エラー文表示
-
+            .error-messages#error-condition
 
         -# 配送部分
         .sell-container__content
@@ -101,11 +91,10 @@
                   必須
             .sell-collection_select
               = f.label :deliverycost_id, {class: 'sell-collection_select__label'} do
-                = f.collection_select :deliverycost_id, Deliverycost.all, :id, :payer, {prompt: '選択して下さい'},{ class: 'sell-collection_select__input'}
+                = f.collection_select :deliverycost_id, Deliverycost.all, :id, :payer, {prompt: '選択して下さい'},{ class: 'sell-collection_select__input', id: 'deliverycost-select', required: "required"}
                 %i.fas.fa-chevron-down
-            .erroe-messages
-              エラー文を表示
-              -# = render partial: 'error_messages', locals: { item: @item, column: 'name'} エラー文表示
+            .error-messages#error-deliverycost
+
             .sell-title
               %h3.sell-title__text
                 発送元の地域
@@ -113,11 +102,10 @@
                   必須
             .sell-collection_select
               = f.label :pref_id, class: 'sell-collection_select__label' do
-                = f.collection_select :pref_id, Pref.all, :id, :name, {prompt: '選択して下さい'},{ class: 'sell-collection_select__input'}
+                = f.collection_select :pref_id, Pref.all, :id, :name, {prompt: '選択して下さい'},{ class: 'sell-collection_select__input', id: 'pref-select', required: "required"}
                 %i.fas.fa-chevron-down
-            .erroe-messages
-              エラー文を表示
-              -# = render partial: 'error_messages', locals: { item: @item, column: 'name'} エラー文表示
+            .error-messages#error-pref
+
             .sell-title
               %h3.sell-title__text
                 発送までの日数
@@ -125,11 +113,9 @@
                   必須
             .sell-collection_select
               = f.label :delivery_days_id, class: 'sell-collection_select__label' do
-                = f.collection_select :delivery_days_id, DeliveryDays.all, :id, :days, {prompt: '選択して下さい'},{ class: 'sell-collection_select__input'}
+                = f.collection_select :delivery_days_id, DeliveryDays.all, :id, :days, {prompt: '選択して下さい'},{ class: 'sell-collection_select__input', id: 'delivery_days-select', required: "required"}
                 %i.fas.fa-chevron-down
-            .erroe-messages
-              エラー文を表示
-              -# = render partial: 'error_messages', locals: { item: @item, column: 'name'} エラー文表示
+            .error-messages#error-delivery_days
 
         -# 価格部分
         .sell-container__content
@@ -146,10 +132,9 @@
             .sell-container__content__price__form
               = f.label :price, class: 'sell-container__content__price__form__label' do
                 ¥
-                = f.number_field :price, {placeholder: '0', value: '', autocomplete:"off", class: 'sell-container__content__price__form__box'}
-          .erroe-messages-price
-            エラー文を表示
-            -# = render partial: 'error_messages', locals: { item: @item, column: 'name'} エラー文表示
+                = f.number_field :price, {placeholder: '0', value: '', autocomplete:"off", class: 'sell-container__content__price__form__box', required: "required"}
+          .error-messages#error-price
+
           .sell-container__content__commission
             .sell-container__content__commission__left
               販売手数料 （10%）

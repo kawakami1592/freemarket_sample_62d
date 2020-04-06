@@ -5,14 +5,35 @@ Rails.application.routes.draw do
     get "/sign_in" => "devise/sessions#new" # login/sign_inへのカスタムパス
     get "/sign_up" => "devise/registrations#new", as: "new_user_registration" # sign_up/registrationへのカスタムパス
   end
+  
   devise_for :users
-  resources :items
-  resources :users, only: [:edit, :update, :show, :destroy,] do
-    member do 
-      get :logout 
+  resources :items do
+    collection do
+      # カテゴリーの階層分けのルート
+      get 'category_children', defaults: { format: 'json' }
+      get 'category_grandchildren', defaults: { format: 'json' }
+    end
+    member do
+      get 'buy'
+      post 'pay'
     end
   end
-  
+  resources :users, only: [:edit, :update, :show, :destroy,] do
+    member do 
+      get :logout
+      get 'card',to: 'cards#show'
+      get :nocard
+    end
+  end
+
+  resources :cards, only: [:index, :new, :show] do
+    collection do
+      post 'show', to: 'cards#show'
+      post 'pay', to: 'cards#pay'
+      post 'delete', to: 'cards#delete'
+    end
+  end
+
   # 以下ガイドページ用のルート
   get 'delivery', to: 'guides#delivery'
   get 'price', to: 'guides#price'
