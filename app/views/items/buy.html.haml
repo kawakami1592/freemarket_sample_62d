@@ -1,0 +1,31 @@
+= render "shared/top-header"
+
+.item-buy-confirmation
+  .title
+    購入内容の確認
+  .image
+    = image_tag(@item.images.first, width: '50%', height: '50%', alt: '商品画像')
+  .name
+    = @item.name
+  .price
+    = "¥ " + @item.price.to_s(:delimited)
+  .address-title
+    配送先
+  .address-zipcode
+    = "〒" + @user.zipcode
+  .address
+    = @user.pref.name + @user.city + @user.address + @user.buildingname
+  .address-name
+    = @user.lastname + " " + @user.firstname
+  .card-title
+    クレジットカード
+  .card-number
+    = "************" + @default_card_information.last4
+  .card-expiration-date
+    = "有効期限 " + @default_card_information.exp_month.to_s + " / " + @default_card_information.exp_year.to_s.slice(2,3)
+
+  .submit
+    = form_tag(action: :pay, "data-turbolinks": false,method: :post) do
+      %button 購入する
+
+= render "shared/top-footer"
