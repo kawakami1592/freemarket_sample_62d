@@ -35,11 +35,15 @@ Rails.application.routes.draw do
   end
 
   # 以下ガイドページ用のルート
-  get 'delivery', to: 'guides#delivery'
-  get 'price', to: 'guides#price'
-  get 'prohibited_item', to: 'guides#prohibited_item'
-  get 'prohibited_conduct', to: 'guides#prohibited_conduct'
-  get 'counterfeit_goods', to: 'guides#counterfeit_goods'
-  get 'seller_terms', to: 'guides#seller_terms'
-
+  resources :guides,only: [:show] do
+    collection do
+      get 'delivery', to: 'guides#delivery'
+      get 'price', to: 'guides#price'
+      get 'prohibited_item', to: 'guides#prohibited_item'
+      get 'prohibited_conduct', to: 'guides#prohibited_conduct'
+      get 'counterfeit_goods', to: 'guides#counterfeit_goods'
+      get 'seller_terms', to: 'guides#seller_terms'
+      get 'stolen_goods', to: 'guides#stolen_goods'
+    end
+  end    
 end
