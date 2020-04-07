@@ -14,7 +14,7 @@
             %i.fab.fa-facebook-square
         = link_to "#" do
           %button#google-login.btn-default.btn-sns-google 
-            <i class="fab fa-google"></i>
+            %i.fab.fa-google
             Googleでログイン
       = form_with model: @user,url:user_session_path, local: true do |f|
         .login__box--form
