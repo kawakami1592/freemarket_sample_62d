@@ -16,8 +16,7 @@ class Item < ApplicationRecord
   belongs_to :category
   
   def images_presence
-    images.attached?
-    if images.length > 0
+    if images.attached?
       # inputに保持されているimagesがあるかを確認
       if images.length > 10
         errors.add(:image, '10枚まで投稿できます')

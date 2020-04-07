@@ -14,13 +14,11 @@ class ItemsController < ApplicationController
     @category_parent =  Category.where("ancestry is null")
   end
 
-  # 親カテゴリーが選択された後に動くアクション
   def category_children
     @category_children = Category.find("#{params[:parent_id]}").children
     #親カテゴリーに紐付く子カテゴリーを取得
   end
 
-  # 子カテゴリーが選択された後に動くアクション
   def category_grandchildren
     @category_grandchildren = Category.find("#{params[:child_id]}").children
     #子カテゴリーに紐付く孫カテゴリーの配列を取得
@@ -29,17 +27,14 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     if @item.save
-      binding.pry
       redirect_to root_path
-     
     else
-      binding.pry
       render :new
     end
   end
 
   def destroy
-    item = Item.find_by(params[:id])
+    item = Item.find_by(id: params[:id])
     if item.present?
       if item.destroy
         redirect_to root_path, notice: "削除に成功しました"
@@ -60,4 +55,3 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 end
-
