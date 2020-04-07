@@ -18,7 +18,7 @@ Rails.application.routes.draw do
       post 'pay'
     end
   end
-  resources :users, only: [:edit, :update, :show, :destroy,] do
+  resources :users, only: [:edit, :update, :show, :destroy] do
     member do 
       get :logout
       get 'card',to: 'cards#show'
@@ -26,7 +26,8 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :cards, only: [:index, :new, :show] do
+  resources :cards,only: [:index]
+  resources :cards, only: [:new, :show] do
     collection do
       post 'show', to: 'cards#show'
       post 'pay', to: 'cards#pay'

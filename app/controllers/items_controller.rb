@@ -81,7 +81,7 @@ class ItemsController < ApplicationController
       redirect_to item_path(@item), notice: "出品者は商品を購入できません"
     elsif @card.blank?
       # カード情報が登録されていない場合は登録画面へ遷移
-      redirect_to new_card_path, notice: "クレジットカード情報を登録してください"
+      redirect_to cards_path, notice: "クレジットカード情報を登録してください"
     else
       Payjp.api_key = Rails.application.credentials.dig(:payjp, :PAYJP_SECRET_KEY)
       # 保管した顧客IDでpayjpから情報取得
