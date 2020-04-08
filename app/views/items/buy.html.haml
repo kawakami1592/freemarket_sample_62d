@@ -23,9 +23,9 @@
       .user-info__main
         %h3 配送先
         %address.user-info__main__text
-          〒542-0076  
-          %br 大阪府大阪市中央区難波5丁目1−60
-          なんばスカイオ15階
+          = "〒" + @user.zipcode  
+          %br 
+          = @user.pref.name + @user.city + @user.address + @user.buildingname
         %a.user-info__main__fix 変更する
     .user-info
       .user-info__main
