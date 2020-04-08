@@ -5,9 +5,9 @@
     .login__box
       .login__box--account-blue
         %p アカウントをお持ちでない方はこちら
-        = link_to "新規会員登録", "devise/shared/links"
+        = link_to "新規会員登録", new_user_registration_path
       .login__box--social
-        = link_to "＃" do
+        = link_to "#" do
           -# リンク先にユーザーIDがない状態ですので後発で実装必要
           %button#facebook-login.btn-default.btn-sns-facebook
             Facebookでログイン
