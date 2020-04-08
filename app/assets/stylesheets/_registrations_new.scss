@@ -235,7 +235,7 @@
 
 .field-addressbuilding{
   display:flex;
-  justify-content: center;
+  justify-content: space-around;
   margin: 0 15% 0 15%;
 }
 
@@ -266,6 +266,7 @@
   &__label{
     font-size: 18px;
     font-weight: bold;
+    width:100%;
   }
 }
 
