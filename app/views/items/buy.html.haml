@@ -8,9 +8,11 @@
         .confirm-group__form__main__pict
           .confirm-group__form__main__pict__frame
             = image_tag(@item.images.first, width: '100%', height: '100%', alt: '商品画像')
-          %h2= @item.name
+          %h2
+          = @item.name
         .confirm-group__form__main__price
-          %p= "¥ " + @item.price.to_s(:delimited)
+          %p
+          = "¥ " + @item.price.to_s(:delimited)
           %span 送料込み
         .confirm-group__form__main__point ポイントはありません
         .confirm-group__form__main__buy-price
