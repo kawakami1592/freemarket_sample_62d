@@ -139,9 +139,9 @@ class ItemsController < ApplicationController
     end
     # テーブルの画像とsubmitされた画像に差異がある時のみ実行
     if @item.images != Items.new(image_params)
-      # submitされた画像のみで配列(このメソッドでもう一度使用するためインスタンス変数で定義)を作成
+      # submitされた画像のハッシュ値のみで配列を作成(このメソッドでもう一度使用するためインスタンス変数で定義)
       image_params.each do |params|
-        @need_images = @item.images.find(params)
+        @need_images = params
       end
       # 現在保存されている画像を１枚ずつ取り出し先ほど作った配列の値と一致しないものを削除
       @item.images do |noneed_image|
@@ -149,7 +149,7 @@ class ItemsController < ApplicationController
       end
     end
     #処理を終えたら上書き保存（メソッドになるので挙動の前に変数をつけない）
-    update(image_params)
+    update(item_params)
   end
 
 end
