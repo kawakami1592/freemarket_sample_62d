@@ -49,7 +49,7 @@ class ItemsController < ApplicationController
       if @item.update(item_params)
         redirect_to root_path, notice: "商品情報を編集しました"
       else
-        redirect_to edit_item_path ,notice: "商品情報を編集できていません"
+        redirect_to root_path ,notice: "商品情報を編集できていません"
       end
     else
       redirect_to root_path, notice: "商品が見つかりません"
