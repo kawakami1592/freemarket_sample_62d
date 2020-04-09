@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
    before_action :authenticate_user!, except:[:index,:show]
    before_action :set_item, only: [:show, :buy, :pay, :edit, :update]
    before_action :set_card, except:[:index]  #クレジットカード削除の判定に使用しているので消さないでください
-   before_action :correct_images, only: [:update]
+  #  before_action :correct_images, only: [:update]
 
   def index
     @items = Item.includes(:user).last(3)
@@ -52,6 +52,7 @@ class ItemsController < ApplicationController
   def update
     if @item.present?
       if @item.update(item_params)
+        @item.correct_images
         DeleteUnreferencedBlobJob.perform_later
         redirect_to root_path, notice: "商品情報を編集しました"
       else
@@ -132,12 +133,23 @@ class ItemsController < ApplicationController
 
   # 画像削除用のメソッドです。submitされた画像のなかに当初テーブルにデータが入っていたのになくなっているものを削除します。
   def correct_images
-    params.require(:item).permit(images:[]).each do |image_params|
-      @need_images = @item.images.find(image_params)
+    # submitされた画像のパラメータをこのメソッド内で複数回使用するのであらかじめ定義
+    def image_params
+      params.require(:item).permit(images:[])
     end
-    @item.images.delete_if do |confirm_image|
-      @need_images.include!(confirm_image)
+    # テーブルの画像とsubmitされた画像に差異がある時のみ実行
+    if @item.images != Items.new(image_params)
+      # submitされた画像のみで配列(このメソッドでもう一度使用するためインスタンス変数で定義)を作成
+      image_params.each do |params|
+        @need_images = @item.images.find(params)
+      end
+      # 現在保存されている画像を１枚ずつ取り出し先ほど作った配列の値と一致しないものを削除
+      @item.images do |noneed_image|
+        @item.imagespurge(noneed_image) if @need_images.exclude?(noneed_image)
+      end
     end
+    #処理を終えたら上書き保存（メソッドになるので挙動の前に変数をつけない）
+    update(image_params)
   end
 
 end
