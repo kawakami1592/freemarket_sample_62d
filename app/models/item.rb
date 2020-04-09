@@ -12,8 +12,20 @@ class Item < ApplicationRecord
   validates :price, presence: true, inclusion: 300..9999999
 
   has_many_attached :images
+  # attribute :new_image
+  # attribute :remove_images, :boolean
+
   belongs_to :user, foreign_key: 'user_id'
   belongs_to :category
+
+  # before_save do
+  #   if new_images
+  #     self.images = new_images
+  #     # self.profile_picture.attach(new_profile_picture) でも可
+  #   elsif remove_profile_picture
+  #     self.images.purge
+  #   end
+  # end
 
   
   def images_presence
@@ -26,4 +38,17 @@ class Item < ApplicationRecord
       errors.add(:image, '画像がありません')
     end
   end
+
+  # validate if: :new_images do
+  #   if new_images.respond_to?(:content_type)
+  #     unless new_images.content_type.in?(ALLOWED_CONTENT_TYPES)
+  #       errors.add(:new_images, :invalid_image_type)
+  #     end
+  #   else
+  #     errors.add(:new_images, :invalid)
+  #   end
+  # end
+
+
+
 end

@@ -3,7 +3,8 @@ class ItemsController < ApplicationController
    before_action :authenticate_user!, except:[:index,:show]
    before_action :set_item, only: [:show, :buy, :pay, :edit, :update]
    before_action :set_card, except:[:index]  #クレジットカード削除の判定に使用しているので消さないでください
-   
+   before_action :correct_images, only: [:update]
+
   def index
     @items = Item.includes(:user).last(3)
   end
@@ -31,6 +32,7 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     if @item.save
+      DeleteUnreferencedBlobJob.perform_later 
       redirect_to root_path
      
     else
@@ -50,6 +52,7 @@ class ItemsController < ApplicationController
   def update
     if @item.present?
       if @item.update(item_params)
+        DeleteUnreferencedBlobJob.perform_later
         redirect_to root_path, notice: "商品情報を編集しました"
       else
         redirect_to edit_item_path ,notice: "商品情報を編集できていません"
@@ -63,6 +66,7 @@ class ItemsController < ApplicationController
     item = Item.find_by(id: params[:id])
     if item.present?
       if item.destroy
+        DeleteUnreferencedBlobJob.perform_later 
         redirect_to root_path, notice: "削除に成功しました"
       else
         redirect_to root_path, notice: "削除に失敗しました"
@@ -125,5 +129,16 @@ class ItemsController < ApplicationController
   def set_item
     @item = Item.find_by(id:params[:id])
   end
+
+  # 画像削除用のメソッドです。submitされた画像のなかに当初テーブルにデータが入っていたのになくなっているものを削除します。
+  def correct_images
+    params.require(:item).permit(images:[]).each do |image_params|
+      @need_images = @item.images.find(image_params)
+    end
+    @item.images.delete_if do |confirm_image|
+      @need_images.include!(confirm_image)
+    end
+  end
+
 end
 
