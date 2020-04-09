@@ -18,7 +18,7 @@ RSpec.describe ItemsController, type: :controller do
   end
 
   describe 'GET #show' do
-    it "正常にレスポンスを返す" do 
+    it "詳細ページを表示する" do 
       items = create_list(:item, 4, :image, user: user, category: category)
       item = Item.find(items[1][:id])
       get :show, params: { id: item.id }
@@ -27,14 +27,19 @@ RSpec.describe ItemsController, type: :controller do
   end
 
   describe 'GET #new' do
- 
     context 'ログインしている' do
       it "@itemという変数が正しく定義されている" do
         login user
         get :new
         expect(assigns(:item)).to be_a_new(Item)
       end
-
+      it "@category_parentに正しい値が入る" do
+        othercategory = create(:category, name: 'other', ancestry: nil)
+        @category_parent =  Category.where("ancestry is null")
+        login user
+        get :new
+        expect(@category_parent).to eq([othercategory])
+      end
       it '出品ページが表示される' do
         login user
         get :new
@@ -91,17 +96,29 @@ RSpec.describe ItemsController, type: :controller do
   describe 'GET #edit' do
     let(:item) { create(:item, :image, user: user, category: category) }
     context "ログインしている" do
-        it "出品者、編集画面に遷移する" do
-          login user
-          get :edit, params: { id: item.id }
-          expect(response).to render_template :edit
-        end
-        it "出品者ではない、トップページにリダイレクトする" do
-          otheruser = create(:user)
-          login otheruser
-          get :edit, params: { id: item.id }
-          expect(response).to redirect_to(root_path)
-        end
+      it "@category_grandchildrenに正しい値が入る" do
+        login user
+        get :edit, params: { id: item.id }
+        expect(item.category_id).to eq(category.id)
+      end
+      it "@category_parentに正しい値が入る" do
+        othercategory = create(:category, name: 'other', ancestry: nil)
+        @category_parent =  Category.where("ancestry is null")
+        login user
+        get :edit, params: { id: item.id }
+        expect(@category_parent).to eq([othercategory])
+      end
+      it "出品者、編集画面に遷移する" do
+        login user
+        get :edit, params: { id: item.id }
+        expect(response).to render_template :edit
+      end
+      it "出品者ではない、トップページにリダイレクトする" do
+        otheruser = create(:user)
+        login otheruser
+        get :edit, params: { id: item.id }
+        expect(response).to redirect_to(root_path)
+      end
     end
     context 'ログインしていない' do
       it 'ログインページに遷移する' do
