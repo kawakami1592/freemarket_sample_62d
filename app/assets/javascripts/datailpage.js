@@ -7,8 +7,8 @@ $(document).on('turbolinks:load',function() {
   // 画像入れ替え
   $('img.mainImage').stop().fadeOut(50,
     function(){
-    $('img.mainImage').attr('src', selectedSrc);
-    $('img.mainImage').stop().fadeIn(200);
+      $('img.mainImage').attr('src', selectedSrc);
+      $('img.mainImage').stop().fadeIn(200);
     }
   );
   // サムネイルの枠を変更
