@@ -30,26 +30,25 @@ $(document).on('turbolinks:load ', function(){
                                 <i class="fas fa-camera fa-lg"></i>
                               </label>`);
     };
+
+
+
+
+    // 登録済画像と新規追加画像を全て格納する配列（ビュー用）
+  let images = [];
+  // // 登録済画像データだけの配列（DB用）
+  let registered_images_ids =[]
+  
+  images.push(img)
+  registered_images_ids.push(labelLength)
+
+  console.log(images);
+  console.log(registered_images_ids);
   };
 
 
-
-
-
-
-
-  // 登録済画像と新規追加画像を全て格納する配列（ビュー用）
-  var images = [];
-  // 登録済画像データだけの配列（DB用）
-  var registered_images_ids =[]
   // 新規追加画像データだけの配列（DB用）
-  var new_image_files = [];
-
-  item_images.forEach(function(image, index){
-    // 登録済画像のビューをimagesに格納
-    images.push(img)
-    registered_images_ids.push(image.id)
-  })
+  // let new_image_files = [];
 
 
 
