@@ -52,7 +52,34 @@ $(document).on('turbolinks:load', function(){
 
   //削除ボタンが押された時
   $(document).on('click', '.preview-image__button__delete', function(){
-    let targetImageId = $(this).data('image-id');
+    
+
+     // 削除ボタンを押した画像を取得
+    let target_image = $("#outputbox").children().children(img).attr(src);
+    let targetImageId = $("#outputbox").data('image-id').to_i;
+    console.log(target_image);
+    console.log(targetImageId);
+
+    // 対象の画像を削除した新たな配列を生成
+    images.splice(targetImageId, 1);
+    // target_image_numが登録済画像の数以下の場合は登録済画像データの配列から削除、それより大きい場合は新たに追加した画像データの配列から削除
+    if (targetImageId < registered_images_ids.length) {
+    registered_images_ids.splice(targetImageId, 1);}
+    console.log(registered_images_ids);
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
     // イベント元のカスタムデータ属性の値を取得
     $(`#upload-image${targetImageId}`).remove();
     //プレビューを削除

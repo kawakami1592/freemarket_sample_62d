@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   end
   
   devise_for :users
+
+  match 'items', to: 'items#update', via: [:patch, :delete]
   resources :items do
     collection do
       # カテゴリーの階層分けのルート
@@ -18,7 +20,8 @@ Rails.application.routes.draw do
       post 'pay'
     end
   end
-  resources :users, only: [:edit, :update, :show, :destroy,] do
+
+  resources :users, only: [:edit, :show, :destroy,] do
     member do 
       get :logout
       get 'card',to: 'cards#show'

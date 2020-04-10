@@ -1,5 +1,5 @@
 $(document).on('turbolinks:load ', function(){
-   
+  
 // 画像保存データがある場合の処理（商品編集画面で新規登録と同じ使用感での画像表示する処理）
   // imgオブジェクトの個数をimageLengthに指定
     let imageLength = $(".editimage").find("img").length;
@@ -31,6 +31,27 @@ $(document).on('turbolinks:load ', function(){
                               </label>`);
     };
   };
+
+
+
+
+
+
+
+  // 登録済画像と新規追加画像を全て格納する配列（ビュー用）
+  var images = [];
+  // 登録済画像データだけの配列（DB用）
+  var registered_images_ids =[]
+  // 新規追加画像データだけの配列（DB用）
+  var new_image_files = [];
+
+  item_images.forEach(function(image, index){
+    // 登録済画像のビューをimagesに格納
+    images.push(img)
+    registered_images_ids.push(image.id)
+  })
+
+
 
 
 // カテゴリーボックスにデータがある場合の記述
@@ -114,6 +135,52 @@ $(document).on('turbolinks:load ', function(){
       alert('カテゴリー取得に失敗しました');
     });
   });
+
+
+  
+
+  // $('#edit_item').on('submit', function(e){
+  //   // 通常のsubmitイベントを止める
+  //   e.preventDefault();
+  //   // images以外のform情報をformDataに追加
+  //   var formData = new FormData($(this).get(0));
+
+  //   // 登録済画像が残っていない場合は便宜的に0を入れる
+  //   if (registered_images_ids.length == 0) {
+  //     formData.append("registered_images_ids[ids][]", 0)
+  //   // 登録済画像で、まだ残っている画像があればidをformDataに追加していく
+  //   } else {
+  //     registered_images_ids.forEach(function(registered_image){
+  //       formData.append("registered_images_ids[ids][]", registered_image)
+  //     });
+  //   }
+
+  //   // 新しく追加したimagesがない場合は便宜的に空の文字列を入れる
+  //   if (new_image_files.length == 0) {
+  //     formData.append("new_images[images][]", " ")
+  //   // 新しく追加したimagesがある場合はformDataに追加する
+  //   } else {
+  //     new_image_files.forEach(function(file){
+  //       formData.append("new_images[images][]", file)
+  //     });
+  //   }
+
+  //   $.ajax({
+  //     url:         '/items/' + gon.item.id,
+  //     type:        "PATCH",
+  //     data:        formData,
+  //     contentType: false,
+  //     processData: false,
+  //   })
+  // });
+
+
+
+
+
+
+
+
 
 
   //販売価格

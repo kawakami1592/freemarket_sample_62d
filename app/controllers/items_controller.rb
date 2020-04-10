@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
    before_action :authenticate_user!, except:[:index,:show]
    before_action :set_item, only: [:show, :buy, :pay, :edit, :update]
    before_action :set_card, except:[:index]  #クレジットカード削除の判定に使用しているので消さないでください
-  #  before_action :correct_images, only: [:update]
+   before_action :correct_images, only: [:update]
 
   def index
     @items = Item.includes(:user).last(3)
@@ -44,6 +44,8 @@ class ItemsController < ApplicationController
     if @item.user_id == current_user.id
       @category_grandchildren = Category.find(@item.category_id)
       @category_parent =  Category.where("ancestry is null")
+      # gon.item = @item
+      # gon.item_images = @item.item_images
     else
       redirect_to root_path,notice: "出品者のみ編集を行うことができます"
     end
@@ -51,8 +53,30 @@ class ItemsController < ApplicationController
 
   def update
     if @item.present?
-      if @item.update(item_params)
-        @item.correct_images
+      # correct_images(item_params)
+
+
+      # 登録済画像のidの配列を生成
+      ids = @item.item_images.map{|image| image.id }
+      # 登録済画像のうち、編集後もまだ残っている画像のidの配列を生成(文字列から数値に変換)
+      exist_ids = registered_image_params[:ids].map(&:to_i)
+      # 登録済画像が残っていない場合(配列に０が格納されている)、配列を空にする
+      exist_ids.clear if exist_ids[0] == 0
+
+      if (exist_ids.length != 0 || new_image_params[:images][0] != " ") && @item.update(item_params)
+
+        # 登録済画像のうち削除ボタンをおした画像を削除
+        unless ids.length == exist_ids.length
+          # 削除する画像のidの配列を生成
+          delete_ids = ids - exist_ids
+          delete_ids.each do |id|
+            @item.item_images.find(id).destroy
+          end
+        end
+
+
+
+      # if @item.update(item_params)              
         DeleteUnreferencedBlobJob.perform_later
         redirect_to root_path, notice: "商品情報を編集しました"
       else
@@ -127,29 +151,41 @@ class ItemsController < ApplicationController
     params.require(:item).permit(:name, :text, :category_id, :condition_id, :deliverycost_id, :pref_id, :delivery_days_id, :price, images: []).merge(user_id: current_user.id, boughtflg_id:"1")
   end
 
+  # def update_params
+  #   params.require(:item).permit(:name, :text, :category_id, :condition_id, :deliverycost_id, :pref_id, :delivery_days_id, :price, images: [:id]).merge(user_id: current_user.id, boughtflg_id:"1")
+  # end
+
   def set_item
     @item = Item.find_by(id:params[:id])
   end
 
+
+  def registered_image_params
+    params.require(:registered_images_ids).permit({ids: []})
+  end
+
+
+
+  # submitされた画像のパラメータをこのメソッド内で複数回使用するのであらかじめ定義
+  private
+  def new_image_params
+    params.require(:item).permit(images:[])
+  end
+
   # 画像削除用のメソッドです。submitされた画像のなかに当初テーブルにデータが入っていたのになくなっているものを削除します。
   def correct_images
-    # submitされた画像のパラメータをこのメソッド内で複数回使用するのであらかじめ定義
-    def image_params
-      params.require(:item).permit(images:[])
-    end
     # テーブルの画像とsubmitされた画像に差異がある時のみ実行
-    if @item.images != Items.new(image_params)
+    unless @item.images == @params.require(:item).permit(images:[])
       # submitされた画像のハッシュ値のみで配列を作成(このメソッドでもう一度使用するためインスタンス変数で定義)
       image_params.each do |params|
         @need_images = params
       end
-      # 現在保存されている画像を１枚ずつ取り出し先ほど作った配列の値と一致しないものを削除
+      # 現在保存されている画像を１枚ずつ取り出し先ほど作った配列の値と一致しないものを削除する
       @item.images do |noneed_image|
-        @item.imagespurge(noneed_image) if @need_images.exclude?(noneed_image)
+        @item.images.purge(noneed_image) if @need_images.exclude?(noneed_image)
       end
+    return
     end
-    #処理を終えたら上書き保存（メソッドになるので挙動の前に変数をつけない）
-    update(item_params)
   end
 
 end
