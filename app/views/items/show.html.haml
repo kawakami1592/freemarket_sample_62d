@@ -18,12 +18,10 @@
           = '(税込)送料込み'
       - if @item.user_id != current_user.id
         .itembuy-container__main__top__buy
-          =link_to "#" do
-            購入画面に進む
+          =link_to "購入画面に進む", buy_item_path
       - else
         .itembuy-container__main__top__buy
-          =link_to "#" do
-            編集画面に進む
+          =link_to "編集画面に進む", edit_item_path
       .itembuy-container__main__top__itemDetail
         = @item.text
       .itembuy-container__main__top__table
