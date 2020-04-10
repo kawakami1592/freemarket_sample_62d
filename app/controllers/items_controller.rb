@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
    before_action :authenticate_user!, except:[:index,:show]
    before_action :set_item, only: [:show, :buy, :pay, :edit, :update]
    before_action :set_card, except:[:index]  #クレジットカード削除の判定に使用しているので消さないでください
-   before_action :correct_images, only: [:update]
+  #  before_action :correct_images, only: [:update]
 
   def index
     @items = Item.includes(:user).last(3)
@@ -55,9 +55,11 @@ class ItemsController < ApplicationController
     if @item.present?
       # correct_images(item_params)
 
-
+      ids = [];
       # 登録済画像のidの配列を生成
-      ids = @item.item_images.map{|image| image.id }
+      @item.images.each_with_index do |image,index| 
+      ids << index
+      end
       # 登録済画像のうち、編集後もまだ残っている画像のidの配列を生成(文字列から数値に変換)
       exist_ids = registered_image_params[:ids].map(&:to_i)
       # 登録済画像が残っていない場合(配列に０が格納されている)、配列を空にする
@@ -169,24 +171,24 @@ class ItemsController < ApplicationController
   # submitされた画像のパラメータをこのメソッド内で複数回使用するのであらかじめ定義
   private
   def new_image_params
-    params.require(:item).permit(images:[])
+    params.require(:new_images).permit(images:[])
   end
 
-  # 画像削除用のメソッドです。submitされた画像のなかに当初テーブルにデータが入っていたのになくなっているものを削除します。
-  def correct_images
-    # テーブルの画像とsubmitされた画像に差異がある時のみ実行
-    unless @item.images == @params.require(:item).permit(images:[])
-      # submitされた画像のハッシュ値のみで配列を作成(このメソッドでもう一度使用するためインスタンス変数で定義)
-      image_params.each do |params|
-        @need_images = params
-      end
-      # 現在保存されている画像を１枚ずつ取り出し先ほど作った配列の値と一致しないものを削除する
-      @item.images do |noneed_image|
-        @item.images.purge(noneed_image) if @need_images.exclude?(noneed_image)
-      end
-    return
-    end
-  end
+  # # 画像削除用のメソッドです。submitされた画像のなかに当初テーブルにデータが入っていたのになくなっているものを削除します。
+  # def correct_images
+  #   # テーブルの画像とsubmitされた画像に差異がある時のみ実行
+  #   unless @item.images == @params.require(:item).permit(images:[])
+  #     # submitされた画像のハッシュ値のみで配列を作成(このメソッドでもう一度使用するためインスタンス変数で定義)
+  #     image_params.each do |params|
+  #       @need_images = params
+  #     end
+  #     # 現在保存されている画像を１枚ずつ取り出し先ほど作った配列の値と一致しないものを削除する
+  #     @item.images do |noneed_image|
+  #       @item.images.purge(noneed_image) if @need_images.exclude?(noneed_image)
+  #     end
+  #   return
+  #   end
+  # end
 
 end
 

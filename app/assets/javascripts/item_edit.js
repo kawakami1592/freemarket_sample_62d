@@ -51,43 +51,81 @@ $(document).on('turbolinks:load ', function(){
 
 };
 
+//削除ボタンが押された時
+$(document).on('click', '.preview-image__button__delete', function(){
+    
+
+  // イベント元のカスタムデータ属性の値を取得
+  let targetImageId = $(this).data('image-id');
+   // 削除ボタンを押した画像を取得
+  let target_image = $(".preview-image__figure").children('img').attr('src');   
+  console.log(target_image);
+  console.log(targetImageId);
+      // let images = [images]
+  console.log(images);
+  // 対象の画像を削除した新たな配列を生成
+  images.splice(targetImageId, 1);
+  console.log(images);
+  // target_image_numが登録済画像の数以下の場合は登録済画像データの配列から削除、それより大きい場合は新たに追加した画像データの配列から削除
+  if (targetImageId < registered_images_ids.length) {
+  registered_images_ids.splice(targetImageId, 1);}
+  console.log(registered_images_ids);
+
+
+  $(`#upload-image${targetImageId}`).remove();
+  //プレビューを削除
+  $(`[for=item_images${targetImageId}]`).remove();
+  //削除したプレビューに関連したinputを削除
+
+  let imageLength = $('#output-box').children('li').length;
+  // 表示されているプレビューの数を数える
+
+  if (imageLength ==9) {
+    let labelLength = $("#image-input>label").eq(-1).data('label-id');
+    // 表示されているプレビューが９なら,#image-inputの子要素labelの中から最後の要素のカスタムデータidを取得
+    $("#image-input").append(`<label for="item_images${labelLength+1}" class="sell-container__content__upload__items__box__label" data-label-id="${labelLength+1}">
+                                <input multiple="multiple" class="sell-container__content__upload__items__box__input" id="item_images${labelLength+1}" style="display: none;" type="file" name="item[images][]">
+                                <i class="fas fa-camera fa-lg"></i>
+                              </label>`);
+  };
+});
 
 
 
-// $('#edit_item').on('submit', function(e){
-  //   // 通常のsubmitイベントを止める
-  //   e.preventDefault();
-  //   // images以外のform情報をformDataに追加
-  //   var formData = new FormData($(this).get(0));
+$('#edit_item').on('submit', function(e){
+    // 通常のsubmitイベントを止める
+    e.preventDefault();
+    // images以外のform情報をformDataに追加
+    var formData = new FormData($(this).get(0));
 
-  //   // 登録済画像が残っていない場合は便宜的に0を入れる
-  //   if (registered_images_ids.length == 0) {
-  //     formData.append("registered_images_ids[ids][]", 0)
-  //   // 登録済画像で、まだ残っている画像があればidをformDataに追加していく
-  //   } else {
-  //     registered_images_ids.forEach(function(registered_image){
-  //       formData.append("registered_images_ids[ids][]", registered_image)
-  //     });
-  //   }
+    // 登録済画像が残っていない場合は便宜的に0を入れる
+    if (registered_images_ids.length == 0) {
+      formData.append("registered_images_ids[ids][]", 0)
+    // 登録済画像で、まだ残っている画像があればidをformDataに追加していく
+    } else {
+      registered_images_ids.forEach(function(registered_image){
+        formData.append("registered_images_ids[ids][]", registered_image)
+      });
+    }
 
-  //   // 新しく追加したimagesがない場合は便宜的に空の文字列を入れる
-  //   if (new_image_files.length == 0) {
-  //     formData.append("new_images[images][]", " ")
-  //   // 新しく追加したimagesがある場合はformDataに追加する
-  //   } else {
-  //     new_image_files.forEach(function(file){
-  //       formData.append("new_images[images][]", file)
-  //     });
-  //   }
+    // 新しく追加したimagesがない場合は便宜的に空の文字列を入れる
+    if (new_image_files.length == 0) {
+      formData.append("new_images[images][]", " ")
+    // 新しく追加したimagesがある場合はformDataに追加する
+    } else {
+      new_image_files.forEach(function(file){
+        formData.append("new_images[images][]", file)
+      });
+    }
 
-  //   $.ajax({
-  //     url:         '/items/' + gon.item.id,
-  //     type:        "PATCH",
-  //     data:        formData,
-  //     contentType: false,
-  //     processData: false,
-  //   })
-  // });
+    $.ajax({
+      url:         '/items/' + gon.item.id,
+      type:        "PATCH",
+      data:        formData,
+      contentType: false,
+      processData: false,
+    })
+  });
 
 
 

@@ -50,54 +50,43 @@ $(document).on('turbolinks:load', function(){
     });
   });
 
-  //削除ボタンが押された時
-  $(document).on('click', '.preview-image__button__delete', function(images,registered_images_ids){
+  // //削除ボタンが押された時
+  // $(document).on('click', '.preview-image__button__delete', function(images,registered_images_ids){
     
 
-     // 削除ボタンを押した画像を取得
-    let target_image = $("#outputbox").children().children('img').attr('src');
-    let targetImageId = $("#outputbox").data('image-id');
-    console.log(target_image);
-    console.log(targetImageId);
-
-    // 対象の画像を削除した新たな配列を生成
-    images.splice(targetImageId, 1);
-    // target_image_numが登録済画像の数以下の場合は登録済画像データの配列から削除、それより大きい場合は新たに追加した画像データの配列から削除
-    if (targetImageId < registered_images_ids.length) {
-    registered_images_ids.splice(targetImageId, 1);}
-    console.log(registered_images_ids);
-
-
-
-
+  //   // イベント元のカスタムデータ属性の値を取得
+  //   let targetImageId = $(this).data('image-id');
+  //    // 削除ボタンを押した画像を取得
+  //   let target_image = $(".preview-image__figure").children('img').attr('src');   
+  //   console.log(target_image);
+  //   console.log(targetImageId);
+  //       let images = [images]
+  //   console.log(images);
+  //   // 対象の画像を削除した新たな配列を生成
+  //   images.splice(targetImageId, 1);
+  //   // target_image_numが登録済画像の数以下の場合は登録済画像データの配列から削除、それより大きい場合は新たに追加した画像データの配列から削除
+  //   if (targetImageId < registered_images_ids.length) {
+  //   registered_images_ids.splice(targetImageId, 1);}
+  //   console.log(registered_images_ids);
 
 
+  //   $(`#upload-image${targetImageId}`).remove();
+  //   //プレビューを削除
+  //   $(`[for=item_images${targetImageId}]`).remove();
+  //   //削除したプレビューに関連したinputを削除
 
+  //   let imageLength = $('#output-box').children('li').length;
+  //   // 表示されているプレビューの数を数える
 
-
-
-
-
-    
-
-    // イベント元のカスタムデータ属性の値を取得
-    $(`#upload-image${targetImageId}`).remove();
-    //プレビューを削除
-    $(`[for=item_images${targetImageId}]`).remove();
-    //削除したプレビューに関連したinputを削除
-
-    let imageLength = $('#output-box').children('li').length;
-    // 表示されているプレビューの数を数える
-
-    if (imageLength ==9) {
-      let labelLength = $("#image-input>label").eq(-1).data('label-id');
-      // 表示されているプレビューが９なら,#image-inputの子要素labelの中から最後の要素のカスタムデータidを取得
-      $("#image-input").append(`<label for="item_images${labelLength+1}" class="sell-container__content__upload__items__box__label" data-label-id="${labelLength+1}">
-                                  <input multiple="multiple" class="sell-container__content__upload__items__box__input" id="item_images${labelLength+1}" style="display: none;" type="file" name="item[images][]">
-                                  <i class="fas fa-camera fa-lg"></i>
-                                </label>`);
-    };
-  });
+  //   if (imageLength ==9) {
+  //     let labelLength = $("#image-input>label").eq(-1).data('label-id');
+  //     // 表示されているプレビューが９なら,#image-inputの子要素labelの中から最後の要素のカスタムデータidを取得
+  //     $("#image-input").append(`<label for="item_images${labelLength+1}" class="sell-container__content__upload__items__box__label" data-label-id="${labelLength+1}">
+  //                                 <input multiple="multiple" class="sell-container__content__upload__items__box__input" id="item_images${labelLength+1}" style="display: none;" type="file" name="item[images][]">
+  //                                 <i class="fas fa-camera fa-lg"></i>
+  //                               </label>`);
+  //   };
+  // });
 
   // f.text_areaの文字数カウント
   $("textarea").keyup(function(){
