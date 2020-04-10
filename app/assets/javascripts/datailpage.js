@@ -1,6 +1,7 @@
 $(document).on('turbolinks:load',function() {
     $('img.thumb').click(function(){
     // "_thumb"を削った画像ファイル名を取得
+    
     var selectedSrc = $(this).attr('src').replace(/^(.+)_thumb(\.gif|\.jpg|\.png+)$/, "$1"+"$2");
     
     // 画像入れ替え
@@ -19,8 +20,3 @@ $(document).on('turbolinks:load',function() {
     $(this).css({"border":""});
     });
    });
-// $(document).on('turbolinks:load',function(){
-//     $('button').click(function(){
-//         $("button").text("お気に入り１");
-//     });
-// });

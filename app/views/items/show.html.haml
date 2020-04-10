@@ -7,18 +7,10 @@
       %h1.itembuy-container__main__top__name
         = @item.name
       .itembuy-container__main__top__photo
-        %ul
-          %li
-            = image_tag(@item.images.first, width: '100%', height: '100%', alt: '商品3',class: 'mainImage')
-            %ul
-              - @items.each do |item| 
-                = @item.images
-                %li
-                  = image_tag(@item.images.eighth	, width: '100%', height: '100%', alt: '商品3',class: 'thumb')
-              -#   %li
-              -#     = image_tag(@item.images.second, width: '100%', height: '100%', alt: '商品3',class: 'thumb')
-              -#   %li
-              -#     = image_tag(@item.images.third, width: '100%', height: '100%', alt: '商品3',class: 'thumb')
+        = image_tag(@item.images.first, width: '100%', height: '300px', alt: '商品',class: 'mainImage')
+        .itembuy-container__main__top__photo__list
+          - @item.images.each do |image| 
+            = image_tag(image, width: '100px', height: '100px', alt: '商品',class: 'thumb')
       .itembuy-container__main__top__price
         .itembuy-container__main__top__price__font
           = "¥#{@item.price.to_s(:delimited)}円"
@@ -42,6 +34,13 @@
                 出品者
               %td
                 = @item.user.nickname
+                %div
+                  %i.fa.fa-smile
+                  0
+                  %i.fa.fa-meh
+                  0
+                  %i.fa.fa-frown
+                  0
             %tr
               %th
                 カテゴリー
@@ -49,6 +48,7 @@
                 %a
                   = link_to '#' do
                     = @item.category.name
+                    %i.fa.fa-angle-right
             %tr
               %th
                 ブランド
@@ -85,15 +85,12 @@
           %button
             %i.fa.fa-star
               お気に入り 0
-          -# %li.itembuy-container__main__top__option__btn
         %ul
           %li.itembuy-container__main__top__option__btn
             %i.fa.fa-flag
             不適切な商品の通報
-    .itembuy-container__main__comment
+    %form.itembuy-container__main__comment
       %textarea{:required=>"required"}
-      -# = form_with do |f|
-      -#   = f.text_field :text,class:"comment__form"
 
       %p.comment__noticeMsg
         相手のことを考え丁寧なコメントを心がけましょう。
@@ -106,7 +103,8 @@
       %li.itembuy-container__main__links__left
         %a
           =link_to "#" do
-            前の商品
+            %i.fa.fa-angle-left
+              前の商品
       %li.itembuy-container__main__links__center
         %a
           =link_to root_path(current_user) do
@@ -115,6 +113,7 @@
         %a
           =link_to "#" do
             後ろの商品
+            %i.fa.fa-angle-right
     .itembuy-container__main__see
       =link_to "#" do
         = "#{@item.category.name}もっと見る"
