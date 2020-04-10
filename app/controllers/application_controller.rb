@@ -14,7 +14,9 @@ class ApplicationController < ActionController::Base
   end
 
   def set_card
-    @card=Card.find_by(user_id:current_user.id) #クレジットカード削除の判定に使用しているので消さないでください
+    if user_signed_in?
+      @card=Card.find_by(user_id:current_user.id) #クレジットカード削除の判定に使用しているので消さないでください
+    end
   end
 
   private

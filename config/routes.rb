@@ -13,8 +13,12 @@ Rails.application.routes.draw do
       get 'category_children', defaults: { format: 'json' }
       get 'category_grandchildren', defaults: { format: 'json' }
     end
+    member do
+      get 'buy'
+      post 'pay'
+    end
   end
-  resources :users, only: [:edit, :update, :show, :destroy,] do
+  resources :users, only: [:edit, :update, :show, :destroy] do
     member do 
       get :logout
       get 'card',to: 'cards#show'
@@ -22,7 +26,8 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :cards, only: [:index, :new, :show] do
+  resources :cards,only: [:index]
+  resources :cards, only: [:new, :show] do
     collection do
       post 'show', to: 'cards#show'
       post 'pay', to: 'cards#pay'
@@ -31,11 +36,15 @@ Rails.application.routes.draw do
   end
 
   # 以下ガイドページ用のルート
-  get 'delivery', to: 'guides#delivery'
-  get 'price', to: 'guides#price'
-  get 'prohibited_item', to: 'guides#prohibited_item'
-  get 'prohibited_conduct', to: 'guides#prohibited_conduct'
-  get 'counterfeit_goods', to: 'guides#counterfeit_goods'
-  get 'seller_terms', to: 'guides#seller_terms'
-
+  resources :guides,only: [:show] do
+    collection do
+      get 'delivery', to: 'guides#delivery'
+      get 'price', to: 'guides#price'
+      get 'prohibited_item', to: 'guides#prohibited_item'
+      get 'prohibited_conduct', to: 'guides#prohibited_conduct'
+      get 'counterfeit_goods', to: 'guides#counterfeit_goods'
+      get 'seller_terms', to: 'guides#seller_terms'
+      get 'stolen_goods', to: 'guides#stolen_goods'
+    end
+  end    
 end
