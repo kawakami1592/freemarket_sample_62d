@@ -51,12 +51,12 @@ $(document).on('turbolinks:load', function(){
   });
 
   //削除ボタンが押された時
-  $(document).on('click', '.preview-image__button__delete', function(){
+  $(document).on('click', '.preview-image__button__delete', function(images,registered_images_ids){
     
 
      // 削除ボタンを押した画像を取得
-    let target_image = $("#outputbox").children().children(img).attr(src);
-    let targetImageId = $("#outputbox").data('image-id').to_i;
+    let target_image = $("#outputbox").children().children('img').attr('src');
+    let targetImageId = $("#outputbox").data('image-id');
     console.log(target_image);
     console.log(targetImageId);
 

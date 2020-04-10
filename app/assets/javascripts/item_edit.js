@@ -34,19 +34,25 @@ $(document).on('turbolinks:load ', function(){
 
 
 
-    // 登録済画像と新規追加画像を全て格納する配列（ビュー用）
-  let images = [];
-  // // 登録済画像データだけの配列（DB用）
-  let registered_images_ids =[]
   
-  images.push(img)
-  registered_images_ids.push(labelLength)
+  
+  eval("let images_"+ i +";");
+  eval("let registered_images_ids_"+ i +";");
+
+  if (0<i){
+  // 他のfuncでも使用するのでグローバル変数を定義
+  // 登録済画像と新規追加画像を全て格納する配列（ビュー用）
+  images = images_(i-1).concat(images_i);
+  // 登録済画像データだけの配列（DB用）
+  registered_images_ids = registered_images_ids_(i-1).concat(registered_images_ids_i);
+  console.log(images);
+  console.log(registered_images_ids);
+  }
+
+  };
 
   console.log(images);
   console.log(registered_images_ids);
-  };
-
-
   // 新規追加画像データだけの配列（DB用）
   // let new_image_files = [];
 
