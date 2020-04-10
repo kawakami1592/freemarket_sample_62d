@@ -4,6 +4,14 @@ $(document).on('turbolinks:load ', function(){
   // imgオブジェクトの個数をimageLengthに指定
     let imageLength = $(".editimage").find("img").length;
 
+    // 他のfuncでも使用するのでグローバル変数を定義
+    // 登録済画像と新規追加画像を全て格納する配列（ビュー用）
+    images = [];
+    // 登録済画像データだけの配列（DB用）
+    registered_images_ids = [];
+    // 新規追加画像データだけの配列（DB用）
+    // let new_image_files = [];
+
     // 以下で全ての既存画像に保存順にlabelLengthに名前をつけながらプレビュー表示する（.eachだと一括表示されているものは同じ番号としてlabelLengthに変化をつけられないのでfor文を使用）
     for (let i = 0; i < $(".editimage").find("img").length; i++) {
     let labelLength = $(".editimage").eq(i).data('index');
@@ -34,27 +42,57 @@ $(document).on('turbolinks:load ', function(){
 
 
 
-  
-  
-  eval("let images_"+ i +";");
-  eval("let registered_images_ids_"+ i +";");
-
-  if (0<i){
-  // 他のfuncでも使用するのでグローバル変数を定義
-  // 登録済画像と新規追加画像を全て格納する配列（ビュー用）
-  images = images_(i-1).concat(images_i);
-  // 登録済画像データだけの配列（DB用）
-  registered_images_ids = registered_images_ids_(i-1).concat(registered_images_ids_i);
-  console.log(images);
-  console.log(registered_images_ids);
-  }
-
-  };
+    // 配列にテーブル内の画像とインデックスを格納
+    images.push(img)
+    registered_images_ids.push(labelLength) 
 
   console.log(images);
   console.log(registered_images_ids);
-  // 新規追加画像データだけの配列（DB用）
-  // let new_image_files = [];
+
+};
+
+
+
+
+// $('#edit_item').on('submit', function(e){
+  //   // 通常のsubmitイベントを止める
+  //   e.preventDefault();
+  //   // images以外のform情報をformDataに追加
+  //   var formData = new FormData($(this).get(0));
+
+  //   // 登録済画像が残っていない場合は便宜的に0を入れる
+  //   if (registered_images_ids.length == 0) {
+  //     formData.append("registered_images_ids[ids][]", 0)
+  //   // 登録済画像で、まだ残っている画像があればidをformDataに追加していく
+  //   } else {
+  //     registered_images_ids.forEach(function(registered_image){
+  //       formData.append("registered_images_ids[ids][]", registered_image)
+  //     });
+  //   }
+
+  //   // 新しく追加したimagesがない場合は便宜的に空の文字列を入れる
+  //   if (new_image_files.length == 0) {
+  //     formData.append("new_images[images][]", " ")
+  //   // 新しく追加したimagesがある場合はformDataに追加する
+  //   } else {
+  //     new_image_files.forEach(function(file){
+  //       formData.append("new_images[images][]", file)
+  //     });
+  //   }
+
+  //   $.ajax({
+  //     url:         '/items/' + gon.item.id,
+  //     type:        "PATCH",
+  //     data:        formData,
+  //     contentType: false,
+  //     processData: false,
+  //   })
+  // });
+
+
+
+
+
 
 
 
@@ -140,52 +178,6 @@ $(document).on('turbolinks:load ', function(){
       alert('カテゴリー取得に失敗しました');
     });
   });
-
-
-  
-
-  // $('#edit_item').on('submit', function(e){
-  //   // 通常のsubmitイベントを止める
-  //   e.preventDefault();
-  //   // images以外のform情報をformDataに追加
-  //   var formData = new FormData($(this).get(0));
-
-  //   // 登録済画像が残っていない場合は便宜的に0を入れる
-  //   if (registered_images_ids.length == 0) {
-  //     formData.append("registered_images_ids[ids][]", 0)
-  //   // 登録済画像で、まだ残っている画像があればidをformDataに追加していく
-  //   } else {
-  //     registered_images_ids.forEach(function(registered_image){
-  //       formData.append("registered_images_ids[ids][]", registered_image)
-  //     });
-  //   }
-
-  //   // 新しく追加したimagesがない場合は便宜的に空の文字列を入れる
-  //   if (new_image_files.length == 0) {
-  //     formData.append("new_images[images][]", " ")
-  //   // 新しく追加したimagesがある場合はformDataに追加する
-  //   } else {
-  //     new_image_files.forEach(function(file){
-  //       formData.append("new_images[images][]", file)
-  //     });
-  //   }
-
-  //   $.ajax({
-  //     url:         '/items/' + gon.item.id,
-  //     type:        "PATCH",
-  //     data:        formData,
-  //     contentType: false,
-  //     processData: false,
-  //   })
-  // });
-
-
-
-
-
-
-
-
 
 
   //販売価格
