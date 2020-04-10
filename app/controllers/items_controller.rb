@@ -10,7 +10,7 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @items = Item.all.order("id DESC")
+   
   end
 
   def new
