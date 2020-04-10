@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   
-   before_action :authenticate_user!, except:[:index,:show]
+   before_action :authenticate_user!, except:[:index]
    before_action :set_item, only: [:show, :buy, :pay, :edit, :update]
    before_action :set_card, except:[:index]  #クレジットカード削除の判定に使用しているので消さないでください
    
@@ -9,7 +9,14 @@ class ItemsController < ApplicationController
   end
 
   def show
-   
+    if @item.present?
+
+    else
+        redirect_to root_path, notice: "この商品はすでに削除されています"
+    end
+    if @item.boughtflg_id == 2
+      redirect_to root_path, notice: "この商品はすでに購入されています"
+    end
   end
 
   def new
