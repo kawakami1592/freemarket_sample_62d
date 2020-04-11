@@ -9,6 +9,11 @@ class ItemsController < ApplicationController
   end
 
   def show
+    if @item.blank?
+      redirect_to root_path, notice: "この商品はすでに削除されています"
+    end
+    # if @item.boughtflg_id == 2
+    #   redirect_to root_path, notice: "この商品はすでに購入されています"
   end
 
   def new
