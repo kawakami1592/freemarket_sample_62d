@@ -16,16 +16,20 @@
           = "¥#{@item.price.to_s(:delimited)}円"
         .itembuy-container__main__top__price__detail
           = '(税込)送料込み'
-      - if @item.user_id != current_user.id
-        .itembuy-container__main__top__buy
-          = link_to "購入画面に進む",buy_item_path
-      - else
-        .itembuy-container__main__top__buy
-          = link_to "編集画面に進む",edit_item_path
-        .itembuy-container__main__top__or
-          or
-        .itembuy-container__main__top__buy
-          = link_to "商品の削除",item_path, method: :delete
+      - if user_signed_in?
+        -if @item.boughtflg_id == 2
+          .itembuy-container__main__top__buy
+            売り切れました
+        - elsif @item.user_id != current_user.id
+          .itembuy-container__main__top__buy
+            = link_to "購入画面に進む",buy_item_path
+        - else
+          .itembuy-container__main__top__buy
+            = link_to "編集画面に進む",edit_item_path
+          .itembuy-container__main__top__or
+            or
+          .itembuy-container__main__top__buy
+            = link_to "商品の削除",item_path, method: :delete
       .itembuy-container__main__top__itemDetail
         = @item.text
       .itembuy-container__main__top__table
