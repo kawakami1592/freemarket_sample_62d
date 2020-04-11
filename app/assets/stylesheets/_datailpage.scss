@@ -23,9 +23,13 @@ h1{
         margin: 0 auto;
         .mainImage{
           padding-bottom: 40px;
+          object-fit: cover;
         }
         &__list{
           background-color: #eee;
+          .thumb{
+            object-fit: cover;
+          }
         }
       }
       &__price{
