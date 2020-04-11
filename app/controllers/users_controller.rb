@@ -9,7 +9,6 @@ class UsersController < ApplicationController
   end
 
   def edit
-    
     # ユーザー登録情報の変更画面へ
     # render "users/#{params[:viewname]}" #viewファイルの呼び出し場所を、app/views/usersのファイルに指定しました
   end
