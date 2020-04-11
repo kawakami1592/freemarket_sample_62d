@@ -44,7 +44,7 @@ class ItemsController < ApplicationController
     if @item.user_id == current_user.id
       @category_grandchildren = Category.find(@item.category_id)
       @category_parent =  Category.where("ancestry is null")
-      # gon.item = @item
+      gon.item = @item
       # gon.item_images = @item.item_images
     else
       redirect_to root_path,notice: "出品者のみ編集を行うことができます"
@@ -61,6 +61,7 @@ class ItemsController < ApplicationController
       ids << index
       end
       # 登録済画像のうち、編集後もまだ残っている画像のidの配列を生成(文字列から数値に変換)
+      # binding.pry
       exist_ids = registered_image_params[:ids].map(&:to_i)
       # 登録済画像が残っていない場合(配列に０が格納されている)、配列を空にする
       exist_ids.clear if exist_ids[0] == 0

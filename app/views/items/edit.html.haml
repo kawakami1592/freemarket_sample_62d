@@ -5,7 +5,7 @@
   -#メイン部分
   %main
     %section.sell-container
-      = form_with model: @item do |f|
+      = form_with model: @item, method: "patch" do |f|
 
         -# 画像部分
         .sell-container__content
@@ -159,7 +159,7 @@
             .sell-container__content__profit__right ー
         
           .submit-btn
-            = f.submit '出品する', class: 'submit-btn__sell-btn',id:'edit_item'
+            = f.submit '出品する', class: 'submit-btn__sell-btn__edit',id:'edit_item'
             = link_to 'もどる', root_path, class: 'submit-btn__return-btn'
           .attention-box
             %p

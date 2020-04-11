@@ -90,9 +90,10 @@ $(document).on('click', '.preview-image__button__delete', function(){
   };
 });
 
+    
+$('.submit-btn__sell-btn__edit').on('submit', function(e){
+  console.log(registered_images_ids);
 
-
-$('#edit_item').on('submit', function(e){
     // 通常のsubmitイベントを止める
     e.preventDefault();
     // images以外のform情報をformDataに追加
@@ -107,6 +108,8 @@ $('#edit_item').on('submit', function(e){
         formData.append("registered_images_ids[ids][]", registered_image)
       });
     }
+
+    console.log(registered_images_ids);
 
     // 新しく追加したimagesがない場合は便宜的に空の文字列を入れる
     if (new_image_files.length == 0) {
