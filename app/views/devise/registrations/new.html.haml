@@ -18,7 +18,7 @@
             .require
               必須
           .field-email__input
-            = f.email_field :email, autofocus: true, placeholder: 'PC・携帯どちらでも可'
+            = f.email_field :email, autofocus: true, placeholder: 'PC・携帯どちらでも可', required: "required"
         .field-password
           .field-password__label
             = f.label :password
@@ -26,21 +26,21 @@
             .require
               必須
           .field-password__input
-            = f.password_field :password,  placeholder: '7文字以上', autocomplete: "off"
+            = f.password_field :password,  placeholder: '7文字以上', autocomplete: "off", required: "required"
         .field-password_confirmation
           .field-password_confirmation__label
             = f.label :password_confirmation
             .require
               必須
           .field-password_confirmation__input
-            = f.password_field :password_confirmation, autocomplete: "off", placeholder: 'パスワード再入力'          
+            = f.password_field :password_confirmation, autocomplete: "off", placeholder: 'パスワード再入力', required: "required"
         .field-nickname
           .field-nickname__label
             = f.label :ニックネーム
             .require
               必須
           .field-nickname__input
-            = f.text_field :nickname,placeholder: '例) フリマ太郎'      
+            = f.text_field :nickname,placeholder: '例) フリマ太郎', required: "required"
         .field-name-kanji    
           .field-lastname
             .field-lastname__label
@@ -49,9 +49,9 @@
                 必須
           .field-lastname__input__oya
             .field-lastname__input
-              = f.text_field :lastname, placeholder: '例) 山田'
+              = f.text_field :lastname, placeholder: '例) 山田', required: "required"
             .field-lastname__input
-              = f.text_field :firstname, placeholder: '例) 彩'
+              = f.text_field :firstname, placeholder: '例) 彩', required: "required"
         .field-name-kana
           .field-lastname_kana
             .field-lastname_kana__label
@@ -60,16 +60,16 @@
                 必須
           .field-lastname_kana__input__oya
             .field-lastname_kana__input
-              = f.text_field :lastname_kana, placeholder: '例) ヤマダ'
+              = f.text_field :lastname_kana, placeholder: '例) ヤマダ', required: "required"
             .field-lastname_kana__input  
-              = f.text_field :firstname_kana, placeholder: '例) アヤ'                    
+              = f.text_field :firstname_kana, placeholder: '例) アヤ', required: "required"
         .field-zipcode
           .field-zipcode__label
             = f.label :住所（郵便番号）
             .require
               必須
           .field-zipcode__input
-            = f.text_field :zipcode, placeholder: '例) 111-1111'
+            = f.text_field :zipcode, placeholder: '例) 111-1111', required: "required"
         .field-prefcity
           .field-pref_id
             .field-pref_id__label
@@ -83,11 +83,11 @@
                 必須
         .field-prefcity__input
           .field-pref__input
-            = f.collection_select :pref_id, Pref.all, :id, :name ,{selected:13}
+            = f.collection_select :pref_id, Pref.all, :id, :name ,{prompt: '---'}, required: "required"
           .field-pref__input__yazirushi
             %i.fas.fa-chevron-down
           .field-city__input
-            = f.text_field :city, placeholder: '例) 渋谷区'
+            = f.text_field :city, placeholder: '例) 渋谷区', required: "required"
         .field-addressbuilding
           .field-address
             .field-address__label
@@ -99,14 +99,14 @@
               = f.label :住所（建物名）
         .field-addressbuilding__input
           .field-address__input
-            = f.text_field :address, placeholder: '例) 神南 1-14-17'
+            = f.text_field :address, placeholder: '例) 神南 1-14-17', required: "required"
           .field-buildingname__input
-            = f.text_field :buildingname, placeholder: '例)FRAME '       
+            = f.text_field :buildingname, placeholder: '例)FRAME', required: "required"
         .field-phone
           .field-phone__label
             = f.label :電話番号
           .field-phone__input
-            = f.text_field :phone,  placeholder: '例) 080-0000-0000'
+            = f.text_field :phone,  placeholder: '例) 080-0000-0000', required: "required"
         .field-birth
           .field-birthyear_id
             .field-birthyear_id__label
@@ -114,21 +114,21 @@
               .require
                 必須
             .field-birthyear_id__input
-              = f.collection_select :birthyear_id, Birthyear.all, :id, :year
+              = f.collection_select :birthyear_id, Birthyear.all, :id, :year, {prompt: '---'}, required: "required"
           .field-birthmonth_id
             .field-birthmonth_id__label
               = f.label :月
               .require
                 必須
             .field-birthmonth_id__input
-              = f.collection_select :birthmonth_id, Birthmonth.all, :id, :month
+              = f.collection_select :birthmonth_id, Birthmonth.all, :id, :month, {prompt: '---'}, required: "required"
           .field-birthday_id
             .field-birthday_id__label
               = f.label :日
               .require
                 必須
             .field-birthday_id__input
-              = f.collection_select :birthday_id, Birthday.all, :id, :day
+              = f.collection_select :birthday_id, Birthday.all, :id, :day, {prompt: '---'}, required: "required"
         .actions              
           = f.submit "Create Account", class: 'btn'
 
