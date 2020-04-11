@@ -2,10 +2,6 @@ body {
   font-family: "游ゴシック", "Yu Gothic", "游ゴシック体", YuGothic, sans-serif;
 }
 
-h1 {
-  font-size: 3.7em;
-}
-
 h3 {
   font-size: 1.2em;
 }
@@ -20,6 +16,7 @@ h3 {
     padding-left: 6vw;
     &__title {
       padding-top: 200px;
+      font-size: 3.7em;
     }
     &__text {
       padding-top: 20px;
