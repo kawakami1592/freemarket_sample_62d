@@ -43,12 +43,18 @@ class ItemsController < ApplicationController
     end
   end
 
-  def edit 
-    if @item.user_id == current_user.id
-      @category_grandchildren = Category.find(@item.category_id)
-      @category_parent =  Category.where("ancestry is null")
+  def edit
+    if @item.present?
+      if @item.user_id == current_user.id && @item.boughtflg_id != 2
+        @category_grandchildren = Category.find(@item.category_id)
+        @category_parent =  Category.where("ancestry is null")
+      elsif @item.boughtflg_id == 2
+        redirect_to root_path,notice: "この商品は売り切れたため編集できません"
+      else
+        redirect_to root_path,notice: "出品者のみ編集を行うことができます"
+      end
     else
-      redirect_to root_path,notice: "出品者のみ編集を行うことができます"
+      redirect_to root_path,notice: "商品が見つかりません"
     end
   end
 
