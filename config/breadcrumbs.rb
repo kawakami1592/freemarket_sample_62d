@@ -32,11 +32,11 @@ crumb :logout do
   parent :mypage
 end
 crumb :card do 
-  link "クレジット登録"
+  link "クレジット登録", new_card_path
   parent :mypage
 end
 crumb :nocard do 
-  link "クレジット変更(削除)"
+  link "クレジット変更(削除)", card_user_path(current_user.id)
   parent :mypage
 end
 
