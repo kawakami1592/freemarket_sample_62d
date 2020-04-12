@@ -125,28 +125,11 @@ let targetImageId = $(this).data('image-id');
  // 削除ボタンを押した画像を取得
 let target_image = $(".preview-image__figure").children('img').attr('src');
 
+// target_image_numが登録済画像の数以下の場合は登録済画像データの配列から削除、それより大きい場合は新たに追加した画像データの配列から削除
+if(targetImageId < registered_images_ids.length) {
 clickdelete_registered_images_ids.push(targetImageId) 
 clickdelete_images.push(target_image)
-// console.log(target_image);
-// console.log(targetImageId);
-
-// console.log(images);
-// 対象の画像を削除した新たな配列を生成
-// images.splice(targetImageId, 1);
-// console.log(images);
-// target_image_numが登録済画像の数以下の場合は登録済画像データの配列から削除、それより大きい場合は新たに追加した画像データの配列から削除
-// if (targetImageId < registered_images_ids.length) {
-  
-// registered_images_ids.splice(targetImageId,s 1);
-// }
-
-
-
-
-
-
-// console.log(filter_registered_images_ids);
-
+}
 
 $(`#upload-image${targetImageId}`).remove();
 //プレビューを削除
@@ -173,7 +156,6 @@ console.log(clickdelete_images);
 // });
 
 // console.log(filter_registered_images_ids);
-
 
 });
 
