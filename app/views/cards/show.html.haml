@@ -1,10 +1,36 @@
-%label 登録クレジットカード情報
-%br
-= "**** **** **** " + @default_card_information.last4
-%br
-- exp_month = @default_card_information.exp_month.to_s
-- exp_year = @default_card_information.exp_year.to_s.slice(2,3)
-= exp_month + " / " + exp_year
-= form_tag(delete_cards_path, method: :post, id: 'charge-form',  name: "inputForm") do
-  %input{ type: "hidden", name: "card_id", value: "" }
-  %button 削除する
+.header
+  =render :partial=> "shared/top-header"
+- breadcrumb :nocard
+= render "shared/hogehoge"
+.mypage
+  .mypage__row
+    .card-content
+      %h2.card-content__head
+        支払い方法
+      .card-content__main
+        %section
+          .card-content__main__body
+            %h3
+              クレジットカード一覧
+          .card-content__main__nav
+            = form_tag(delete_cards_path, method: :post, id: 'charge-form',  name: "inputForm") do
+              %input{ type: "hidden", name: "card_id", value: "" }
+              %button.card-content__main__nav__btn 削除する
+          %ul
+            %li.card-content__main__body__list
+              %fiture
+                = image_tag("//pcweb-assets.mercdn.net/assets/img/card/visa.svg?3780252616", width: '49px', height: '15px', alt: 'visa')
+              .card-content__main__body__list__item
+                = "**** **** **** " + @default_card_information.last4
+                %br
+                - exp_month = @default_card_information.exp_month.to_s
+                - exp_year = @default_card_information.exp_year.to_s.slice(2,3)
+                = exp_month + " / " + exp_year
+        .card-content__main__bottom
+          = link_to '#' do
+            支払い方法について
+    .mypage__row__sidebar
+      = render 'shared/side_bar'
+
+.footer
+  = render 'shared/top-footer'
