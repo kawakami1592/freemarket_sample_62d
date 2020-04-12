@@ -1,11 +1,6 @@
 body {
   font-family: "游ゴシック", "Yu Gothic", "游ゴシック体", YuGothic, sans-serif;
 }
-h1{
-  text-align: center;
-  font-weight: bold;
-  font-size: 24px;
-}
 
 .itembuy-container{
   background: #f8f8f8;
@@ -16,6 +11,11 @@ h1{
     &__top{
       background-color: #fff;
       padding: 24px 40px 40px;
+      &__name{
+        text-align: center;
+        font-weight: bold;
+        font-size: 24px;
+      }
       &__photo{
         margin: 16px 0 0;
         flex-direction: column;
