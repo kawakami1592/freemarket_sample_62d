@@ -175,11 +175,11 @@ $('#edit_item').on('submit', function(e){
   var formData = new FormData($(this).get(0));
 
   // 登録済画像が残っていない場合は便宜的に0を入れる
-  if (registered_images_ids.length == 0) {
+  if (filter_registered_images_ids.length == 0) {
     formData.append("registered_images_ids[ids][]", 0)
   // 登録済画像で、まだ残っている画像があればidをformDataに追加していく
   } else {
-    registered_images_ids.forEach(function(registered_image){
+    filter_registered_images_ids.forEach(function(registered_image){
       formData.append("registered_images_ids[ids][]", registered_image)
     });
   }

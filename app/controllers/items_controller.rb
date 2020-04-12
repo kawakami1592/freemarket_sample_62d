@@ -162,14 +162,15 @@ class ItemsController < ApplicationController
     @item = Item.find_by(id:params[:id])
   end
 
-
+  # provateは効いているので消さないでください
+  private
   def registered_image_params
-    params.require(:registered_images_ids).permit({ids:[]})
+    params.require(:registered_images_ids).permit(ids:[])
   end
 
 
 
-  # submitされた画像のパラメータをこのメソッド内で複数回使用するのであらかじめ定義
+  # provateは効いているので消さないでください
   private
   def new_image_params
     params.require(:new_images).permit(images:[])
