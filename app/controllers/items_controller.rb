@@ -164,7 +164,7 @@ class ItemsController < ApplicationController
 
 
   def registered_image_params
-    params.require(:registered_images_ids).permit({ids: []})
+    params.require(:registered_images_ids).permit({ids:[]})
   end
 
 
