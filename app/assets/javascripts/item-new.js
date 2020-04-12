@@ -1,11 +1,22 @@
 $(document).on('turbolinks:load', function(){
  
+// 他のfuncでも使用するのでグローバル変数を定義
+  // 登録済画像と新規追加画像を全て格納する配列（ビュー用）
+  images = [];
+  // 登録済画像データだけの配列（DB用）
+  registered_images_ids = [];
+  // 新規追加画像データだけの配列（DB用）
+  new_image_files = [];
+  // テーブルに既存でdeleteされた画像データに関する情報
+  clickdelete_images = [];
+  clickdelete_registered_images_ids = [];
+
   // 画像が選択された時プレビュー表示、inputの親要素のdivをイベント元に指定
   $('#image-input').on('change', function(e){
-    // 新規追加画像データだけの配列（DB用）
-    new_image_files = [];
+
     //ファイルオブジェクトを取得する
     let files = e.target.files;
+    new_image_files.push(files)
     $.each(files, function(index, file) {
       let reader = new FileReader();
 
@@ -47,7 +58,6 @@ $(document).on('turbolinks:load', function(){
       })(file);
       reader.readAsDataURL(file);
     });
-    // new_image_files.push(reader)
     console.log(new_image_files);
   });
 
@@ -56,56 +66,9 @@ $(document).on('turbolinks:load', function(){
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // 画像保存データがある場合の処理（商品編集画面で新規登録と同じ使用感での画像表示する処理）
   // imgオブジェクトの個数をimageLengthに指定
   let imageLength = $(".editimage").find("img").length;
-
-  // 他のfuncでも使用するのでグローバル変数を定義
-  // 登録済画像と新規追加画像を全て格納する配列（ビュー用）
-  images = [];
-  // 登録済画像データだけの配列（DB用）
-  registered_images_ids = [];
 
   // 以下で全ての既存画像に保存順にlabelLengthに名前をつけながらプレビュー表示する（.eachだと一括表示されているものは同じ番号としてlabelLengthに変化をつけられないのでfor文を使用）
   for (let i = 0; i < $(".editimage").find("img").length; i++) {
@@ -142,9 +105,16 @@ if (imageLength < 9) {
   registered_images_ids.push(labelLength) 
 
 // console.log(images);
-// console.log(registered_images_ids);
+console.log(registered_images_ids);
 
 };
+
+
+
+
+
+
+
 
 //削除ボタンが押された時
 $(document).on('click', '.preview-image__button__delete', function(){
@@ -153,18 +123,29 @@ $(document).on('click', '.preview-image__button__delete', function(){
 // イベント元のカスタムデータ属性の値を取得
 let targetImageId = $(this).data('image-id');
  // 削除ボタンを押した画像を取得
-let target_image = $(".preview-image__figure").children('img').attr('src');   
+let target_image = $(".preview-image__figure").children('img').attr('src');
+
+clickdelete_registered_images_ids.push(targetImageId) 
+clickdelete_images.push(target_image)
 // console.log(target_image);
 // console.log(targetImageId);
 
 // console.log(images);
 // 対象の画像を削除した新たな配列を生成
-images.splice(targetImageId, 1);
+// images.splice(targetImageId, 1);
 // console.log(images);
 // target_image_numが登録済画像の数以下の場合は登録済画像データの配列から削除、それより大きい場合は新たに追加した画像データの配列から削除
-if (targetImageId < registered_images_ids.length) {
-registered_images_ids.splice(targetImageId, 1);}
-// console.log(registered_images_ids);
+// if (targetImageId < registered_images_ids.length) {
+  
+// registered_images_ids.splice(targetImageId,s 1);
+// }
+
+
+
+
+
+
+// console.log(filter_registered_images_ids);
 
 
 $(`#upload-image${targetImageId}`).remove();
@@ -183,7 +164,22 @@ if (imageLength ==9) {
                               <i class="fas fa-camera fa-lg"></i>
                             </label>`);
 };
+
+console.log(clickdelete_registered_images_ids);
+console.log(clickdelete_images);
+
+// filter_registered_images_ids = registered_images_ids.filter(function(value) {
+//   return value !== clickdelete_registered_images_ids;
+// });
+
+// console.log(filter_registered_images_ids);
+
+
 });
+
+
+
+
 
   
 $('#edit_item').on('submit', function(e){

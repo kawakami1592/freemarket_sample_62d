@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
   
    before_action :authenticate_user!, except:[:index,:show]
    before_action :set_item, only: [:show, :buy, :pay, :edit, :update]
-   before_action :set_card, except:[:index]  #クレジットカード削除の判定に使用しているので消さないでください
+   before_action :set_card, except:[:index, :edit, :update]  #クレジットカード削除の判定に使用しているので消さないでください
   #  before_action :correct_images, only: [:update]
 
   def index
