@@ -59,6 +59,10 @@ $(document).on('turbolinks:load', function(){
       reader.readAsDataURL(file);
     });
     console.log(new_image_files);
+
+    // filter_registered_images_ids = registered_images_ids.filter(function(value) {
+    //   return value !== clickdelete_registered_images_ids;
+    // });
   });
 
   
@@ -151,11 +155,7 @@ if (imageLength ==9) {
 console.log(clickdelete_registered_images_ids);
 console.log(clickdelete_images);
 
-// filter_registered_images_ids = registered_images_ids.filter(function(value) {
-//   return value !== clickdelete_registered_images_ids;
-// });
 
-// console.log(filter_registered_images_ids);
 
 });
 
@@ -167,6 +167,8 @@ console.log(clickdelete_images);
 $('#edit_item').on('submit', function(e){
 // console.log(registered_images_ids);
 // console.log(files);
+  filter_registered_images_ids = registered_images_ids.filter(i => clickdelete_registered_images_ids.indexOf(i) == -1)
+  console.log(filter_registered_images_ids);
   // 通常のsubmitイベントを止める
   e.preventDefault();
   // images以外のform情報をformDataに追加
