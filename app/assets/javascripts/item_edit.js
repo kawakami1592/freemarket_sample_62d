@@ -10,7 +10,7 @@ $(document).on('turbolinks:load ', function(){
     // 登録済画像データだけの配列（DB用）
     registered_images_ids = [];
     // 新規追加画像データだけの配列（DB用）
-    // let new_image_files = [];
+    let new_image_files = [];
 
     // 以下で全ての既存画像に保存順にlabelLengthに名前をつけながらプレビュー表示する（.eachだと一括表示されているものは同じ番号としてlabelLengthに変化をつけられないのでfor文を使用）
     for (let i = 0; i < $(".editimage").find("img").length; i++) {
@@ -91,7 +91,7 @@ $(document).on('click', '.preview-image__button__delete', function(){
 });
 
     
-$('.submit-btn__sell-btn__edit').on('submit', function(e){
+$('#edit_item').on('submit', function(e){
   console.log(registered_images_ids);
 
     // 通常のsubmitイベントを止める
