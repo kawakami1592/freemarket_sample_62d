@@ -57,14 +57,22 @@ class ItemsController < ApplicationController
 
       ids = [];
       # 登録済画像のidの配列を生成
-      @item.images.each_with_index do |image,index| 
+      @item.images_id.each do |index| 
       ids << index
       end
       # 登録済画像のうち、編集後もまだ残っている画像のidの配列を生成(文字列から数値に変換)
       # binding.pry
-      exist_ids = registered_image_params[:ids].map(&:to_i)
+      before_exist_ids = registered_image_params[:ids].map(&:to_i)
+      if before_exist_ids[0] == 0
+        before_exist_ids.clear 
+      else
+        exist_ids = [];
+        before_exist_ids.each do |ids|
+          exist_ids << (@item.images.id.first + ids)
+        end
+      end
       # 登録済画像が残っていない場合(配列に０が格納されている)、配列を空にする
-      exist_ids.clear if exist_ids[0] == 0
+      
 
       if (exist_ids.length != 0 || new_image_params[:images][0] != " ") && @item.update(item_params)
 
@@ -72,8 +80,9 @@ class ItemsController < ApplicationController
         unless ids.length == exist_ids.length
           # 削除する画像のidの配列を生成
           delete_ids = ids - exist_ids
+          # binding.pry
           delete_ids.each do |id|
-            @item.item_images.find(id).destroy
+            @item.images.find(id).destroy
           end
         end
 

@@ -173,7 +173,7 @@ $('#edit_item').on('submit', function(e){
   e.preventDefault();
   // images以外のform情報をformDataに追加
   var formData = new FormData($(this).get(0));
-
+  var url = $(this).attr('action')
   // 登録済画像が残っていない場合は便宜的に0を入れる
   if (filter_registered_images_ids.length == 0) {
     formData.append("registered_images_ids[ids][]", 0)
@@ -197,7 +197,8 @@ $('#edit_item').on('submit', function(e){
   }
 
   $.ajax({
-    url:         '/items/' + gon.item.id,
+    url: url,
+    // url:         '/items/' + gon.item.id,
     type:        "PATCH",
     data:        formData,
     contentType: false,
@@ -554,19 +555,19 @@ $("#word-count").text(txtcount);
       });
     });
 
-    //送信しようとした時
-    $('form').on('submit',function(){
-      let imageLength = $('#output-box').children('li').length;
-      if(imageLength ==''){
-        $('body, html').animate({ scrollTop: 0 }, 500);
-        $('#error-image').text('画像がありません');
-      }else if(imageLength >10){
-        $('body, html').animate({ scrollTop: 0 }, 500);
-        $('#error-image').text('画像を10枚以下にして下さい');
-      }else{
-        return true;
-      }
-    });
+    // //送信しようとした時
+    // $('form').on('submit',function(){
+    //   let imageLength = $('#output-box').children('li').length;
+    //   if(imageLength ==''){
+    //     $('body, html').animate({ scrollTop: 0 }, 500);
+    //     $('#error-image').text('画像がありません');
+    //   }else if(imageLength >10){
+    //     $('body, html').animate({ scrollTop: 0 }, 500);
+    //     $('#error-image').text('画像を10枚以下にして下さい');
+    //   }else{
+    //     return true;
+    //   }
+    // });
 
      //画像を削除した時
     $(document).on('click','.preview-image__button__delete',function(){
