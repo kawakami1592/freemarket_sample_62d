@@ -1,6 +1,7 @@
 .header
   = render 'shared/top-header'
-
+- breadcrumb :hoge
+= render "shared/hogehoge"
 .itembuy-container
   .itembuy-container__main
     .itembuy-container__main__top
@@ -51,10 +52,13 @@
               %th
                 カテゴリー
               %td
-                %a
-                  = link_to '#' do
-                    = @item.category.name
-                    %i.fa.fa-angle-right
+                = link_to @item.category.parent.parent.name
+                %br
+                %i.fa.fa-angle-right
+                = link_to @item.category.parent.name
+                %br
+                %i.fa.fa-angle-right
+                = link_to @item.category.name
             %tr
               %th
                 ブランド

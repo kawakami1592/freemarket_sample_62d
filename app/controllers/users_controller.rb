@@ -5,9 +5,6 @@ class UsersController < ApplicationController
   before_action :set_current_item #出品者かどうかの判定に使用しているので消さないでください
   before_action :set_card  #クレジットカード削除の判定に使用しているので消さないでください
   
-  def index
-  end
-
   def edit
     # ユーザー登録情報の変更画面へ
     # render "users/#{params[:viewname]}" #viewファイルの呼び出し場所を、app/views/usersのファイルに指定しました

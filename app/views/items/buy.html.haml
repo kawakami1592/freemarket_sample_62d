@@ -1,5 +1,6 @@
 = render "shared/top-header"
-
+- breadcrumb :buy
+= render "shared/hogehoge"
 .confirm-product
   .confirm-group
     %h1 購入内容の確認
@@ -14,13 +15,16 @@
           %p
           = "¥ " + @item.price.to_s(:delimited)
           %span 送料込み
-        .confirm-group__form__main__point ポイントはありません
+        .confirm-group__form__main__point 
+          ※保有ポイントはありません
+        -# ポイントはありません
         .confirm-group__form__main__buy-price
           %p 支払い金額
           %p.buy-price-table 
           = "¥ " + @item.price.to_s(:delimited)
-        = form_tag(action: :pay, "data-turbolinks": false,method: :post) do
-          %button 購入する
+        .confirm-group__form__main__button  
+          = form_tag(action: :pay, "data-turbolinks": false,method: :post) do
+            %button 購入する
     .user-info
       .user-info__main
         %h3 配送先
