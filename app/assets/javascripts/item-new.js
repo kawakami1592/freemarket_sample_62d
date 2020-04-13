@@ -77,10 +77,13 @@ $(document).on('turbolinks:load', function(){
   // 以下で全ての既存画像に保存順にlabelLengthに名前をつけながらプレビュー表示する（.eachだと一括表示されているものは同じ番号としてlabelLengthに変化をつけられないのでfor文を使用）
   for (let i = 0; i < $(".editimage").find("img").length; i++) {
   // let labelLength = $(".editimage").eq(i).data('index');
-  let labelLength = i;
+  console.log(gon.imageids[i]);
+  let labelLength = gon.imageids[i];
 
   // 表示用のクラスの子要素のimgオブジェクトの中のsrcを取得(.attr('img')だとsrcとカスタムデータの２属性をもつオブジェクトになってしまい取得後の再表示が上手くいかない)
-  let img = $('#img-'+i).children('img').attr('src');
+  let img = $('#img-'+ gon.imageids[i]).children('img').attr('src');
+
+  
 
 // プレビュー表示（最初に定義した変数imgでsrcを再表示させます）
 $('#image-input').before(`<li class="preview-image" id="upload-image${labelLength}" data-image-id="${labelLength}">

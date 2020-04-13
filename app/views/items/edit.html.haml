@@ -21,7 +21,7 @@
                 %ul#output-box                  
                   %div#image-input                    
                     = f.label :images, for: "item_images0", class: 'sell-container__content__upload__items__box__label', data: {label_id: 0 } do
-                      - @image.zip(@image_id).zip(@image_length).each do |image, image_id|
+                      - @image.zip(@image_id).each do |image, image_id|
                         .editimage{id:"img-#{image_id}",data:{index:image_id}}       
                           = image_tag image
                       = f.file_field :images, multiple: true, class: "sell-container__content__upload__items__box__input", id: "item_images0", style: 'display: none;'

@@ -44,22 +44,15 @@ class ItemsController < ApplicationController
     if @item.user_id == current_user.id
       @category_grandchildren = Category.find(@item.category_id)
       @category_parent =  Category.where("ancestry is null")
-      gon.item = @item
       @image = @item.images
       @image_id = @item.images_blob_ids
-      @image_index = [];
-      # @image_id.each_with_index |id ,i| do
-      #   @image_length << i
-      # end
-      num = 0
-      while num < @image_id.length do
-        @image_index << num
-      end
-      # binding.pry
-      # gon.item_images = @item.item_images
+      gon.item = @item
+      gon.imageids = @image_id
+      
     else
       redirect_to root_path,notice: "出品者のみ編集を行うことができます"
     end
+
   end
 
   def update
