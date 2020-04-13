@@ -57,42 +57,24 @@ class ItemsController < ApplicationController
 
   def update
     if @item.present?
-      # correct_images(item_params)
-
-      ids = [];
       # 登録済画像のidの配列を生成
-      @item.images_blob_ids.each do |index| 
-        ids << index
-      end
-      # 登録済画像のうち、編集後もまだ残っている画像のidの配列を生成(文字列から数値に変換)
-      # binding.pry
-      before_exist_ids = registered_image_params[:ids].map(&:to_i)
-      if before_exist_ids[0] == 0
-        before_exist_ids.clear 
+      registered_image_ids = @item.images_blob_ids.map
+      # 削除ボタンを押された画像のidの配列を生成
+      if delete_image_params[0] = 0
+        delete_ids = [];
       else
-        exist_ids = [];
-        before_exist_ids.each do |ids|
-          exist_ids << (@item.images.id.first + ids)
-        end
+        delete_ids = delete_image_params[:ids].map(&:to_i)
       end
       # 登録済画像が残っていない場合(配列に０が格納されている)、配列を空にする
-      
-
-      if (exist_ids.length != 0 || new_image_params[:images][0] != " ") && @item.update(item_params)
-
+      if (registered_image_ids == delete_ids || new_image_params[:images][0] != " ") && @item.update(item_params)
         # 登録済画像のうち削除ボタンをおした画像を削除
-        unless ids.length == exist_ids.length
-          # 削除する画像のidの配列を生成
-          delete_ids = ids - exist_ids
-          # binding.pry
+        unless delete_ids[0] != " " 
+          # 削除する画像のidの配列を生成し、物理削除する
           delete_ids.each do |id|
             @item.images.find(id).destroy
           end
-        end
-
-
-
-      # if @item.update(item_params)              
+        end             
+        #紐づいていないデータがs3やローカルのテーブルに残っている場合はupdateの後に削除
         DeleteUnreferencedBlobJob.perform_later
         redirect_to root_path, notice: "商品情報を編集しました"
       else
@@ -107,6 +89,7 @@ class ItemsController < ApplicationController
     item = Item.find_by(id: params[:id])
     if item.present?
       if item.destroy
+        #紐づいていないデータがs3やローカルのテーブルに残っている場合はupdateの後に削除
         DeleteUnreferencedBlobJob.perform_later 
         redirect_to root_path, notice: "削除に成功しました"
       else
@@ -175,35 +158,15 @@ class ItemsController < ApplicationController
     @item = Item.find_by(id:params[:id])
   end
 
-  # provateは効いているので消さないでください
   private
-  def registered_image_params
-    params.require(:registered_images_ids).permit(:ids)
+  def delete_image_params
+    params.require(:delete_images_ids).permit(:ids)
   end
 
-
-
-  # provateは効いているので消さないでください
   private
   def new_image_params
     params.require(:new_images).permit(images:[])
   end
-
-  # # 画像削除用のメソッドです。submitされた画像のなかに当初テーブルにデータが入っていたのになくなっているものを削除します。
-  # def correct_images
-  #   # テーブルの画像とsubmitされた画像に差異がある時のみ実行
-  #   unless @item.images == @params.require(:item).permit(images:[])
-  #     # submitされた画像のハッシュ値のみで配列を作成(このメソッドでもう一度使用するためインスタンス変数で定義)
-  #     image_params.each do |params|
-  #       @need_images = params
-  #     end
-  #     # 現在保存されている画像を１枚ずつ取り出し先ほど作った配列の値と一致しないものを削除する
-  #     @item.images do |noneed_image|
-  #       @item.images.purge(noneed_image) if @need_images.exclude?(noneed_image)
-  #     end
-  #   return
-  #   end
-  # end
 
 end
 

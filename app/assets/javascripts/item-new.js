@@ -181,11 +181,11 @@ $('#edit_item').on('submit', function(e){
   var url = $(this).attr('action')
   // 削除画像がない場合は便宜的に0を入れる
   if (clickdelete_registered_images_ids == gon.imageids) {
-    formData.append("delete_images_ids[ids]", 0)
+    formData.append("delete_images_ids[ids][]", 0)
   // 削除画像で、のidをformDataに追加していく
   } else {
     clickdelete_registered_images_ids.forEach(function(delete_image_id){
-      formData.append("delete_images_ids[ids]", delete_image_id)
+      formData.append("delete_images_ids[ids][]", delete_image_id)
     });
   }
 
@@ -200,6 +200,7 @@ $('#edit_item').on('submit', function(e){
       formData.append("new_images[images][]", file)
     });
   }
+  console.log(formData);
 
   $.ajax({
     url: url,
