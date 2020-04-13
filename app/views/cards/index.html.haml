@@ -1,9 +1,11 @@
 .header
   =render :partial=> "shared/top-header"
-
-.credit-index-body
-  .sidebar
-    =render :partial=> "shared/side_bar"
+- breadcrumb :card
+= render "shared/hogehoge"
+.mypage
+  .mypage__row
+    .mypage__row__sidebar
+      =render :partial=> "shared/side_bar"
 
   .method-of-payment
     .method-of-payment__header
