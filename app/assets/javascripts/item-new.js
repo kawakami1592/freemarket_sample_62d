@@ -47,7 +47,7 @@ $(document).on('turbolinks:load', function(){
                                     </li>`);
           $("#image-input>label").eq(-1).css('display','none');
           // 入力されたlabelを見えなくする
-          if (imageLength < 9) {
+          if (imageLength < 10) {
             // 表示されているプレビューが９以下なら、新たにinputを生成する
             $("#image-input").append(`<label for="item_images${labelLength+1}" class="sell-container__content__upload__items__box__label" data-label-id="${labelLength+1}">
                                         <input multiple="multiple" class="sell-container__content__upload__items__box__input" id="item_images${labelLength+1}" style="display: none;" type="file" name="item[images][]">
@@ -97,7 +97,7 @@ $('#image-input').before(`<li class="preview-image" id="upload-image${labelLengt
                           </li>`);
                           $("#image-input>label").eq(-1).css('display','none');
               
-if (imageLength < 9) {
+if (imageLength < 10) {
   // 表示されているプレビューが９以下なら、新たにinputを生成する
   $("#image-input").append(`<label for="item_images${labelLength+1}" class="sell-container__content__upload__items__box__label" data-label-id="${labelLength+1}">
                               <input multiple="multiple" class="sell-container__content__upload__items__box__input" id="item_images${labelLength+1}" style="display: none;" type="file" name="item[images][]">

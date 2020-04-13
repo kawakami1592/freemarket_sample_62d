@@ -3,7 +3,6 @@ class ItemsController < ApplicationController
    before_action :authenticate_user!, except:[:index,:show]
    before_action :set_item, only: [:show, :buy, :pay, :edit, :update]
    before_action :set_card, except:[:index, :edit, :update]  #クレジットカード削除の判定に使用しているので消さないでください
-  #  before_action :correct_images, only: [:update]
 
   def index
     @items = Item.includes(:user).last(3)
@@ -160,7 +159,7 @@ class ItemsController < ApplicationController
 
   private
   def delete_image_params
-    params.require(:delete_images_ids).permit(:ids)
+    params.require(:delete_images_ids).permit({ids:[]})
   end
 
   private
