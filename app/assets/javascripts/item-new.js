@@ -132,9 +132,10 @@ $(document).on('click', '.preview-image__button__delete', function(){
 let targetImageId = $(this).data('image-id');
  // 削除ボタンを押した画像を取得
 let target_image = $(".preview-image__figure").children('img').attr('src');
-
+const aryMax = function (a, b) {return Math.max(a, b);}
+let max = registered_images_ids.reduce(aryMax);
 // target_image_numが登録済画像の数以下の場合は登録済画像データの配列から削除、それより大きい場合は新たに追加した画像データの配列から削除
-if(targetImageId < registered_images_ids.length) {
+if(targetImageId < max+1) {
 clickdelete_registered_images_ids.push(targetImageId) 
 clickdelete_images.push(target_image)
 }
@@ -171,20 +172,20 @@ console.log(clickdelete_images);
 $('#edit_item').on('submit', function(e){
 // console.log(registered_images_ids);
 // console.log(files);
-  filter_registered_images_ids = registered_images_ids.filter(i => clickdelete_registered_images_ids.indexOf(i) == -1)
-  console.log(filter_registered_images_ids);
+  // filter_registered_images_ids = registered_images_ids.filter(i => clickdelete_registered_images_ids.indexOf(i) == -1)
+  // console.log(filter_registered_images_ids);
   // 通常のsubmitイベントを止める
   e.preventDefault();
   // images以外のform情報をformDataに追加
   var formData = new FormData($(this).get(0));
   var url = $(this).attr('action')
-  // 登録済画像が残っていない場合は便宜的に0を入れる
-  if (filter_registered_images_ids.length == 0) {
-    formData.append("registered_images_ids[ids][]", 0)
-  // 登録済画像で、まだ残っている画像があればidをformDataに追加していく
+  // 削除画像がない場合は便宜的に0を入れる
+  if (clickdelete_registered_images_ids == gon.imageids) {
+    formData.append("delete_images_ids[ids]", 0)
+  // 削除画像で、のidをformDataに追加していく
   } else {
-    filter_registered_images_ids.forEach(function(registered_image){
-      formData.append("registered_images_ids[ids][]", registered_image)
+    clickdelete_registered_images_ids.forEach(function(delete_image_id){
+      formData.append("delete_images_ids[ids]", delete_image_id)
     });
   }
 

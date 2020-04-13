@@ -48,7 +48,7 @@ class ItemsController < ApplicationController
       @image_id = @item.images_blob_ids
       gon.item = @item
       gon.imageids = @image_id
-      
+
     else
       redirect_to root_path,notice: "出品者のみ編集を行うことができます"
     end
@@ -178,7 +178,7 @@ class ItemsController < ApplicationController
   # provateは効いているので消さないでください
   private
   def registered_image_params
-    params.require(:registered_images_ids).permit(ids:[])
+    params.require(:registered_images_ids).permit(:ids)
   end
 
 
