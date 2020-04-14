@@ -57,15 +57,16 @@ class ItemsController < ApplicationController
   def update
     if @item.present?
       # 画像に変化があれば更新
-      if (item_update_params[:delete_image_ids][0].present? || item_update_params[:images][0].present?)
-        @item.update(item_params)
+      if @item.update(item_params)
+      # if (item_update_params[:delete_image_ids].present? || item_update_params[:images].present?)
+      
         # 既存画像のdeleteボタンを押されていた場合はテーブルから削除
-        if(item_update_params[:delete_image_ids][0].present?) 
+        if(item_update_params[:delete_image_ids].present?) 
         # 削除する画像のidの配列を検索し、物理削除する
-        item_update_params[:delete_image_ids].each do |delete_image_ids|
-          @item.images.find(delete_image_ids).destroy
-        end
-      end             
+          item_update_params[:delete_image_ids].each do |delete_image_ids|
+            @item.images.find(delete_image_ids).destroy
+          end
+        end             
         #紐づいていないデータがs3やローカルのテーブルに残っている場合はupdateの後に削除
         DeleteUnreferencedBlobJob.perform_later
         redirect_to root_path, notice: "商品情報を編集しました"
