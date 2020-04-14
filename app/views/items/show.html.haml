@@ -1,61 +1,131 @@
 .header
   = render 'shared/top-header'
-
+- breadcrumb :hoge
+= render "shared/hogehoge"
 .itembuy-container
-%section.itembuy-content
-  %h1.itembuy-content__name
-    = @item.name
-  .itembuy-content__clearfix
-  .itembuy-content__photo
-    = image_tag(@item.images.first, width: '50%', height: '50%', alt: '商品3')
-  .itembuy-content__auter
-  .itembuy-content__owl-carousel
-    = "¥#{@item.price.to_s(:delimited)}円"
-  .itembuy-content__price-detail
-    = '(税込)送料込み'
-  .itembuy-content__itemDetail
-    = @item.text
-  .itembuy-content__table
-    %ul
-      %li.itembuy-content__table__seller
-        出品者
-        %li.itembuy-content__table__seller__name
-          = @item.user.nickname
-      %li.itembuy-content__table__category
-        カテゴリー
-        %li.itembuy-content__table__category__name
-          = link_to '#' do
-            = @item.category.name
-      %li.itembuy-content__table__brand
-        ブランド
-        %li.itembuy-content__table__brand__name
-      %li.itembuy-content__table__size
-        商品のサイズ
-        %li.itembuy-content__table__size__name
-      %li.itembuy-content__table__condition
-        商品の状態
-        %li.itembuy-content__table__condition__name
-          = @item.condition.condition
-      %li.itembuy-content__table__delivery-cost
-        配送料の負担
-        %li.itembuy-content__table__delivery-cost__name
-          = @item.deliverycost.payer
-      %li.itembuy-content__table__from
-        発送元の地域
-        %li.itembuy-content__table__from__name
-          = @item.pref.name
-      %li.itembuy-content__table__days
-        発送日の目安
-        %li.itembuy-content__table__days__name
-          = @item.delivery_days.days
-      %li
-        - if user_signed_in? && current_user.id == @item.user_id && @item.boughtflg_id != 2
-          = link_to item_path, method: :delete do
-            削除
-        - elsif @item.boughtflg_id != 2
-          = link_to buy_item_path do
-            購入
+  .itembuy-container__main
+    .itembuy-container__main__top
+      %h1.itembuy-container__main__top__name
+        = @item.name
+      .itembuy-container__main__top__photo
+        = image_tag(@item.images.first, width: '100%', height: '300px', alt: '商品',class: 'mainImage')
+        .itembuy-container__main__top__photo__list
+          - @item.images.each do |image| 
+            = image_tag(image, width: '100px', height: '100px', alt: '商品',class: 'thumb')
+      .itembuy-container__main__top__price
+        .itembuy-container__main__top__price__font
+          = "¥#{@item.price.to_s(:delimited)}円"
+        .itembuy-container__main__top__price__detail
+          = '(税込)送料込み'
+      - if user_signed_in?
+        -if @item.boughtflg_id == 2
+          .itembuy-container__main__top__buy
+            売り切れました
+        - elsif @item.user_id != current_user.id
+          .itembuy-container__main__top__buy
+            = link_to "購入画面に進む",buy_item_path
         - else
-          売り切れました
+          .itembuy-container__main__top__buy
+            = link_to "編集画面に進む",edit_item_path
+          .itembuy-container__main__top__or
+            or
+          .itembuy-container__main__top__buy
+            = link_to "商品の削除",item_path, method: :delete
+      .itembuy-container__main__top__itemDetail
+        = @item.text
+      .itembuy-container__main__top__table
+        %table
+          %tbody
+            %tr
+              %th
+                出品者
+              %td
+                = @item.user.nickname
+                %div
+                  %i.fa.fa-smile
+                  0
+                  %i.fa.fa-meh
+                  0
+                  %i.fa.fa-frown
+                  0
+            %tr
+              %th
+                カテゴリー
+              %td
+                = link_to @item.category.parent.parent.name
+                %br
+                %i.fa.fa-angle-right
+                = link_to @item.category.parent.name
+                %br
+                %i.fa.fa-angle-right
+                = link_to @item.category.name
+            %tr
+              %th
+                ブランド
+              %td
+
+            %tr
+              %th
+                商品のサイズ
+              %td
+
+            %tr
+              %th
+                商品の状態
+              %td
+                = @item.condition.condition
+            %tr
+              %th
+                配送料の負担
+              %td
+                = @item.deliverycost.payer
+            %tr
+              %th
+                発想元の地域
+              %td
+                %a
+                  = @item.pref.name
+            %tr
+              %th
+                発送日の目安
+              %td
+                = @item.delivery_days.days
+      .itembuy-container__main__top__option
+        %ul
+          %button
+            %i.fa.fa-star
+              お気に入り 0
+        %ul
+          %li.itembuy-container__main__top__option__btn
+            %i.fa.fa-flag
+            不適切な商品の通報
+    %form.itembuy-container__main__comment
+      %textarea{:required=>"required"}
+
+      %p.comment__noticeMsg
+        相手のことを考え丁寧なコメントを心がけましょう。
+        %br
+          不快な言葉遣いなどは利用制限や退会処分となることがあります。
+      %button.comment__button
+        %i.fa.fa-comment
+        コメントする
+    %ul.itembuy-container__main__links
+      %li.itembuy-container__main__links__left
+        %a
+          =link_to "#" do
+            %i.fa.fa-angle-left
+              前の商品
+      %li.itembuy-container__main__links__center
+        %a
+          =link_to root_path(current_user) do
+            トップページ
+      %li.itembuy-container__main__links__right
+        %a
+          =link_to "#" do
+            後ろの商品
+            %i.fa.fa-angle-right
+    .itembuy-container__main__see
+      =link_to "#" do
+        = "#{@item.category.name}もっと見る"
 .footer
   = render 'shared/top-footer'

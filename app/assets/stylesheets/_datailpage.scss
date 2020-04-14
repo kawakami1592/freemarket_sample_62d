@@ -1,0 +1,186 @@
+body {
+  font-family: "游ゴシック", "Yu Gothic", "游ゴシック体", YuGothic, sans-serif;
+}
+
+.itembuy-container{
+  background: #f8f8f8;
+  padding: 40px;
+  &__main{
+    width: 700px;
+    margin: 0 auto;
+    &__top{
+      background-color: #fff;
+      padding: 24px 40px 40px;
+      &__name{
+        text-align: center;
+        font-weight: bold;
+        font-size: 24px;
+      }
+      &__photo{
+        margin: 16px 0 0;
+        flex-direction: column;
+        width: 519px;
+        margin: 0 auto;
+        .mainImage{
+          padding-bottom: 40px;
+          object-fit: cover;
+        }
+        &__list{
+          background-color: #eee;
+          .thumb{
+            object-fit: cover;
+          }
+        }
+      }
+      &__price{
+        margin: 24px 0 24px;
+        text-align: center;
+        flex-direction: column;
+        &__font{
+        font-size: 46px;
+        font-weight: bold;
+        margin: 0 10px 0 0;
+        }
+        &__detail{
+          font-size: 16px;
+        }
+      }
+      &__buy{
+        background: #ea352d;
+        color: #fff;
+        line-height: 56px;
+        text-align: center;
+        font-weight: 600;
+        font-size: 24px;
+        line-height: 60px;
+        a{
+          display: block;
+        }
+      }
+      &__or{
+        font-size: 16px;
+        text-align: center;
+      }
+      &__itemDetail{
+        padding-top: 32px;
+        font-size: 18px;
+        margin-bottom: 30px;
+      }
+      &__table{
+        margin-bottom: 20px;
+        table{
+          width: 100%;
+          height: 375px;
+          border-collapse: collapse;
+          border: 1px solid #f8f8f8;
+          th{
+            width: 20%;
+            background-color: #eee;
+            padding: 8px;
+            border: 1px solid #dedede;
+            font-size: 14px;
+            text-align: center;
+          }
+          td{
+            width: 61%;
+            padding: 15px 15px;
+            border: 1px solid #dedede;
+            font-size: 14px;
+          }
+          i{
+            color: #3CCACE;
+          }
+          .fa-smile{
+            color: #ef5185;
+          }
+          .fa-meh{
+            color: #fba933;
+          }
+          .fa-frown{
+            color: #6ab5d8;
+          }
+          a{
+            color: #3CCACE;
+          }
+        }
+      }
+      &__option{
+        display: flex;
+        justify-content: space-between;
+        button{
+          padding: 6px 10px;
+          border-radius: 40px;
+          color: #3CCACE;
+          border: 1px solid #ffb340;
+          font-size: 14px;
+          cursor: pointer;
+          }
+        &__btn{
+          font-size: 14px;
+          padding: 6px 10px;
+          display: inline-block;
+          border-radius: 4px;
+          color: #333;
+          border: 1px solid #333;
+          text-decoration: none;
+          cursor: pointer;
+        }
+        ul{
+          margin: 10px 0 0;
+        }
+      }
+    }
+    &__comment{
+      padding: 24px;
+      background-color: #fff;
+      margin: 10px 0;
+      text-align: center;
+      textarea{
+        width: 100%;
+        min-height: 104px;
+      }
+      p{
+        padding: 8px;
+        font-size: 14px;
+        background-color: #f8f8f8;
+        margin: 10px 0;
+        text-align: left;
+      }
+      button{
+        line-height: 48px;
+        background: #3CCACE;
+        border: 1px solid #3CCACE;
+        color: #fff;
+        width: 60%;
+        font-size: 18px;
+        border-radius: 100px;
+        cursor: pointer;
+      }
+    }
+    &__links{
+      height: 24px;
+      a{
+        color: #3CCACE;
+      }
+      &__left{
+        float: left;
+      }
+      &__center{
+        float: left;
+        padding-left: 230px;
+      }
+      &__right{
+        float: right;
+      }
+    }
+    &__see{
+      display: block;
+      margin: 24px 0 8px;
+      color: #3CCACE;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 22px;
+      position: relative;
+    }
+  }
+}

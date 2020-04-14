@@ -11,7 +11,7 @@
 
 .method-of-payment{
   margin-left:calc( 5% + 40px);
-  margin-top:30px;
+  margin-top:55px;
   width:70%;
   &__header{
     background-color: white;
@@ -19,9 +19,10 @@
     width:500px;
     text-align:center;
     line-height:50px;
-    margin-top: 10px;
     margin-bottom: 5px;
     font-weight: bold;
+    border: 1px solid #e5e5e5;
+    float: right;
   }
   &__body{
     background-color: white;
@@ -30,7 +31,9 @@
     display:flex;
     flex-direction: column;
     align-items: center;
-    position: relative;  
+    position: relative;
+    border: 1px solid #e5e5e5;
+    float: right;
     &__subheading{
       display:flex;
       height:80px;
