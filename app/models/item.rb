@@ -8,8 +8,8 @@ class Item < ApplicationRecord
   belongs_to_active_hash :boughtflg
   # 上記active_hashのアソシエーション
   validate :images_presence
-  validates :name, :text, :category_id, :condition_id, :deliverycost_id, :pref_id, :delivery_days_id, :boughtflg_id, presence: true
-  validates :price, presence: true, inclusion: 300..9999999
+  validates :name, :text, :category_id, :condition_id, :deliverycost_id, :pref_id, :delivery_days_id, :boughtflg_id,:user_id, presence: true
+  validates :price, presence: true, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 }
 
   has_many_attached :images
   belongs_to :user, foreign_key: 'user_id'
