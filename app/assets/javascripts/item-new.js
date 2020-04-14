@@ -1,22 +1,11 @@
 $(document).on('turbolinks:load', function(){
  
-// 他のfuncでも使用するのでグローバル変数を定義
-  // 登録済画像と新規追加画像を全て格納する配列（ビュー用）
-  images = [];
-  // 登録済画像データだけの配列（DB用）
-  registered_images_ids = [];
-  // 新規追加画像データだけの配列（DB用）
-  new_image_files = [];
-  // テーブルに既存でdeleteされた画像データに関する情報
-  clickdelete_images = [];
-  clickdelete_registered_images_ids = [];
-
   // 画像が選択された時プレビュー表示、inputの親要素のdivをイベント元に指定
   $('#image-input').on('change', function(e){
 
     //ファイルオブジェクトを取得する
     let files = e.target.files;
-    new_image_files.push(files)
+    // new_image_files.push(files)
     $.each(files, function(index, file) {
       let reader = new FileReader();
 
@@ -58,14 +47,13 @@ $(document).on('turbolinks:load', function(){
       })(file);
       reader.readAsDataURL(file);
     });
-    console.log(new_image_files);
+    // console.log(new_image_files);
 
-    // filter_registered_images_ids = registered_images_ids.filter(function(value) {
-    //   return value !== clickdelete_registered_images_ids;
-    // });
   });
 
   
+
+
   
 
 
@@ -76,8 +64,7 @@ $(document).on('turbolinks:load', function(){
 
   // 以下で全ての既存画像に保存順にlabelLengthに名前をつけながらプレビュー表示する（.eachだと一括表示されているものは同じ番号としてlabelLengthに変化をつけられないのでfor文を使用）
   for (let i = 0; i < $(".editimage").find("img").length; i++) {
-  // let labelLength = $(".editimage").eq(i).data('index');
-  console.log(gon.imageids[i]);
+
   let labelLength = gon.imageids[i];
 
   // 表示用のクラスの子要素のimgオブジェクトの中のsrcを取得(.attr('img')だとsrcとカスタムデータの２属性をもつオブジェクトになってしまい取得後の再表示が上手くいかない)
@@ -109,11 +96,11 @@ if (imageLength < 10) {
 
 
   // 配列にテーブル内の画像とインデックスを格納
-  images.push(img)
-  registered_images_ids.push(labelLength) 
+  // images.push(img)
+  // registered_images_ids.push(labelLength) 
 
-// console.log(images);
-console.log(registered_images_ids);
+// テーブルに既存の画像データの主キーを取得できているか確認
+// console.log(registered_images_ids);
 
 };
 
@@ -130,15 +117,20 @@ $(document).on('click', '.preview-image__button__delete', function(){
 
 // イベント元のカスタムデータ属性の値を取得
 let targetImageId = $(this).data('image-id');
+let delete_input = `<input type="hidden" value="${targetImageId}" name="item[delete_image_ids][]">`
+console.log(delete_input);
+$(".sell-container__content__upload__items__box").append(delete_input);
+// $(".sell-container__content__upload__items__box").append("<input id='a' class='b' type='hidden' value='${targetImageId}' name='item[image_ids][]'>");
+// $(".sell-container__content__upload__items__box").append("delete_input");
  // 削除ボタンを押した画像を取得
-let target_image = $(".preview-image__figure").children('img').attr('src');
-const aryMax = function (a, b) {return Math.max(a, b);}
-let max = registered_images_ids.reduce(aryMax);
+// let target_image = $(".preview-image__figure").children('img').attr('src');
+// const aryMax = function (a, b) {return Math.max(a, b);}
+// let max = registered_images_ids.reduce(aryMax);
 // target_image_numが登録済画像の数以下の場合は登録済画像データの配列から削除、それより大きい場合は新たに追加した画像データの配列から削除
-if(targetImageId < max+1) {
-clickdelete_registered_images_ids.push(targetImageId) 
-clickdelete_images.push(target_image)
-}
+// if(targetImageId < max+1) {
+// clickdelete_registered_images_ids.push(targetImageId) 
+// clickdelete_images.push(target_image)
+// }
 
 $(`#upload-image${targetImageId}`).remove();
 //プレビューを削除
@@ -157,8 +149,8 @@ if (imageLength ==9) {
                             </label>`);
 };
 
-console.log(clickdelete_registered_images_ids);
-console.log(clickdelete_images);
+// console.log(clickdelete_registered_images_ids);
+// console.log(clickdelete_images);
 
 
 
@@ -169,48 +161,44 @@ console.log(clickdelete_images);
 
 
   
-$('#edit_item').on('submit', function(e){
-// console.log(registered_images_ids);
-// console.log(files);
-  // filter_registered_images_ids = registered_images_ids.filter(i => clickdelete_registered_images_ids.indexOf(i) == -1)
-  // console.log(filter_registered_images_ids);
-  // 通常のsubmitイベントを止める
-  e.preventDefault();
-  // images以外のform情報をformDataに追加
-  var formData = new FormData($(this).get(0));
-  var url = $(this).attr('action')
-  // 削除画像がない場合は便宜的に0を入れる
-  if (clickdelete_registered_images_ids == gon.imageids) {
-    formData.append("delete_images_ids[ids][]", 0)
-  // 削除画像で、のidをformDataに追加していく
-  } else {
-    clickdelete_registered_images_ids.forEach(function(delete_image_id){
-      formData.append("delete_images_ids[ids][]", delete_image_id)
-    });
-  }
+// $('#edit_item').on('submit', function(e){
 
-  // console.log(registered_images_ids);
+//   // 通常のsubmitイベントを止める
+//   e.preventDefault();
+//   // images以外のform情報をformDataに追加
+//   var formData = new FormData($(this).get(0));
+//   var url = $(this).attr('action')
+//   // 削除画像がない場合は便宜的に0を入れる
+//   if (clickdelete_registered_images_ids == gon.imageids) {
+//     formData.append("delete_images_ids[ids][]", 0)
+//     console.log(formData);
+//   // 削除画像で、のidをformDataに追加していく
+//   } else {
+//     clickdelete_registered_images_ids.forEach(function(delete_image_id){
+//       formData.append("delete_images_ids[ids][]", delete_image_id)
+//       console.log(formData);
+//     });
+//   }
 
-  // 新しく追加したimagesがない場合は便宜的に空の文字列を入れる
-  if (new_image_files.length == 0) {
-    formData.append("new_images[images][]", " ")
-  // 新しく追加したimagesがある場合はformDataに追加する
-  } else {
-    new_image_files.forEach(function(file){
-      formData.append("new_images[images][]", file)
-    });
-  }
-  console.log(formData);
 
-  $.ajax({
-    url: url,
-    // url:         '/items/' + gon.item.id,
-    type:        "PATCH",
-    data:        formData,
-    contentType: false,
-    processData: false,
-  })
-});
+//   // 新しく追加したimagesがない場合は便宜的に空の文字列を入れる
+//   if (new_image_files.length == 0) {
+//     formData.append("new_images[images][]", " ")
+//   // 新しく追加したimagesがある場合はformDataに追加する
+//   } else {
+//     new_image_files.forEach(function(file){
+//       formData.append("new_images[images][]", file)
+//     });
+//   }
+
+//   $.ajax({
+//     url: url,
+//     type:        "PATCH",
+//     data:        formData,
+//     contentType: false,
+//     processData: false,
+//   })
+// });
 
 
 

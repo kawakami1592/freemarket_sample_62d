@@ -56,23 +56,16 @@ class ItemsController < ApplicationController
 
   def update
     if @item.present?
-      # 登録済画像のidの配列を生成
-      registered_image_ids = @item.images_blob_ids.map
-      # 削除ボタンを押された画像のidの配列を生成
-      if delete_image_params[0] = 0
-        delete_ids = [];
-      else
-        delete_ids = delete_image_params[:ids].map(&:to_i)
-      end
-      # 登録済画像が残っていない場合(配列に０が格納されている)、配列を空にする
-      if (registered_image_ids == delete_ids || new_image_params[:images][0] != " ") && @item.update(item_params)
-        # 登録済画像のうち削除ボタンをおした画像を削除
-        unless delete_ids[0] != " " 
-          # 削除する画像のidの配列を生成し、物理削除する
-          delete_ids.each do |id|
-            @item.images.find(id).destroy
-          end
-        end             
+      # 画像に変化があれば更新
+      if (item_update_params[:delete_image_ids][0].present? || item_update_params[:images][0].present?)
+        @item.update(item_params)
+        # 既存画像のdeleteボタンを押されていた場合はテーブルから削除
+        if(item_update_params[:delete_image_ids][0].present?) 
+        # 削除する画像のidの配列を検索し、物理削除する
+        item_update_params[:delete_image_ids].each do |delete_image_ids|
+          @item.images.find(delete_image_ids).destroy
+        end
+      end             
         #紐づいていないデータがs3やローカルのテーブルに残っている場合はupdateの後に削除
         DeleteUnreferencedBlobJob.perform_later
         redirect_to root_path, notice: "商品情報を編集しました"
@@ -149,23 +142,12 @@ class ItemsController < ApplicationController
     params.require(:item).permit(:name, :text, :category_id, :condition_id, :deliverycost_id, :pref_id, :delivery_days_id, :price, images: []).merge(user_id: current_user.id, boughtflg_id:"1")
   end
 
-  # def update_params
-  #   params.require(:item).permit(:name, :text, :category_id, :condition_id, :deliverycost_id, :pref_id, :delivery_days_id, :price, images: [:id]).merge(user_id: current_user.id, boughtflg_id:"1")
-  # end
+  def item_update_params
+    params.require(:item).permit(:name, :text, :category_id, :condition_id, :deliverycost_id, :pref_id, :delivery_days_id, :price, images: [], delete_image_ids: []).merge(user_id: current_user.id, boughtflg_id:"1")
+  end
 
   def set_item
     @item = Item.find_by(id:params[:id])
   end
 
-  private
-  def delete_image_params
-    params.require(:delete_images_ids).permit({ids:[]})
-  end
-
-  private
-  def new_image_params
-    params.require(:new_images).permit(images:[])
-  end
-
 end
-
