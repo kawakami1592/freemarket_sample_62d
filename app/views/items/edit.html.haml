@@ -5,7 +5,7 @@
   -#メイン部分
   %main
     %section.sell-container
-      = form_with model: @item, method: "patch", id:'edit_item' do |f|
+      = form_with model: @item, method: "patch" do |f|
 
         -# 画像部分
         .sell-container__content
@@ -19,12 +19,12 @@
             .sell-container__content__upload__items
               .sell-container__content__upload__items__box
                 %ul#output-box                  
-                  %div#image-input                    
+                  %div#image-input{tabindex:"0"}                    
                     = f.label :images, for: "item_images0", class: 'sell-container__content__upload__items__box__label', data: {label_id: 0 } do
+                      = f.file_field :images, multiple: true, class: "sell-container__content__upload__items__box__input", id: "item_images0", style: 'display: none;'
                       - @image.zip(@image_id).each do |image, image_id|
                         .editimage{id:"img-#{image_id}",data:{index:image_id}}       
                           = image_tag image
-                      = f.file_field :images, multiple: true, class: "sell-container__content__upload__items__box__input", id: "item_images0", style: 'display: none;'
                       %pre
                         %i.fas.fa-camera.fa-lg
                         ドラッグアンドドロップ

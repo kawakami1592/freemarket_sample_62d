@@ -145,4 +145,23 @@ function categoryOption(category){
 let txtcount = $("textarea").val().length;
 $("#word-count").text(txtcount);
 
+
+// 各フォームの入力チェック
+// $(function(){
+  //画像
+  // $('#image-input').on('focus',function(){
+  //   $('#error-image').text('');
+  //   $('#image-input').on('blur',function(){
+  //     $('#error-image').text('');
+  //     let imageLength = $('#output-box').children('li').length;
+  //     if(imageLength ==''){
+  //       $('#error-image').text('画像がありません');
+  //     }else if(imageLength >10){
+  //       $('#error-image').text('画像を10枚以下にして下さい');
+  //     }else{
+  //       $('#error-image').text('');
+  //     }
+  //   });
+  // });
+
 });

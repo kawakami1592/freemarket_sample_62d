@@ -56,10 +56,9 @@ class ItemsController < ApplicationController
 
   def update
     if @item.present?
-      # 画像に変化があれば更新
-      if @item.update(item_params)
-      # if (item_update_params[:delete_image_ids].present? || item_update_params[:images].present?)
-      
+      # 画像は一枚以上の時のみupdate
+      if item_update_params[:images].present? || item_update_params[:delete_image_ids] == nil
+        @item.update(item_params)
         # 既存画像のdeleteボタンを押されていた場合はテーブルから削除
         if(item_update_params[:delete_image_ids].present?) 
         # 削除する画像のidの配列を検索し、物理削除する
