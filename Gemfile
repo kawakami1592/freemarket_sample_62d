@@ -88,3 +88,4 @@ gem 'sprockets-rails'
 gem 'sidekiq'
 gem 'gon'
 gem "gretel"
+gem "capistrano-sidekiq"
