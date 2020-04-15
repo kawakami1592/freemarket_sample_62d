@@ -35,12 +35,12 @@
             プライバシーポリシー
         %li
           = link_to '#' do
-            メルカリ利用規約
+            フリマ利用規約
         %li
           = link_to '#' do
             特定商取引に関する表記
     = link_to root_path, class: 'footer__logo' do
-      = image_tag 'logo-gray.svg', alt: 'mercari', height: '65', width: '80'
+      = link_to image_tag('logo/logo.png', height: '40px', alt: 'ロゴ'), root_path(current_user)
     %p
       %small
-        &copy; Mercari, Inc.
+        &copy; FURIMA, Inc.

@@ -108,6 +108,10 @@ body{
         background: #fff;
         .login__box--form{
           padding: 24px 64px 32px;
+          a{
+            text-align: center;
+            margin-top: 20px;
+          }
           .form-password{
             margin-top: 24px;
           }

@@ -36,7 +36,7 @@
   padding: 1% 0 1.5% 0;
   display:block;
   align-items: center;
-  background-color: ghostwhite;
+  background-color: white;
   border: 1px solid rgb(199, 199, 199);
   &__setsumei{
     font-size: small;
@@ -54,7 +54,7 @@
 .account-page__inner--right.user-form{
   margin: 0 32% 0 32%;
   text-align: left;
-  background-color: ghostwhite;
+  background-color: white;
   box-sizing: border-box;
   border: 1px solid rgb(199, 199, 199);
 }
@@ -361,7 +361,6 @@
     font-weight: bold;
   }
   &__input{  
-    // margin:0 5% 0 5%;
     font-size: 15px; 
     #user_birthmonth_id{
       width: 100%;
@@ -408,16 +407,16 @@
   text-align: center;
   .btn{
     width: 70%;
-    height:28px;
+    height:40px;
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    background-color: #fff;
+    background-color: red;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
-    color: #222;
-    font-size: 16px;
+    color: white;
+    font-size: 20px;
     line-height: 1;
     margin: 0;
     outline: none;

@@ -8,39 +8,43 @@
       .confirm-group__form__main
         .confirm-group__form__main__pict
           .confirm-group__form__main__pict__frame
-            = image_tag(@item.images.first, width: '100%', height: '100%', alt: '商品画像')
+            = image_tag(@item.images.first, width: '150%', height: '100%', alt: '商品画像')
           %h2
-          = @item.name
-        .confirm-group__form__main__price
-          %p
+            = @item.name
+            .confirm-group__form__main__price
+              %p
+                = "¥ " + @item.price.to_s(:delimited)
+                %span (税込) 送料込み
+    .confirm-group__form__main__buy        
+      .confirm-group__form__main__buy-price
+        %p 支払い金額
+        %p.buy-price-table 
           = "¥ " + @item.price.to_s(:delimited)
-          %span 送料込み
-        .confirm-group__form__main__point 
-          ※保有ポイントはありません
-        -# ポイントはありません
-        .confirm-group__form__main__buy-price
-          %p 支払い金額
-          %p.buy-price-table 
-          = "¥ " + @item.price.to_s(:delimited)
-        .confirm-group__form__main__button  
-          = form_tag(action: :pay, "data-turbolinks": false,method: :post) do
-            %button 購入する
-    .user-info
-      .user-info__main
-        %h3 配送先
-        %address.user-info__main__text
-          = "〒" + @user.zipcode  
-          %br 
-          = @user.pref.name + @user.city + @user.address + @user.buildingname
-        %a.user-info__main__fix 変更する
+      .confirm-group__form__main__point
+        =link_to '#' do
+          %i.fab.fa-product-hunt 
+          ポイントを使用（所持ポイント：P0）
     .user-info
       .user-info__main
         %h3 支払い方法
-        %p.user-info__main__text
-          = "************" + @default_card_information.last4
+        .user-info__main__text
+          クレジットカード
+          %br
+          = "************" + @default_card_information.last4  
           %br 
           = "有効期限 " + @default_card_information.exp_month.to_s + " / " + @default_card_information.exp_year.to_s.slice(2,3)
-
+      %a.user-info__main__fix 
+        = link_to "変更する", cards_path
+    .user-info
+      .user-info__main
+        %h3 配送先
+        %p.user-info__main__text
+          = "〒" + @user.zipcode
+          %br 
+          = @user.pref.name + @user.city + @user.address + @user.buildingname
+    .confirm-group__form__main__button  
+      = form_tag(action: :pay, "data-turbolinks": false,method: :post) do
+        %button 購入する
 = render "shared/top-footer"
 
 
