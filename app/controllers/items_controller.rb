@@ -2,8 +2,8 @@ class ItemsController < ApplicationController
   
    before_action :authenticate_user!, except:[:index,:show]
    before_action :set_item, only: [:show, :buy, :pay, :edit, :update]
-   before_action :set_card, except:[:index]  #クレジットカード削除の判定に使用しているので消さないでください
-   
+   before_action :set_card, except:[:index, :edit, :update]  #クレジットカード削除の判定に使用しているので消さないでください
+
   def index
     @items = Item.includes(:user).last(3)
   end
@@ -32,9 +32,10 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     if @item.save
-      redirect_to root_path
+      DeleteUnreferencedBlobJob.perform_later 
+      redirect_to root_path, notice: "出品できました"
     else
-      render :new
+      render :new, notice: "出品できませんでした"
     end
   end
 
@@ -43,6 +44,10 @@ class ItemsController < ApplicationController
       if @item.user_id == current_user.id && @item.boughtflg_id != 2
         @category_grandchildren = Category.find(@item.category_id)
         @category_parent =  Category.where("ancestry is null")
+        @image = @item.images.order(id: "ASC")
+        @image_id = @item.images_blob_ids.sort_by {|a| a}
+        gon.item = @item
+        gon.imageids = @image_id
       elsif @item.boughtflg_id == 2
         redirect_to root_path,notice: "この商品は売り切れたため編集できません"
       else
@@ -51,14 +56,29 @@ class ItemsController < ApplicationController
     else
       redirect_to root_path,notice: "商品が見つかりません"
     end
+
   end
 
   def update
     if @item.present?
-      if @item.update(item_params)
-        redirect_to root_path, notice: "商品情報を編集しました"
+      # 画像は一枚以上の時のみupdate
+      if item_update_params[:delete_image_ids] != nil
+        delete_ids_ary = item_update_params[:delete_image_ids].map(&:to_i).uniq
+      end
+      if item_update_params[:images].present? || delete_ids_ary != @item.images_blob_ids
+        @item.update(item_params)
+        # 既存画像のdeleteボタンを押されていた場合はテーブルから削除
+        if(item_update_params[:delete_image_ids].present?) 
+        # 削除する画像のidの配列を検索し、物理削除する
+          item_update_params[:delete_image_ids].each do |delete_image_ids|
+            @item.images.find(delete_image_ids).destroy
+          end
+        end             
+        #紐づいていないデータがs3やローカルのテーブルに残っている場合はupdateの後に削除
+        DeleteUnreferencedBlobJob.perform_later
+        redirect_to root_path, notice: "商品情報を更新しました"
       else
-        redirect_to edit_item_path ,notice: "商品情報を編集できていません"
+        redirect_to edit_item_path ,notice: "商品情報を更新できていません"
       end
     else
       redirect_to root_path, notice: "商品が見つかりません"
@@ -69,6 +89,8 @@ class ItemsController < ApplicationController
     item = Item.find_by(id: params[:id])
     if item.present?
       if item.destroy
+        #紐づいていないデータがs3やローカルのテーブルに残っている場合はupdateの後に削除
+        DeleteUnreferencedBlobJob.perform_later 
         redirect_to root_path, notice: "削除に成功しました"
       else
         redirect_to root_path, notice: "削除に失敗しました"
@@ -132,7 +154,13 @@ class ItemsController < ApplicationController
     params.require(:item).permit(:name, :text, :category_id, :condition_id, :deliverycost_id, :pref_id, :delivery_days_id, :price, images: []).merge(user_id: current_user.id, boughtflg_id:"1")
   end
 
+  def item_update_params
+    params.require(:item).permit(:name, :text, :category_id, :condition_id, :deliverycost_id, :pref_id, :delivery_days_id, :price, images: [], delete_image_ids: []).merge(user_id: current_user.id, boughtflg_id:"1")
+  end
+
   def set_item
     @item = Item.find_by(id:params[:id])
   end
+
 end
+

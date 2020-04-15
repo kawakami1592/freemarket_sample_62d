@@ -3,6 +3,7 @@ ja:
   activerecord:
     errors:
       messages:
+        invalid_image_type: にはJPEG、PNG、GIF、BMP形式の画像を指定してください。
         record_invalid: 'バリデーションに失敗しました: %{errors}'
         restrict_dependent_destroy:
           has_one: "%{record}が存在しているので削除できません"
@@ -205,3 +206,8 @@ ja:
       long: "%Y/%m/%d %H:%M"
       short: "%m/%d %H:%M"
     pm: 午後
+
+    attributes:
+      member:
+        new_images: 画像
+        remove_images: 画像を削除

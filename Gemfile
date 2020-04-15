@@ -85,4 +85,6 @@ gem 'ancestry'
 gem 'aws-sdk-s3', require: false
 gem 'payjp'
 gem 'sprockets-rails'
+gem 'sidekiq'
+gem 'gon'
 gem "gretel"
