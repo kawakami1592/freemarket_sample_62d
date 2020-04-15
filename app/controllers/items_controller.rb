@@ -33,9 +33,9 @@ class ItemsController < ApplicationController
     @item = Item.new(item_params)
     if @item.save
       DeleteUnreferencedBlobJob.perform_later 
-      redirect_to root_path
+      redirect_to root_path, notice: "出品できました"
     else
-      render :new
+      render :new, notice: "出品できませんでした"
     end
   end
 
