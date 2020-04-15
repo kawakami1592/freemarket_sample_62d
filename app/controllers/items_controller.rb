@@ -44,8 +44,8 @@ class ItemsController < ApplicationController
       if @item.user_id == current_user.id && @item.boughtflg_id != 2
         @category_grandchildren = Category.find(@item.category_id)
         @category_parent =  Category.where("ancestry is null")
-        @image = @item.images
-        @image_id = @item.images_blob_ids
+        @image = @item.images.order(id: "ASC")
+        @image_id = @item.images_blob_ids.sort_by {|a| a}
         gon.item = @item
         gon.imageids = @image_id
       elsif @item.boughtflg_id == 2
