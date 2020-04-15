@@ -62,7 +62,10 @@ class ItemsController < ApplicationController
   def update
     if @item.present?
       # 画像は一枚以上の時のみupdate
-      if item_update_params[:images].present? || item_update_params[:delete_image_ids] == nil
+      if item_update_params[:delete_image_ids] != nil
+        delete_ids_ary = item_update_params[:delete_image_ids].map(&:to_i)
+      end
+      if item_update_params[:images].present? || delete_ids_ary.uniq != @item.images_blob_ids
         @item.update(item_params)
         # 既存画像のdeleteボタンを押されていた場合はテーブルから削除
         if(item_update_params[:delete_image_ids].present?) 
