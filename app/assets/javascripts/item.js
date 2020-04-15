@@ -45,7 +45,7 @@ $('#image-input').on('change', function(e){
                                   </li>`);
         $("#image-input>label").eq(-1).css('display','none');
         // 入力されたlabelを見えなくする
-        if (imageLength < 10) {
+        if (imageLength < 9) {
           // 表示されているプレビューが９以下なら、新たにinputを生成する
           $("#image-input").append(`<label for="item_images${labelLength+1}" class="sell-container__content__upload__items__box__label" data-label-id="${labelLength+1}">
                                       <input multiple="multiple" class="sell-container__content__upload__items__box__input" id="item_images${labelLength+1}" style="display: none;" type="file" name="item[images][]">
