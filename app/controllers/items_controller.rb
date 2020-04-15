@@ -63,9 +63,9 @@ class ItemsController < ApplicationController
     if @item.present?
       # 画像は一枚以上の時のみupdate
       if item_update_params[:delete_image_ids] != nil
-        delete_ids_ary = item_update_params[:delete_image_ids].map(&:to_i)
+        delete_ids_ary = item_update_params[:delete_image_ids].map(&:to_i).uniq
       end
-      if item_update_params[:images].present? || delete_ids_ary.uniq != @item.images_blob_ids
+      if item_update_params[:images].present? || delete_ids_ary != @item.images_blob_ids
         @item.update(item_params)
         # 既存画像のdeleteボタンを押されていた場合はテーブルから削除
         if(item_update_params[:delete_image_ids].present?) 
@@ -76,9 +76,9 @@ class ItemsController < ApplicationController
         end             
         #紐づいていないデータがs3やローカルのテーブルに残っている場合はupdateの後に削除
         DeleteUnreferencedBlobJob.perform_later
-        redirect_to root_path, notice: "商品情報を編集しました"
+        redirect_to root_path, notice: "商品情報を更新しました"
       else
-        redirect_to edit_item_path ,notice: "商品情報を編集できていません"
+        redirect_to edit_item_path ,notice: "商品情報を更新できていません"
       end
     else
       redirect_to root_path, notice: "商品が見つかりません"
