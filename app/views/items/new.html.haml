@@ -1,7 +1,8 @@
 .sell
   %header.sell-header
     = link_to root_path do
-      = image_tag 'mercari_top_logo.svg', alt: 'mercari', height: '49', width: '185'
+      -# = image_tag 'mercari_top_logo.svg', alt: 'mercari', height: '49', width: '185'
+      = image_tag 'logo/logo.png', alt: 'furima', height: '49', width: '185'
   -#メイン部分
   %main
     %section.sell-container
@@ -169,12 +170,16 @@
             プライバシーポリシー
         %li
           = link_to '#' do
-            メルカリ利用規約
+            フリマ利用規約
         %li
           = link_to '#' do
             特定商取引に関する表記
     = link_to root_path, class: 'footer__logo' do
-      = image_tag 'logo-gray.svg', alt: 'mercari', height: '65', width: '80'
+      -# = image_tag 'logo-gray.svg', alt: 'mercari', height: '65', width: '80'
+      = image_tag 'logo/logo-pict.png', alt: 'furima', height: '65', width: '80'
+      %br
+      = image_tag 'logo/logo-chr.png', height: '30px', alt: 'ロゴ'
     %p
       %small
-        &copy; Mercari, Inc.
+        -# &copy; Mercari, Inc.
+        &copy; FURIMA, Inc.
