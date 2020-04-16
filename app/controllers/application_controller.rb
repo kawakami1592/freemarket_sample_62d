@@ -1,7 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :basic_auth, if: :production?
-  #下記はrailsのバージョンが5.2未満のものに使用されるためコメントアウトします
-  # protect_from_forgery with: :exception
+  protect_from_forgery with: :exception
 
   # 下記はサーバーサイド実装の記述(確認の為一時的にコメントアウトします)←root_pathにかけたくないので最後に消去します！（代役は記載しました！）
   # before_action :authenticate_user!

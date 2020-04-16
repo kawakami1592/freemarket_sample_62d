@@ -2,7 +2,7 @@
 # capistranoのバージョンを記載。固定のバージョンを利用し続け、バージョン変更によるトラブルを防止する
 lock '3.12.0'
 # require 'sidekiq/capistrano'
-set :sidekiq_role, :web
+# set :sidekiq_role, :web
 # Capistranoのログの表示に利用する
 set :application, 'freemarket_sample_62d'
 

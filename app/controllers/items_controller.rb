@@ -32,7 +32,7 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     if @item.save
-      DeleteUnreferencedBlobJob.perform_later 
+      # DeleteUnreferencedBlobJob.perform_later 
       redirect_to root_path, notice: "出品できました"
     else
       render :new, notice: "出品できませんでした"
@@ -75,7 +75,7 @@ class ItemsController < ApplicationController
           end
         end             
         #紐づいていないデータがs3やローカルのテーブルに残っている場合はupdateの後に削除
-        DeleteUnreferencedBlobJob.perform_later
+        # DeleteUnreferencedBlobJob.perform_later
         redirect_to root_path, notice: "商品情報を更新しました"
       else
         redirect_to edit_item_path ,notice: "商品情報を更新できていません"
@@ -90,7 +90,7 @@ class ItemsController < ApplicationController
     if item.present?
       if item.destroy
         #紐づいていないデータがs3やローカルのテーブルに残っている場合はupdateの後に削除
-        DeleteUnreferencedBlobJob.perform_later 
+        # DeleteUnreferencedBlobJob.perform_later 
         redirect_to root_path, notice: "削除に成功しました"
       else
         redirect_to root_path, notice: "削除に失敗しました"
