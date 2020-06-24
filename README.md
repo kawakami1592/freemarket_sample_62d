@@ -1,27 +1,61 @@
-# README
+# アプリケーション情報
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# アプリケーション概要
+- フリーマーケットのアプリケーションを作成しました。
+# 接続先情報
+- URL http://3.115.38.38/
+### ID/Pass
+- ID: admin
+- Pass: 2222
+## テスト用アカウント等
+＊Facebook/Googleでのログインは実装しておりません
+### 購入者用
+- メールアドレス: hoge@hoge
+- パスワード: 11111111
+- 購入用カード情報
+- 番号：4242424242424242
+- 期限：12/20
+- セキュリティコード：123
+### 出品者用
+- メールアドレス名: fuga@fuga
+- パスワード: 1234567
 
-Things you may want to cover:
+# 開発状況
+## 開発環境
+- Ruby/Ruby on Rails/MySQL/Github/AWS/Visual Studio Code
+- 開発期間と平均作業時間
+- 開発期間：約８週間
+- 1日あたりの平均作業時間：4時間
+## 開発体制
+- 人数：5人
+- アジャイル型開発（スクラム）
+- Trelloによるタスク管理
 
-* Ruby version
-  2.5.1
-* System dependencies
+# 動作確認方法
+Chromeの最新版を利用してアクセスしてください。
+ただしデプロイ等で接続できないタイミングもございます。その際は少し時間をおいてから接続ください。
+接続先およびログイン情報については、上記の通りです。
+同時に複数の方がログインしている場合に、ログインできない可能性がございます。
 
-* Configuration
+出品者用テストアカウントでログイン→トップページから出品ボタン押下→商品情報入力→商品出品
+購入者用テストアカウントでログイン→トップページから商品選択→商品詳細ページから商品購入ページ→商品購入
+確認後、ログアウト処理をお願いします。
 
-* Database creation
 
-* Database initialization
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
 
-* ...
+
+# 紹介
+![screencapture-localhost-3000-2020-05-19-03_15_01](https://user-images.githubusercontent.com/57590363/82246129-17f43c80-997f-11ea-8cef-92cc05be28d7.png)
+
+![screencapture-localhost-3000-recipes-16-2020-05-19-03_13_28](https://user-images.githubusercontent.com/57590363/82245940-d1064700-997e-11ea-9701-c57dc76e6ce8.png)
+
+![screencapture-localhost-3000-users-2-2020-05-19-03_17_22](https://user-images.githubusercontent.com/57590363/82246259-4bcf6200-997f-11ea-877a-670029241cc3.png)
+
+
+
 
 # freemarket_sample_62d DB設計
 ## userテーブル
