@@ -48,7 +48,7 @@ Chromeの最新版を利用してアクセスしてください。
 
 
 # 紹介
-![screencapture-localhost-3000-2020-05-19-03_15_01](https://user-images.githubusercontent.com/57590363/82246129-17f43c80-997f-11ea-8cef-92cc05be28d7.png)
+![screencapture-3-115-38-38-2020-06-24-17_20_53](https://user-images.githubusercontent.com/57590363/85522904-349c2800-b641-11ea-9248-47d79e0514f5.png)
 
 ![screencapture-localhost-3000-recipes-16-2020-05-19-03_13_28](https://user-images.githubusercontent.com/57590363/82245940-d1064700-997e-11ea-9701-c57dc76e6ce8.png)
 
