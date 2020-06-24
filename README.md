@@ -43,10 +43,6 @@ Chromeの最新版を利用してアクセスしてください。
 
 
 
-
-
-
-
 # 紹介
 ![screencapture-3-115-38-38-2020-06-24-17_20_53](https://user-images.githubusercontent.com/57590363/85522904-349c2800-b641-11ea-9248-47d79e0514f5.png)
 
